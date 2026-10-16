@@ -1,1300 +1,488 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SEO Primary Meta Tags -->
-  <title>AutoCheck Salta | Diagnóstico Automotriz y Solución de Fallas de Arranque</title>
-  <meta name="title" content="AutoCheck Salta | Diagnóstico Automotriz y Solución de Fallas de Arranque">
-  <meta name="description" content="Especialistas en diagnóstico electrónico, problemas de arranque, chequeo pre-compra y mecánica general en Parque Belgrano / Roque Sáenz Peña, Salta.">
-  <meta name="keywords" content="diagnóstico automotriz Salta, fallas de arranque Salta, escaneo computarizado Salta, chequeo pre-compra Salta, peritaje autos usados Salta, taller mecánico Parque Belgrano, Roque Sáenz Peña Salta">
-  <meta name="author" content="AutoCheck Salta">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://autochecksalta.com.ar/">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://autochecksalta.com.ar/">
-  <meta property="og:title" content="AutoCheck Salta | Diagnóstico Automotriz y Solución de Fallas de Arranque">
-  <meta property="og:description" content="Especialistas en diagnóstico electrónico, problemas de arranque, chequeo pre-compra y mecánica general en Parque Belgrano / Roque Sáenz Peña, Salta.">
-  <meta property="og:image" content="portadafc.jpg">
-  <meta property="og:locale" content="es_AR">
-  <meta property="og:site_name" content="AutoCheck Salta">
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://autochecksalta.com.ar/">
-  <meta property="twitter:title" content="AutoCheck Salta | Diagnóstico Automotriz y Solución de Fallas de Arranque">
-  <meta property="twitter:description" content="Especialistas en diagnóstico electrónico, problemas de arranque, chequeo pre-compra y mecánica general en Parque Belgrano / Roque Sáenz Peña, Salta.">
-  <meta property="twitter:image" content="portadafc.jpg">
-
-  <!-- Favicon -->
+  <title>AutoCheck Salta | Diagnóstico Computarizado & Fallas de Arranque</title>
   <link rel="icon" type="image/png" href="logo.png">
-  <meta name="theme-color" content="#142B3B">
-
-  <!-- Google Fonts: Manrope & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome 6.5.1 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              ink: '#142B3B',
-              slate: '#1E3A4F',
-              green: '#21B573',
-              greenDark: '#16834A',
-              greenSoft: '#EAF7EF',
-              amber: '#EFA83B',
-              amberLight: '#FEF6E9',
-              grayLight: '#F8FAFC',
-              borderLine: '#E2E8F0'
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Manrope', 'sans-serif']
-          }
-        }
-      }
+  <style>
+    :root {
+      --green: #21a75f;
+      --green-dark: #16834a;
+      --green-soft: #eaf7ef;
+      --ink: #142b3b;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #ffffff;
+      --bg-alt: #f8fafc;
     }
-  </script>
 
-  <!-- Schema.org Structured Data (LocalBusiness & FAQPage) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "AutoRepair",
-        "@id": "https://autochecksalta.com.ar/#autorepair",
-        "name": "AutoCheck Salta",
-        "description": "Taller de diagnóstico automotriz y mecánica especializada en fallas de arranque, escaneo computarizado y chequeo pre-compra en Salta Norte.",
-        "url": "https://autochecksalta.com.ar/",
-        "telephone": "+54 9 387 518-2523",
-        "priceRange": "$$",
-        "image": "logo.png",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Manzana 9 Casa 8, B° Roque Sáenz Peña (Zona Parque Belgrano)",
-          "addressLocality": "Salta Capital",
-          "addressRegion": "Salta",
-          "postalCode": "4400",
-          "addressCountry": "AR"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": -24.7554,
-          "longitude": -65.4158
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday"
-            ],
-            "opens": "09:00",
-            "closes": "17:00"
-          }
-        ],
-        "areaServed": [
-          {
-            "@type": "AdministrativeArea",
-            "name": "Salta Capital"
-          },
-          {
-            "@type": "Place",
-            "name": "Parque Belgrano"
-          },
-          {
-            "@type": "Place",
-            "name": "Roque Sáenz Peña"
-          },
-          {
-            "@type": "Place",
-            "name": "Salta Norte"
-          }
-        ],
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Servicios de Diagnóstico y Mecánica",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Escaneo Electrónico y Diagnóstico Computarizado"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Diagnóstico y Solución de Fallas de Arranque"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Chequeo Integral Pre-Compra (Inspección Usados)"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Sistema de Carga y Arranque"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Mantenimiento Preventivo y Puesta a Punto"
-              }
-            }
-          ]
-        }
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://autochecksalta.com.ar/#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "¿Tienen servicio de diagnóstico a domicilio si el auto no arranca?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Coordinamos asistencias puntuales en Zona Norte para verificación rápida de batería y arranque en el lugar, o bien recepción directa en taller con turno previo."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Cuánto demora un diagnóstico computarizado completo?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Un escaneo general con informe suele tomar entre 30 y 45 minutos, evaluando códigos de falla y parámetros en vivo."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Qué incluye el peritaje pre-compra de un auto usado?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Incluye escaneo electrónico, inspección visual de vano motor, detección de fugas, estado de batería/alternador, verificación de tren rodante y prueba de funcionamiento general."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Es necesario sacar turno previo?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Sí, trabajamos con turnos programados para dedicarle el tiempo exclusivo que requiere cada vehículo."
-            }
-          }
-        ]
-      }
-    ]
-  }
-  </script>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* HEADER */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-inner {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand img {
+      height: 42px;
+      display: block;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s;
+    }
+
+    .btn-outline {
+      border-color: var(--border);
+      background: #ffffff;
+      color: var(--text);
+    }
+    .btn-outline:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: #ffffff;
+    }
+    .btn-green:hover {
+      background: var(--green-dark);
+    }
+
+    /* HERO */
+    .hero {
+      padding: 50px 0 35px;
+      text-align: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      max-width: 680px;
+      margin: 0 auto 14px;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    /* HERO BANNER DE IMÁGENES */
+    .hero-banner {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 14px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 45px;
+    }
+
+    .banner-img-wrap {
+      position: relative;
+      height: 240px;
+      background: #f1f5f9;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .banner-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .banner-tag {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(20, 43, 59, 0.85);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* 3 SERVICIOS CLAVE */
+    .section-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--ink);
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 28px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 45px;
+    }
+
+    .service-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px 18px;
+      text-align: left;
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      margin-bottom: 14px;
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* MARCAS */
+    .brands-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .brands-bar img {
+      height: 22px;
+      opacity: 0.85;
+    }
+
+    /* UBICACIÓN Y CONTACTO */
+    .contact-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+
+    .contact-info h3 {
+      font-size: 1.25rem;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .contact-item i {
+      color: var(--green);
+      margin-top: 3px;
+      font-size: 1rem;
+    }
+
+    .map-box {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      height: 200px;
+      background: #f1f5f9;
+    }
+
+    .map-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* WHATSAPP FLOAT */
+    .wa-float {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      background: #25d366;
+      color: #fff;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(37,211,102,0.4);
+      z-index: 100;
+    }
+    .wa-float:hover {
+      background: #20bd5a;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.85rem; }
+      .hero-banner { grid-template-columns: 1fr; }
+      .banner-img-wrap { height: 180px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .contact-card { grid-template-columns: 1fr; }
+      .brands-bar { flex-direction: column; gap: 8px; }
+    }
+  </style>
 </head>
+<body>
 
-<body class="bg-white text-slate-800 antialiased selection:bg-brand-green selection:text-white flex flex-col min-h-screen">
-
-  <!-- ================= TOPBAR LOCAL NAP ================= -->
-  <div class="bg-brand-ink text-slate-300 text-xs py-2 px-4 border-b border-slate-700/60">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
-      <div class="flex items-center flex-wrap justify-center gap-3">
-        <span class="inline-flex items-center text-slate-200">
-          <i class="fa-solid fa-location-dot text-brand-green mr-1.5" aria-hidden="true"></i>
-          Manzana 9 Casa 8, B° Roque Sáenz Peña (Zona Parque Belgrano), Salta Capital
-        </span>
-        <span class="hidden md:inline text-slate-500">|</span>
-        <span class="inline-flex items-center text-slate-300">
-          <i class="fa-regular fa-clock text-brand-green mr-1.5" aria-hidden="true"></i>
-          Lun a Vie: 09:00 a 17:00 hs
-        </span>
-      </div>
-      <div class="flex items-center gap-4">
-        <a href="tel:+5493875182523" class="hover:text-white transition-colors inline-flex items-center font-medium">
-          <i class="fa-solid fa-phone text-brand-green mr-1.5" aria-hidden="true"></i>
-          +54 9 387 518-2523
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="AutoCheck Logo">
+      </a>
+      <div class="nav-actions">
+        <a href="panel.html" class="btn btn-outline">
+          <i class="fa-solid fa-gauge-high"></i> Panel Taller
+        </a>
+        <a href="ingreso.html" class="btn btn-green">
+          <i class="fa-solid fa-file-signature"></i> Ingresar Auto
         </a>
       </div>
-    </div>
-  </div>
-
-  <!-- ================= HEADER & NAVEGACIÓN ================= -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        
-        <!-- Logotipo -->
-        <a href="#inicio" class="flex items-center gap-3 group" aria-label="AutoCheck Salta - Inicio">
-          <img src="logo.png" alt="AutoCheck Salta Logo" class="h-10 sm:h-12 w-auto object-contain">
-          <div class="flex flex-col">
-            <span class="font-display font-extrabold text-xl sm:text-2xl tracking-tight text-brand-ink leading-tight group-hover:text-brand-green transition-colors">
-              AutoCheck<span class="text-brand-green">.</span>
-            </span>
-            <span class="text-[10px] sm:text-xs font-semibold tracking-wider uppercase text-slate-500">
-              Diagnóstico &amp; Mecánica Especializada
-            </span>
-          </div>
-        </a>
-
-        <!-- Menú Desktop -->
-        <nav class="hidden lg:flex items-center gap-6" aria-label="Navegación principal">
-          <a href="#inicio" class="text-sm font-semibold text-slate-700 hover:text-brand-green transition-colors">Inicio</a>
-          <a href="#servicios" class="text-sm font-semibold text-slate-700 hover:text-brand-green transition-colors">Servicios</a>
-          <a href="#fallas-arranque" class="text-sm font-semibold text-slate-700 hover:text-brand-green transition-colors flex items-center gap-1.5">
-            <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-amber opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-amber"></span>
-            </span>
-            Fallas de Arranque
-          </a>
-          <a href="#pre-compra" class="text-sm font-semibold text-slate-700 hover:text-brand-green transition-colors">Chequeo Pre-Compra</a>
-          <a href="#contacto" class="text-sm font-semibold text-slate-700 hover:text-brand-green transition-colors">Ubicación</a>
-          <a href="ingreso.html" class="text-sm font-semibold text-brand-greenDark hover:text-brand-green transition-colors flex items-center gap-1.5 bg-brand-greenSoft/80 px-2.5 py-1 rounded-md">
-            <i class="fa-solid fa-signature text-xs"></i>
-            Ingreso &amp; Firma
-          </a>
-        </nav>
-
-        <!-- CTA Header -->
-        <div class="hidden sm:flex items-center gap-3">
-          <a href="ingreso.html" 
-             class="inline-flex items-center justify-center px-3.5 py-2.5 rounded-lg border border-slate-300 hover:border-brand-green text-slate-700 hover:text-brand-green text-sm font-bold bg-white transition-all duration-200">
-            <i class="fa-solid fa-file-pen text-base mr-1.5" aria-hidden="true"></i>
-            Ficha de Ingreso
-          </a>
-          <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20necesito%20consultar%20por%20un%20diagn%C3%B3stico/falla%20de%20arranque%20en%20mi%20auto" 
-             target="_blank" 
-             rel="noopener noreferrer"
-             class="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-brand-green hover:bg-brand-greenDark text-white text-sm font-bold shadow-sm hover:shadow-md transition-all duration-200">
-            <i class="fa-brands fa-whatsapp text-lg mr-2" aria-hidden="true"></i>
-            Pedir Turno
-          </a>
-        </div>
-
-        <!-- Botón Móvil Hamburguesa -->
-        <div class="flex items-center lg:hidden">
-          <button id="mobile-menu-btn" 
-                  type="button" 
-                  class="text-slate-700 hover:text-brand-ink p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-green" 
-                  aria-expanded="false" 
-                  aria-label="Abrir menú de navegación">
-            <i id="menu-icon-bars" class="fa-solid fa-bars text-2xl"></i>
-            <i id="menu-icon-close" class="fa-solid fa-xmark text-2xl hidden"></i>
-          </button>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Menú Desplegable Móvil -->
-    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 shadow-xl">
-      <nav class="flex flex-col space-y-3" aria-label="Navegación móvil">
-        <a href="#inicio" class="mobile-link text-base font-semibold text-slate-800 hover:text-brand-green px-2 py-1.5 rounded-md hover:bg-slate-50 transition-colors">Inicio</a>
-        <a href="#servicios" class="mobile-link text-base font-semibold text-slate-800 hover:text-brand-green px-2 py-1.5 rounded-md hover:bg-slate-50 transition-colors">Servicios</a>
-        <a href="#fallas-arranque" class="mobile-link text-base font-semibold text-slate-800 hover:text-brand-green px-2 py-1.5 rounded-md hover:bg-slate-50 transition-colors flex items-center justify-between">
-          <span>Fallas de Arranque</span>
-          <span class="text-xs bg-brand-amber/20 text-amber-800 font-bold px-2 py-0.5 rounded-full">Especialidad</span>
-        </a>
-        <a href="#pre-compra" class="mobile-link text-base font-semibold text-slate-800 hover:text-brand-green px-2 py-1.5 rounded-md hover:bg-slate-50 transition-colors">Chequeo Pre-Compra</a>
-        <a href="#por-que-elegirnos" class="mobile-link text-base font-semibold text-slate-800 hover:text-brand-green px-2 py-1.5 rounded-md hover:bg-slate-50 transition-colors">Por Qué Elegirnos</a>
-        <a href="#preguntas-frecuentes" class="mobile-link text-base font-semibold text-slate-800 hover:text-brand-green px-2 py-1.5 rounded-md hover:bg-slate-50 transition-colors">Preguntas Frecuentes</a>
-        <a href="#contacto" class="mobile-link text-base font-semibold text-slate-800 hover:text-brand-green px-2 py-1.5 rounded-md hover:bg-slate-50 transition-colors">Ubicación &amp; Contacto</a>
-        <a href="ingreso.html" class="mobile-link text-base font-bold text-brand-greenDark bg-brand-greenSoft/80 px-2.5 py-2 rounded-md hover:bg-brand-greenSoft transition-colors flex items-center justify-between">
-          <span class="flex items-center gap-2"><i class="fa-solid fa-signature"></i> Ficha de Ingreso &amp; Firma</span>
-          <span class="text-xs bg-brand-green text-white font-bold px-2 py-0.5 rounded-full">Taller</span>
-        </a>
-        
-        <div class="pt-4 mt-2 border-t border-slate-200 flex flex-col gap-2.5">
-          <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20necesito%20consultar%20por%20un%20diagn%C3%B3stico/falla%20de%20arranque%20en%20mi%20auto" 
-             target="_blank" 
-             rel="noopener noreferrer"
-             class="w-full inline-flex items-center justify-center px-4 py-3 rounded-lg bg-brand-green text-white font-bold text-center shadow">
-            <i class="fa-brands fa-whatsapp text-xl mr-2"></i>
-            Pedir Turno por WhatsApp
-          </a>
-          <a href="tel:+5493875182523" 
-             class="w-full inline-flex items-center justify-center px-4 py-3 rounded-lg border border-slate-300 text-brand-ink font-bold hover:bg-slate-50 text-center">
-            <i class="fa-solid fa-phone text-base mr-2 text-brand-green"></i>
-            Llamar Ahora
-          </a>
-        </div>
-      </nav>
     </div>
   </header>
 
-  <main class="flex-grow">
-
-    <!-- ================= 1. HERO SECTION ================= -->
-    <section id="inicio" class="relative bg-gradient-to-b from-slate-50 via-white to-slate-50/50 py-12 sm:py-16 lg:py-20 overflow-hidden border-b border-slate-200/80">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          
-          <!-- Columna Copy / Mensaje -->
-          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-            
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-greenSoft border border-brand-green/20 text-brand-greenDark text-xs sm:text-sm font-bold tracking-wide">
-              <span class="inline-block w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
-              Zona Norte · Parque Belgrano · Salta Capital
-            </div>
-
-            <!-- Título Principal H1 -->
-            <h1 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-[46px] text-brand-ink leading-[1.15] tracking-tight">
-              Diagnóstico Automotriz y Solución de Fallas de Arranque en <span class="text-brand-green inline-block">Salta Norte</span>.
-            </h1>
-
-            <!-- Bajada / Subtítulo -->
-            <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Detectamos con precisión por qué tu auto no enciende o falla antes de que gastes de más en repuestos innecesarios. Escaneo computarizado, revisión eléctrica integral y peritaje pre-compra.
-            </p>
-
-            <!-- Botones de Acción (CTAs) -->
-            <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
-              <!-- CTA WhatsApp -->
-              <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20necesito%20consultar%20por%20un%20diagn%C3%B3stico/falla%20de%20arranque%20en%20mi%20auto" 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white text-base font-bold shadow-lg shadow-brand-green/25 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200">
-                <i class="fa-brands fa-whatsapp text-2xl mr-2.5"></i>
-                Pedir Turno por WhatsApp
-              </a>
-
-              <!-- CTA Llamada -->
-              <a href="tel:+5493875182523" 
-                 class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white border-2 border-slate-300 hover:border-brand-green text-brand-ink hover:text-brand-green text-base font-bold hover:bg-slate-50 transition-all duration-200 shadow-sm">
-                <i class="fa-solid fa-phone text-lg mr-2 text-brand-green"></i>
-                Llamar Ahora
-              </a>
-            </div>
-
-            <!-- Mini Garantías / Confianza -->
-            <div class="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-left border-t border-slate-200/80">
-              <div class="flex items-start gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-green text-base mt-0.5"></i>
-                <span class="text-xs text-slate-600 font-medium"><strong>Sin ensayo y error:</strong> Diagnóstico con mediciones en mano.</span>
-              </div>
-              <div class="flex items-start gap-2.5">
-                <i class="fa-solid fa-laptop-code text-brand-green text-base mt-0.5"></i>
-                <span class="text-xs text-slate-600 font-medium"><strong>Multimarca:</strong> Escáner profesional de última generación.</span>
-              </div>
-              <div class="flex items-start gap-2.5">
-                <i class="fa-solid fa-shield-halved text-brand-green text-base mt-0.5"></i>
-                <span class="text-xs text-slate-600 font-medium"><strong>Atención directa:</strong> Trato con el técnico especialista.</span>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Columna Visual Hero -->
-          <div class="lg:col-span-5 relative">
-            <div class="relative mx-auto max-w-md lg:max-w-none rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-xl shadow-slate-200/70 p-3 sm:p-4">
-              
-              <!-- Imagen Hero con SVG / Foto Ilustrativa -->
-              <div class="relative rounded-xl overflow-hidden bg-slate-900 aspect-[4/3] flex items-center justify-center">
-                <img src="hero-diagnostico.svg" 
-                     alt="Equipo de diagnóstico automotriz conectado a un vehículo en AutoCheck Salta" 
-                     class="w-full h-full object-cover">
-                
-                <!-- Badge flotante interior -->
-                <div class="absolute top-3 left-3 bg-brand-ink/90 backdrop-blur-md text-white border border-slate-700 px-3 py-1.5 rounded-lg shadow-md flex items-center gap-2 text-xs">
-                  <span class="w-2 h-2 rounded-full bg-brand-green"></span>
-                  <span class="font-semibold">Escaneo en Vivo</span>
-                </div>
-
-                <div class="absolute bottom-3 right-3 bg-brand-green text-white font-bold px-3 py-1 rounded-md text-xs shadow-md">
-                  Salta Norte
-                </div>
-              </div>
-
-              <!-- Tarjeta de telemetría / Criterio Técnico -->
-              <div class="mt-4 p-3.5 bg-brand-grayLight rounded-xl border border-slate-200 flex items-center justify-between">
-                <div>
-                  <p class="text-xs text-slate-500 font-medium">Protocolo de Diagnóstico</p>
-                  <p class="text-sm font-bold text-brand-ink">Primero entender. Después reparar.</p>
-                </div>
-                <span class="px-2.5 py-1 bg-brand-greenSoft text-brand-greenDark font-extrabold text-xs rounded-full">
-                  100% Preciso
-                </span>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="badge-pill">
+        <i class="fa-solid fa-bolt"></i> Salta Capital · Diagnóstico Automotriz
       </div>
-    </section>
 
-    <!-- ================= 2. BLOQUE 2: ESPECIALIDAD DESTACADA – MÓDULO DE ARRANQUE SEGURO ================= -->
-    <section id="fallas-arranque" class="py-16 sm:py-20 bg-brand-ink text-white relative overflow-hidden">
+      <h1>¿Tu auto no arranca o falla?<br>Encontramos la <span>causa exacta</span>.</h1>
       
-      <!-- Fondo decorativo sutil -->
-      <div class="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#21B573_1px,transparent_1px)] [background-size:20px_20px]"></div>
+      <p>
+        Sin cambiar repuestos al azar. Escaneo computarizado, control de batería, alternador, inyección y arranque en el día.
+      </p>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <!-- Encabezado de la Sección -->
-        <div class="max-w-3xl mx-auto text-center space-y-4">
-          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-amber/20 border border-brand-amber/40 text-brand-amber text-xs sm:text-sm font-bold uppercase tracking-wider">
-            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
-            Especialidad Destacada · Módulo de Arranque Seguro
-          </span>
-          
-          <h2 class="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl text-white tracking-tight">
-            ¿Tu auto no arranca o gira pesado? No cambies piezas a ciegas.
-          </h2>
-
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-            El <strong class="text-white font-semibold">60% de los problemas de arranque</strong> no requieren cambiar el motor de arranque completo. Una caída de tensión, un relay defectuoso, bornes sulfatados o una señal de inmovilizador ausente pueden simular un daño mayor. En AutoCheck aplicamos un <strong class="text-brand-green font-semibold">protocolo de 5 pasos</strong> para darte una respuesta exacta en minutos.
-          </p>
-        </div>
-
-        <!-- Los 5 Pasos del Diagnóstico -->
-        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-          
-          <!-- Paso 1 -->
-          <div class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-brand-green/60 rounded-xl p-5 transition-all duration-200 flex flex-col justify-between group">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="w-8 h-8 rounded-lg bg-brand-green/20 text-brand-green font-display font-extrabold text-sm flex items-center justify-center border border-brand-green/30">
-                  01
-                </span>
-                <i class="fa-solid fa-car-battery text-slate-400 group-hover:text-brand-green transition-colors text-lg"></i>
-              </div>
-              <h3 class="font-display font-bold text-white text-base mb-2">
-                Prueba de carga y salud de batería
-              </h3>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                Medición en reposo y prueba de caída bajo carga real para determinar si retiene el amperaje de arranque (CCA).
-              </p>
-            </div>
-          </div>
-
-          <!-- Paso 2 -->
-          <div class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-brand-green/60 rounded-xl p-5 transition-all duration-200 flex flex-col justify-between group">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="w-8 h-8 rounded-lg bg-brand-green/20 text-brand-green font-display font-extrabold text-sm flex items-center justify-center border border-brand-green/30">
-                  02
-                </span>
-                <i class="fa-solid fa-plug-circle-check text-slate-400 group-hover:text-brand-green transition-colors text-lg"></i>
-              </div>
-              <h3 class="font-display font-bold text-white text-base mb-2">
-                Verificación de líneas y masa (GND)
-              </h3>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                Comprobación de cables de potencia, conexiones a chasis y bloque de motor para descartar falsos contactos o caídas de voltaje.
-              </p>
-            </div>
-          </div>
-
-          <!-- Paso 3 -->
-          <div class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-brand-green/60 rounded-xl p-5 transition-all duration-200 flex flex-col justify-between group">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="w-8 h-8 rounded-lg bg-brand-green/20 text-brand-green font-display font-extrabold text-sm flex items-center justify-center border border-brand-green/30">
-                  03
-                </span>
-                <i class="fa-solid fa-gears text-slate-400 group-hover:text-brand-green transition-colors text-lg"></i>
-              </div>
-              <h3 class="font-display font-bold text-white text-base mb-2">
-                Diagnóstico del solenoide / burro
-              </h3>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                Prueba de excitación (línea 50) y consumo del motor de arranque para evaluar si el defecto es mecánico o eléctrico.
-              </p>
-            </div>
-          </div>
-
-          <!-- Paso 4 -->
-          <div class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-brand-green/60 rounded-xl p-5 transition-all duration-200 flex flex-col justify-between group">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="w-8 h-8 rounded-lg bg-brand-green/20 text-brand-green font-display font-extrabold text-sm flex items-center justify-center border border-brand-green/30">
-                  04
-                </span>
-                <i class="fa-solid fa-wave-square text-slate-400 group-hover:text-brand-green transition-colors text-lg"></i>
-              </div>
-              <h3 class="font-display font-bold text-white text-base mb-2">
-                Comprobación de inyección y sensores
-              </h3>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                Lectura de señal CKP (sensor de cigüeñal) para descartar corte de ignición, inmovilizador o falta de pulso de inyección.
-              </p>
-            </div>
-          </div>
-
-          <!-- Paso 5 -->
-          <div class="bg-slate-800/80 hover:bg-slate-800 border border-brand-green/50 bg-gradient-to-b from-slate-800 to-slate-850 rounded-xl p-5 transition-all duration-200 flex flex-col justify-between group">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="w-8 h-8 rounded-lg bg-brand-green text-white font-display font-extrabold text-sm flex items-center justify-center">
-                  05
-                </span>
-                <i class="fa-solid fa-file-invoice text-brand-green text-lg"></i>
-              </div>
-              <h3 class="font-display font-bold text-white text-base mb-2">
-                Informe técnico con mediciones
-              </h3>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                Te mostramos los valores reales antes de desarmar o presupuestar repuestos. Sabés exactamente qué tiene tu vehículo.
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Banner de Conversión Arranque -->
-        <div class="mt-10 bg-slate-800/90 border border-slate-700 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div class="space-y-1 text-center md:text-left">
-            <h4 class="font-display font-bold text-lg sm:text-xl text-white">
-              ¿Tu auto se quedó sin arrancar o hace "clac-clac"?
-            </h4>
-            <p class="text-sm text-slate-300">
-              Coordiná una revisión inmediata con nosotros. Te ahorramos compras innecesarias de baterías o burros nuevos.
-            </p>
-          </div>
-          <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20necesito%20consultar%20por%20un%20diagn%C3%B3stico/falla%20de%20arranque%20en%20mi%20auto" 
-             target="_blank" 
-             rel="noopener noreferrer"
-             class="whitespace-nowrap inline-flex items-center justify-center px-6 py-3 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-bold text-sm sm:text-base shadow-lg transition-colors">
-            <i class="fa-brands fa-whatsapp text-xl mr-2"></i>
-            Consultar Falla de Arranque
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= 3. BLOQUE 3: CATÁLOGO INTEGRAL DE SERVICIOS ================= -->
-    <section id="servicios" class="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Encabezado Sección -->
-        <div class="max-w-3xl mx-auto text-center space-y-3 mb-14">
-          <span class="inline-flex items-center gap-1.5 text-brand-greenDark font-bold text-xs uppercase tracking-widest">
-            <i class="fa-solid fa-screwdriver-wrench"></i>
-            Nuestras Soluciones
-          </span>
-          <h2 class="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl text-brand-ink">
-            Catálogo Integral de Servicios
-          </h2>
-          <p class="text-slate-600 text-sm sm:text-base">
-            Equipamiento de diagnóstico multimarca, instrumental de precisión y criterio técnico para resolver fallas reales.
-          </p>
-        </div>
-
-        <!-- Grid de 4 Servicios -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
-          <!-- Servicio 1: Escaneo Electrónico y Diagnóstico Computarizado -->
-          <article class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-md hover:border-brand-green/50 transition-all duration-200 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center gap-4 mb-4">
-                <div class="w-12 h-12 rounded-xl bg-brand-greenSoft text-brand-greenDark flex items-center justify-center text-xl flex-shrink-0">
-                  <i class="fa-solid fa-microchip"></i>
-                </div>
-                <div>
-                  <span class="text-xs font-semibold text-brand-green uppercase tracking-wider">Servicio 01</span>
-                  <h3 class="font-display font-bold text-lg sm:text-xl text-brand-ink">
-                    Escaneo Electrónico y Diagnóstico Computarizado
-                  </h3>
-                </div>
-              </div>
-              <ul class="space-y-3 text-sm text-slate-600 mb-6">
-                <li class="flex items-start gap-2.5">
-                  <i class="fa-solid fa-check text-brand-green text-sm mt-1"></i>
-                  <span><strong>Lectura y borrado de códigos de avería (DTC)</strong> multimarca con explicación técnica.</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i class="fa-solid fa-check text-brand-green text-sm mt-1"></i>
-                  <span><strong>Análisis de datos en tiempo real:</strong> sensores de oxígeno, MAF/MAP, temperatura y presión de rampa.</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i class="fa-solid fa-check text-brand-green text-sm mt-1"></i>
-                  <span><strong>Diagnóstico de luces testigo:</strong> Check Engine, ABS, Airbag, EPC y fallas intermitentes.</span>
-                </li>
-              </ul>
-            </div>
-            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-              <span class="text-xs font-semibold text-slate-500">Demora: 30 a 45 min aprox.</span>
-              <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20quiero%20consultar%20por%20un%20escaneo%20electr%C3%B3nico%20computarizado" 
-                 target="_blank" 
-                 class="text-xs font-bold text-brand-greenDark hover:text-brand-green inline-flex items-center gap-1">
-                Agendar Escaneo <i class="fa-solid fa-arrow-right text-[10px]"></i>
-              </a>
-            </div>
-          </article>
-
-          <!-- Servicio 2: Chequeo Integral Pre-Compra (Inspección Usados) -->
-          <article id="pre-compra" class="bg-white rounded-2xl p-6 sm:p-8 border-2 border-brand-green/30 shadow-sm hover:shadow-md hover:border-brand-green transition-all duration-200 flex flex-col justify-between relative overflow-hidden">
-            <div class="absolute top-0 right-0 bg-brand-green text-white text-[11px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wide">
-              Recomendado
-            </div>
-            <div>
-              <div class="flex items-center gap-4 mb-4">
-                <div class="w-12 h-12 rounded-xl bg-brand-greenSoft text-brand-greenDark flex items-center justify-center text-xl flex-shrink-0">
-                  <i class="fa-solid fa-magnifying-glass-chart"></i>
-                </div>
-                <div>
-                  <span class="text-xs font-semibold text-brand-green uppercase tracking-wider">Servicio 02</span>
-                  <h3 class="font-display font-bold text-lg sm:text-xl text-brand-ink">
-                    Chequeo Integral Pre-Compra (Inspección Usados)
-                  </h3>
-                </div>
-              </div>
-              <ul class="space-y-3 text-sm text-slate-600 mb-6">
-                <li class="flex items-start gap-2.5">
-                  <i class="fa-solid fa-check text-brand-green text-sm mt-1"></i>
-                  <span><strong>Peritaje mecánico y electrónico completo</strong> antes de transferir o cerrar una compra.</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i class="fa-solid fa-check text-brand-green text-sm mt-1"></i>
-                  <span><strong>Verificación de kilometraje real</strong> mediante historial grabado en módulos electrónicos (ECU/ABS/Tablero).</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i class="fa-solid fa-check text-brand-green text-sm mt-1"></i>
-                  <span><strong>Revisión integral:</strong> compresión, tren delantero, frenos, pérdidas de fluidos y signos de choques estructurales.</span>
-                </li>
-              </ul>
-            </div>
-            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-              <span class="text-xs font-semibold text-slate-500">Evitá sorpresas costosas</span>
-              <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20quiero%20pedir%20turno%20para%20un%20chequeo%20pre-compra%20de%20un%20auto%20usado" 
-                 target="_blank" 
-                 class="text-xs font-bold text-brand-greenDark hover:text-brand-green inline-flex items-center gap-1">
-                Solicitar Peritaje <i class="fa-solid fa-arrow-right text-[10px]"></i>
-              </a>
-            </div>
-          </article>
-
-          <!-- Servicio 3: Sistema de Carga y Arranque -->
-          <article class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-md hover:border-brand-green/50 transition-all duration-200 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center gap-4 mb-4">
-                <div class="w-12 h-12 rounded-xl bg-brand-greenSoft text-brand-greenDark flex items-center justify-center text-xl flex-shrink-0">
-                  <i class="fa-solid fa-bolt-lightning"></i>
-                </div>
-                <div>
-                  <span class="text-xs font-semibold text-brand-green uppercase tracking-wider">Servicio 03</span>
-                  <h3 class="font-display font-bold text-lg sm:text-xl text-brand-ink">
-                    Sistema de Carga y Arranque
-                  </h3>
-                </div>
-              </div>
-              <ul class="space-y-3 text-sm text-slate-600 mb-6">
-                <li class="flex items-start gap-2.5">
-                  <i class="fa-solid fa-check text-brand-green text-sm mt-1"></i>
-                  <span><strong>Prueba y reparación de alternadores:</strong> placas de diodos, reguladores de voltaje y poleas.</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i class="fa-solid fa-check text-brand-green text-sm mt-1"></i>
-                  <span><strong>Mantenimiento de motores de arranque:</strong> cambio de carbones, bendix y solenoides de tracción.</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i class="fa-solid fa-check text-brand-green text-sm mt-1"></i>
-                  <span><strong>Detección de fugas de corriente:</strong> localización de consumos parásitos que descargan la batería en reposo.</span>
-                </li>
-              </ul>
-            </div>
-            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-              <span class="text-xs font-semibold text-slate-500">Diagnóstico de potencia</span>
-              <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20necesito%20revisar%20el%20sistema%20de%20carga/arranque%20de%20mi%20auto" 
-                 target="_blank" 
-                 class="text-xs font-bold text-brand-greenDark hover:text-brand-green inline-flex items-center gap-1">
-                Consultar <i class="fa-solid fa-arrow-right text-[10px]"></i>
-              </a>
-            </div>
-          </article>
-
-          <!-- Servicio 4: Mantenimiento Preventivo y Puesta a Punto -->
-          <article class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-sm hover:shadow-md hover:border-brand-green/50 transition-all duration-200 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center gap-4 mb-4">
-                <div class="w-12 h-12 rounded-xl bg-brand-greenSoft text-brand-greenDark flex items-center justify-center text-xl flex-shrink-0">
-                  <i class="fa-solid fa-sliders"></i>
-                </div>
-                <div>
-                  <span class="text-xs font-semibold text-brand-green uppercase tracking-wider">Servicio 04</span>
-                  <h3 class="font-display font-bold text-lg sm:text-xl text-brand-ink">
-                    Mantenimiento Preventivo y Puesta a Punto
-                  </h3>
-                </div>
-              </div>
-              <ul class="space-y-3 text-sm text-slate-600 mb-6">
-                <li class="flex items-start gap-2.5">
-                  <i class="fa-solid fa-check text-brand-green text-sm mt-1"></i>
-                  <span><strong>Limpieza y calibración de cuerpo de aceleración</strong> (mariposa motorizada con aprendizaje por escáner).</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i class="fa-solid fa-check text-brand-green text-sm mt-1"></i>
-                  <span><strong>Cambio y prueba de bujías,</strong> cables y bobinas de encendido con osciloscopio.</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <i class="fa-solid fa-check text-brand-green text-sm mt-1"></i>
-                  <span><strong>Mantenimiento programado:</strong> cambio de fluidos, refrigerantes y filtros originales o de calidad OEM.</span>
-                </li>
-              </ul>
-            </div>
-            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-              <span class="text-xs font-semibold text-slate-500">Afinación de motor</span>
-              <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20quiero%20consultar%20por%20mantenimiento%20preventivo%20y%20puesta%20a%20punto" 
-                 target="_blank" 
-                 class="text-xs font-bold text-brand-greenDark hover:text-brand-green inline-flex items-center gap-1">
-                Consultar <i class="fa-solid fa-arrow-right text-[10px]"></i>
-              </a>
-            </div>
-          </article>
-
-        </div>
-
-        <!-- Marcas Atendidas -->
-        <div class="mt-12 pt-8 border-t border-slate-200 text-center">
-          <p class="text-xs uppercase tracking-widest font-bold text-slate-500 mb-4">
-            Diagnóstico Electrónico Multimarca en Salta
-          </p>
-          <div class="flex items-center justify-center flex-wrap gap-6 sm:gap-10 opacity-75 grayscale hover:grayscale-0 transition-all duration-300">
-            <span class="font-display font-extrabold text-sm sm:text-base text-slate-600">Volkswagen</span>
-            <span class="font-display font-extrabold text-sm sm:text-base text-slate-600">Ford</span>
-            <span class="font-display font-extrabold text-sm sm:text-base text-slate-600">Chevrolet</span>
-            <span class="font-display font-extrabold text-sm sm:text-base text-slate-600">Renault</span>
-            <span class="font-display font-extrabold text-sm sm:text-base text-slate-600">Fiat</span>
-            <span class="font-display font-extrabold text-sm sm:text-base text-slate-600">Peugeot</span>
-            <span class="font-display font-extrabold text-sm sm:text-base text-slate-600">Toyota</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= 4. BLOQUE 4: ¿POR QUÉ ELEGIR AUTOCHECK SALTA? ================= -->
-    <section id="por-que-elegirnos" class="py-16 sm:py-20 bg-white border-b border-slate-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Título -->
-        <div class="max-w-3xl mx-auto text-center space-y-3 mb-14">
-          <span class="inline-flex items-center gap-1.5 text-brand-greenDark font-bold text-xs uppercase tracking-widest">
-            <i class="fa-solid fa-award"></i>
-            Ventajas Competitivas
-          </span>
-          <h2 class="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl text-brand-ink">
-            ¿Por qué elegir AutoCheck Salta?
-          </h2>
-          <p class="text-slate-600 text-sm sm:text-base">
-            Cambiamos la forma de atender tu vehículo: transparencia técnica, mediciones comprobables y trato directo.
-          </p>
-        </div>
-
-        <!-- 4 Ventajas en Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          
-          <!-- Ventaja 1 -->
-          <div class="bg-brand-grayLight border border-slate-200/90 rounded-2xl p-6 hover:border-brand-green/50 hover:shadow-md transition-all duration-200 flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-brand-greenSoft text-brand-greenDark flex items-center justify-center text-xl mb-4">
-                <i class="fa-solid fa-square-poll-vertical"></i>
-              </div>
-              <h3 class="font-display font-bold text-base sm:text-lg text-brand-ink mb-2">
-                Diagnóstico con evidencia
-              </h3>
-              <p class="text-sm text-slate-600 leading-relaxed">
-                No decimos <em>"cambiá la batería por las dudas"</em>; te mostramos la medición exacta del multímetro, probador de conductancia y del escáner.
-              </p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-200/60 text-xs font-semibold text-brand-greenDark flex items-center gap-1">
-              <i class="fa-solid fa-check-double text-[11px]"></i> Cero especulaciones
-            </div>
-          </div>
-
-          <!-- Ventaja 2 -->
-          <div class="bg-brand-grayLight border border-slate-200/90 rounded-2xl p-6 hover:border-brand-green/50 hover:shadow-md transition-all duration-200 flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-brand-greenSoft text-brand-greenDark flex items-center justify-center text-xl mb-4">
-                <i class="fa-solid fa-map-location-dot"></i>
-              </div>
-              <h3 class="font-display font-bold text-base sm:text-lg text-brand-ink mb-2">
-                Ubicación accesible en Zona Norte
-              </h3>
-              <p class="text-sm text-slate-600 leading-relaxed">
-                A metros de Parque Belgrano y Roque Sáenz Peña, con fácil acceso y estacionamiento amplio para pruebas en ruta y chequeos tranquilos.
-              </p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-200/60 text-xs font-semibold text-brand-greenDark flex items-center gap-1">
-              <i class="fa-solid fa-road text-[11px]"></i> Fácil maniobra y acceso
-            </div>
-          </div>
-
-          <!-- Ventaja 3 -->
-          <div class="bg-brand-grayLight border border-slate-200/90 rounded-2xl p-6 hover:border-brand-green/50 hover:shadow-md transition-all duration-200 flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-brand-greenSoft text-brand-greenDark flex items-center justify-center text-xl mb-4">
-                <i class="fa-solid fa-user-gear"></i>
-              </div>
-              <h3 class="font-display font-bold text-base sm:text-lg text-brand-ink mb-2">
-                Atención personalizada
-              </h3>
-              <p class="text-sm text-slate-600 leading-relaxed">
-                Trato directo con quien diagnostica y trabaja en tu vehículo. Te explicamos los resultados en palabras claras y sin tecnicismos confusos.
-              </p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-200/60 text-xs font-semibold text-brand-greenDark flex items-center gap-1">
-              <i class="fa-solid fa-handshake text-[11px]"></i> Comunicación honesta
-            </div>
-          </div>
-
-          <!-- Ventaja 4 -->
-          <div class="bg-brand-grayLight border border-slate-200/90 rounded-2xl p-6 hover:border-brand-green/50 hover:shadow-md transition-all duration-200 flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-brand-greenSoft text-brand-greenDark flex items-center justify-center text-xl mb-4">
-                <i class="fa-solid fa-piggy-bank"></i>
-              </div>
-              <h3 class="font-display font-bold text-base sm:text-lg text-brand-ink mb-2">
-                Ahorro real
-              </h3>
-              <p class="text-sm text-slate-600 leading-relaxed">
-                El diagnóstico preciso evita el costoso "ensayo y error" que suele inflar los presupuestos cambiando repuestos que funcionaban bien.
-              </p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-200/60 text-xs font-semibold text-brand-greenDark flex items-center gap-1">
-              <i class="fa-solid fa-shield-heart text-[11px]"></i> Cuidamos tu presupuesto
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= 5. BLOQUE 5: PREGUNTAS FRECUENTES (FAQ - SEO LOCAL) ================= -->
-    <section id="preguntas-frecuentes" class="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Título -->
-        <div class="text-center space-y-3 mb-12">
-          <span class="inline-flex items-center gap-1.5 text-brand-greenDark font-bold text-xs uppercase tracking-widest">
-            <i class="fa-solid fa-circle-question"></i>
-            Preguntas Frecuentes
-          </span>
-          <h2 class="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl text-brand-ink">
-            Dudas Frecuentes sobre el Servicio
-          </h2>
-          <p class="text-slate-600 text-sm sm:text-base">
-            Todo lo que necesitás saber antes de traer tu auto a nuestro taller en Salta.
-          </p>
-        </div>
-
-        <!-- Acordeón de FAQs -->
-        <div class="space-y-4" id="faq-accordion">
-          
-          <!-- Pregunta 1 -->
-          <div class="faq-item bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm transition-all duration-200">
-            <button class="faq-button w-full px-6 py-4.5 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-brand-ink hover:text-brand-green transition-colors focus:outline-none" 
-                    aria-expanded="false">
-              <span>¿Tienen servicio de diagnóstico a domicilio si el auto no arranca?</span>
-              <span class="faq-icon text-brand-green text-sm transition-transform duration-200 flex-shrink-0">
-                <i class="fa-solid fa-chevron-down"></i>
-              </span>
-            </button>
-            <div class="faq-content hidden px-6 pb-5 pt-1 text-slate-600 text-sm leading-relaxed border-t border-slate-100">
-              Coordinamos asistencias puntuales en Zona Norte para verificación rápida de batería y arranque en el lugar, o bien recepción directa en taller con turno previo.
-            </div>
-          </div>
-
-          <!-- Pregunta 2 -->
-          <div class="faq-item bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm transition-all duration-200">
-            <button class="faq-button w-full px-6 py-4.5 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-brand-ink hover:text-brand-green transition-colors focus:outline-none" 
-                    aria-expanded="false">
-              <span>¿Cuánto demora un diagnóstico computarizado completo?</span>
-              <span class="faq-icon text-brand-green text-sm transition-transform duration-200 flex-shrink-0">
-                <i class="fa-solid fa-chevron-down"></i>
-              </span>
-            </button>
-            <div class="faq-content hidden px-6 pb-5 pt-1 text-slate-600 text-sm leading-relaxed border-t border-slate-100">
-              Un escaneo general con informe suele tomar entre 30 y 45 minutos, evaluando códigos de falla y parámetros en vivo.
-            </div>
-          </div>
-
-          <!-- Pregunta 3 -->
-          <div class="faq-item bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm transition-all duration-200">
-            <button class="faq-button w-full px-6 py-4.5 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-brand-ink hover:text-brand-green transition-colors focus:outline-none" 
-                    aria-expanded="false">
-              <span>¿Qué incluye el peritaje pre-compra de un auto usado?</span>
-              <span class="faq-icon text-brand-green text-sm transition-transform duration-200 flex-shrink-0">
-                <i class="fa-solid fa-chevron-down"></i>
-              </span>
-            </button>
-            <div class="faq-content hidden px-6 pb-5 pt-1 text-slate-600 text-sm leading-relaxed border-t border-slate-100">
-              Incluye escaneo electrónico, inspección visual de vano motor, detección de fugas, estado de batería/alternador, verificación de tren rodante y prueba de funcionamiento general.
-            </div>
-          </div>
-
-          <!-- Pregunta 4 -->
-          <div class="faq-item bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm transition-all duration-200">
-            <button class="faq-button w-full px-6 py-4.5 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-brand-ink hover:text-brand-green transition-colors focus:outline-none" 
-                    aria-expanded="false">
-              <span>¿Es necesario sacar turno previo?</span>
-              <span class="faq-icon text-brand-green text-sm transition-transform duration-200 flex-shrink-0">
-                <i class="fa-solid fa-chevron-down"></i>
-              </span>
-            </button>
-            <div class="faq-content hidden px-6 pb-5 pt-1 text-slate-600 text-sm leading-relaxed border-t border-slate-100">
-              Sí, trabajamos con turnos programados para dedicarle el tiempo exclusivo que requiere cada vehículo.
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Banner de Ayuda Adicional -->
-        <div class="mt-10 text-center">
-          <p class="text-sm text-slate-500">
-            ¿Tenés una falla específica en tu vehículo? 
-            <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20tengo%20una%20consulta%20sobre%20mi%20auto" 
-               target="_blank" 
-               class="text-brand-greenDark font-bold hover:underline">
-              Escribinos por WhatsApp y te asesoramos al instante.
-            </a>
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= 6. BLOQUE 6: UBICACIÓN Y CONTACTO DIRECTO (LOCAL NAP & MAPA) ================= -->
-    <section id="contacto" class="py-16 sm:py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
-          
-          <!-- Información de Contacto / Local NAP -->
-          <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
-            
-            <div class="space-y-4">
-              <span class="inline-flex items-center gap-1.5 text-brand-greenDark font-bold text-xs uppercase tracking-widest">
-                <i class="fa-solid fa-location-arrow"></i>
-                Encontranos en Salta
-              </span>
-              <h2 class="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl text-brand-ink">
-                Ubicación &amp; Contacto
-              </h2>
-              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Estamos ubicados en Zona Norte, con fácil acceso desde las principales arterias de Salta Capital.
-              </p>
-            </div>
-
-            <!-- Ficha NAP Detallada -->
-            <div class="bg-brand-grayLight border border-slate-200 rounded-2xl p-6 space-y-5">
-              
-              <!-- Razón Social y Rubro -->
-              <div class="pb-4 border-b border-slate-200">
-                <h3 class="font-display font-extrabold text-xl text-brand-ink">
-                  AutoCheck Salta
-                </h3>
-                <p class="text-xs font-semibold text-brand-greenDark uppercase tracking-wider">
-                  Taller de Diagnóstico Automotriz y Mecánica Especializada
-                </p>
-              </div>
-
-              <!-- Dirección -->
-              <div class="flex items-start gap-3.5">
-                <div class="w-9 h-9 rounded-lg bg-brand-greenSoft text-brand-greenDark flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <i class="fa-solid fa-location-dot text-sm"></i>
-                </div>
-                <div>
-                  <h4 class="text-xs font-bold uppercase text-slate-500 tracking-wider">Dirección</h4>
-                  <p class="text-sm font-semibold text-slate-800">
-                    Manzana 9 Casa 8, B° Roque Sáenz Peña (Zona Parque Belgrano)
-                  </p>
-                  <p class="text-xs text-slate-500">Salta Capital (CP 4400)</p>
-                </div>
-              </div>
-
-              <!-- Teléfono / WhatsApp -->
-              <div class="flex items-start gap-3.5">
-                <div class="w-9 h-9 rounded-lg bg-brand-greenSoft text-brand-greenDark flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <i class="fa-brands fa-whatsapp text-base"></i>
-                </div>
-                <div>
-                  <h4 class="text-xs font-bold uppercase text-slate-500 tracking-wider">Teléfono &amp; WhatsApp</h4>
-                  <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20necesito%20consultar%20por%20un%20diagn%C3%B3stico/falla%20de%20arranque%20en%20mi%20auto" 
-                     target="_blank" 
-                     class="text-sm font-bold text-brand-greenDark hover:underline block">
-                    +54 9 387 518-2523
-                  </a>
-                  <span class="text-xs text-slate-500">Atención ágil para turnos y consultas</span>
-                </div>
-              </div>
-
-              <!-- Horarios -->
-              <div class="flex items-start gap-3.5">
-                <div class="w-9 h-9 rounded-lg bg-brand-greenSoft text-brand-greenDark flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <i class="fa-regular fa-clock text-sm"></i>
-                </div>
-                <div>
-                  <h4 class="text-xs font-bold uppercase text-slate-500 tracking-wider">Horarios de Atención</h4>
-                  <p class="text-sm font-semibold text-slate-800">
-                    Lunes a Viernes de 09:00 a 17:00 hs.
-                  </p>
-                  <p class="text-xs text-slate-500">Sábados y Domingos cerrado.</p>
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Botones de Acción Directa -->
-            <div class="flex flex-col sm:flex-row gap-3">
-              <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20necesito%20consultar%20por%20un%20diagn%C3%B3stico/falla%20de%20arranque%20en%20mi%20auto" 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 class="flex-1 inline-flex items-center justify-center px-5 py-3 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-bold text-sm shadow-md transition-all">
-                <i class="fa-brands fa-whatsapp text-lg mr-2"></i>
-                Pedir Turno por WhatsApp
-              </a>
-              <a href="tel:+5493875182523" 
-                 class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-brand-ink font-bold text-sm transition-colors">
-                <i class="fa-solid fa-phone text-sm mr-2 text-brand-green"></i>
-                Llamar
-              </a>
-            </div>
-
-          </div>
-
-          <!-- Mapa Interactivo Centrado en Parque Belgrano / Roque Sáenz Peña -->
-          <div class="lg:col-span-7 flex flex-col">
-            <div class="relative w-full h-full min-h-[380px] sm:min-h-[440px] rounded-2xl overflow-hidden border border-slate-200 shadow-md flex flex-col">
-              
-              <!-- Google Maps Iframe -->
-              <iframe 
-                src="https://maps.google.com/maps?q=B%C2%B0%20Roque%20S%C3%A1enz%20Pe%C3%B1a,%20Parque%20Belgrano,%20Salta%20Capital&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                width="100%" 
-                height="100%" 
-                style="border:0; min-height: 380px;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade"
-                title="Ubicación de AutoCheck Salta en Parque Belgrano y Roque Sáenz Peña, Salta">
-              </iframe>
-
-              <!-- Barra Inferior de Navegación GPS -->
-              <div class="bg-brand-ink text-white p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-                <div class="flex items-center gap-2">
-                  <i class="fa-solid fa-diamond-turn-right text-brand-green text-base"></i>
-                  <span><strong>Zona Parque Belgrano:</strong> A minutos de Av. Patrón Costas y Ciudad Judicial.</span>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Manzana+9+Casa+8+Roque+Saenz+Pena+Parque+Belgrano+Salta" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-green hover:bg-brand-greenDark text-white font-bold transition-colors whitespace-nowrap">
-                  <span>Abrir en Google Maps</span>
-                  <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                </a>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ================= PIE DE PÁGINA (FOOTER) ================= -->
-  <footer class="bg-brand-ink text-slate-300 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-        
-        <!-- Columna 1: Identidad -->
-        <div class="space-y-4">
-          <a href="#inicio" class="flex items-center gap-2.5">
-            <img src="logo.png" alt="AutoCheck Salta" class="h-10 w-auto">
-            <span class="font-display font-extrabold text-xl tracking-tight text-white">
-              AutoCheck<span class="text-brand-green">.</span>
-            </span>
-          </a>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Taller de Diagnóstico Automotriz y Mecánica Especializada. Diagnóstico computarizado, problemas de arranque y peritaje pre-compra en Salta Norte.
-          </p>
-          <div class="pt-2 flex items-center gap-3">
-            <a href="https://www.instagram.com/autochecksalta/" target="_blank" rel="noopener noreferrer" 
-               class="w-8 h-8 rounded-full bg-slate-800 hover:bg-brand-green flex items-center justify-center text-white transition-colors text-sm"
-               aria-label="Instagram de AutoCheck Salta">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20necesito%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" 
-               class="w-8 h-8 rounded-full bg-slate-800 hover:bg-brand-green flex items-center justify-center text-white transition-colors text-sm"
-               aria-label="WhatsApp de AutoCheck Salta">
-              <i class="fa-brands fa-whatsapp"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- Columna 2: Enlaces Rápidos -->
-        <div class="space-y-3">
-          <h4 class="font-display font-bold text-sm text-white uppercase tracking-wider">Enlaces Rápidos</h4>
-          <ul class="space-y-2 text-xs">
-            <li><a href="#inicio" class="text-slate-400 hover:text-brand-green transition-colors">Inicio</a></li>
-            <li><a href="#servicios" class="text-slate-400 hover:text-brand-green transition-colors">Servicios Integrales</a></li>
-            <li><a href="#fallas-arranque" class="text-slate-400 hover:text-brand-green transition-colors">Fallas de Arranque (5 Pasos)</a></li>
-            <li><a href="#pre-compra" class="text-slate-400 hover:text-brand-green transition-colors">Chequeo Pre-Compra de Usados</a></li>
-            <li><a href="#por-que-elegirnos" class="text-slate-400 hover:text-brand-green transition-colors">¿Por Qué Elegirnos?</a></li>
-            <li><a href="#preguntas-frecuentes" class="text-slate-400 hover:text-brand-green transition-colors">Preguntas Frecuentes</a></li>
-            <li><a href="#contacto" class="text-slate-400 hover:text-brand-green transition-colors">Ubicación y Contacto</a></li>
-          </ul>
-        </div>
-
-        <!-- Columna 3: Servicios Destacados -->
-        <div class="space-y-3">
-          <h4 class="font-display font-bold text-sm text-white uppercase tracking-wider">Especialidades</h4>
-          <ul class="space-y-2 text-xs text-slate-400">
-            <li class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-brand-green text-[10px]"></i> Escaneo Computarizado Multimarca</li>
-            <li class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-brand-green text-[10px]"></i> Diagnóstico de Motores de Arranque</li>
-            <li class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-brand-green text-[10px]"></i> Prueba de Baterías bajo Carga Real</li>
-            <li class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-brand-green text-[10px]"></i> Detección de Fugas de Corriente</li>
-            <li class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-brand-green text-[10px]"></i> Peritaje de Kilometraje Real</li>
-            <li class="flex items-center gap-1.5"><i class="fa-solid fa-angle-right text-brand-green text-[10px]"></i> Limpieza de Cuerpo de Mariposa</li>
-          </ul>
-        </div>
-
-        <!-- Columna 4: Contacto Local NAP -->
-        <div class="space-y-3">
-          <h4 class="font-display font-bold text-sm text-white uppercase tracking-wider">AutoCheck Salta</h4>
-          <div class="space-y-2 text-xs text-slate-400">
-            <p class="flex items-start gap-2">
-              <i class="fa-solid fa-location-dot text-brand-green mt-0.5"></i>
-              <span>Manzana 9 Casa 8, B° Roque Sáenz Peña (Zona Parque Belgrano), Salta Capital (CP 4400)</span>
-            </p>
-            <p class="flex items-center gap-2">
-              <i class="fa-brands fa-whatsapp text-brand-green"></i>
-              <a href="https://wa.me/5493875182523" class="hover:text-white transition-colors">+54 9 387 518-2523</a>
-            </p>
-            <p class="flex items-center gap-2">
-              <i class="fa-regular fa-clock text-brand-green"></i>
-              <span>Lun a Vie: 09:00 a 17:00 hs.</span>
-            </p>
-          </div>
-          <div class="pt-2">
-            <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20necesito%20consultar%20por%20un%20diagn%C3%B3stico/falla%20de%20arranque%20en%20mi%20auto" 
-               target="_blank" 
-               class="inline-block px-3.5 py-2 rounded-lg bg-brand-green hover:bg-brand-greenDark text-white text-xs font-bold transition-colors">
-              Pedir Turno Ahora
-            </a>
-          </div>
-        </div>
-
+      <div class="hero-actions">
+        <a href="ingreso.html" class="btn btn-green" style="padding:11px 22px; font-size:0.95rem;">
+          <i class="fa-solid fa-clipboard-check"></i> Ficha de Ingreso & Turno
+        </a>
+        <a href="https://wa.me/543875182523?text=Hola%20AutoCheck,%20mi%20auto%20no%20arranca,%20necesito%20asistencia" target="_blank" class="btn btn-outline" style="padding:11px 22px; font-size:0.95rem;">
+          <i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> Consultar por WhatsApp
+        </a>
       </div>
 
-      <!-- Barra de Copyright -->
-      <div class="pt-8 mt-8 border-t border-slate-800 text-center flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-        <p>© 2026 AutoCheck Salta. Todos los derechos reservados. <em>Primero entender. Después reparar.</em></p>
-        <p>Salta Capital · Argentina</p>
+      <!-- HERO BANNER VISUAL -->
+      <div class="hero-banner">
+        <div class="banner-img-wrap">
+          <img src="portadafc.jpg" alt="Taller AutoCheck Salta">
+          <div class="banner-tag"><i class="fa-solid fa-microchip"></i> Diagnóstico Computarizado</div>
+        </div>
+        <div class="banner-img-wrap">
+          <img src="hero-breakdown.jpg" alt="Falla de arranque y batería">
+          <div class="banner-tag"><i class="fa-solid fa-car-battery"></i> Especialistas en Arranque</div>
+        </div>
       </div>
+
+      <!-- MARCAS -->
+      <div class="brands-bar">
+        <span>Especialistas multimarca:</span>
+        <img src="marcas.png" alt="Marcas atendidas: Volkswagen, Chevrolet, Fiat, Renault">
+      </div>
+
+      <!-- 3 SERVICIOS PRINCIPALES -->
+      <h2 class="section-title">Qué resolvemos</h2>
+      <p class="section-sub">Atención técnica precisa y transparente</p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-car-battery"></i></div>
+          <h3>Batería & Alternador</h3>
+          <p>Medición de conductancia y prueba de carga con instrumental digital. Detectamos fugas que descargan la batería.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-gears"></i></div>
+          <h3>Motor de Arranque</h3>
+          <p>Reparación y calibración de burro de arranque, bendix, automático y carbones gastados para que vuelva a encender suave.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <h3>Escaneo & Inyección</h3>
+          <p>Diagnóstico de códigos Check Engine, sensores de giro (CKP), bomba de nafta y prueba de encendido multimarca.</p>
+        </div>
+      </div>
+
+      <!-- CONTACTO Y UBICACIÓN -->
+      <div class="contact-card">
+        <div class="contact-info">
+          <h3>Vení a visitarnos</h3>
+          <div class="contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <strong>Dirección:</strong><br>
+              Barrio Parque Belgrano · Av. Roque Sáenz Peña, Salta
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fa-brands fa-whatsapp"></i>
+            <div>
+              <strong>WhatsApp & Turnos:</strong><br>
+              <a href="https://wa.me/543875182523" target="_blank" style="color:var(--green); text-decoration:none; font-weight:700;">+54 387 518 2523</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fa-regular fa-clock"></i>
+            <div>
+              <strong>Horarios:</strong><br>
+              Lunes a Viernes de 09:00 a 17:00 hs
+            </div>
+          </div>
+        </div>
+
+        <div class="map-box">
+          <img src="mapa-ubicacion.jpg" alt="Ubicación AutoCheck Salta">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© 2026 AutoCheck Salta · Centro Integral de Diagnóstico & Afinación Vehicular.</p>
     </div>
   </footer>
 
-  <!-- ================= BOTÓN FLOTANTE DE WHATSAPP ================= -->
-  <div class="fixed bottom-6 right-6 z-50 flex items-center group">
-    <!-- Tooltip Flotante -->
-    <span class="hidden sm:inline-block mr-3 px-3.5 py-1.5 rounded-xl bg-brand-ink text-white text-xs font-semibold shadow-xl border border-slate-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-      ¿Fallas de arranque? ¡Consultanos ya!
-    </span>
-    
-    <!-- Botón con Enlace Preconfigurado -->
-    <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20necesito%20consultar%20por%20un%20diagn%C3%B3stico/falla%20de%20arranque%20en%20mi%20auto" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       class="relative flex items-center justify-center w-14 h-14 rounded-full bg-brand-green hover:bg-brand-greenDark text-white shadow-2xl hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-brand-green/30"
-       aria-label="Pedir turno o consultar por WhatsApp">
-      <span class="absolute -top-1 -right-1 flex h-4 w-4">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-white"></span>
-      </span>
-      <i class="fa-brands fa-whatsapp text-3xl"></i>
-    </a>
-  </div>
-
-  <!-- ================= JAVASCRIPT LIGERO PARA INTERACTIVIDAD ================= -->
-  <script>
-    // Control del Menú Móvil
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIconBars = document.getElementById('menu-icon-bars');
-    const menuIconClose = document.getElementById('menu-icon-close');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', () => {
-        const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
-        menuBtn.setAttribute('aria-expanded', !isExpanded);
-        mobileMenu.classList.toggle('hidden');
-        menuIconBars.classList.toggle('hidden');
-        menuIconClose.classList.toggle('hidden');
-      });
-
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-          menuIconBars.classList.remove('hidden');
-          menuIconClose.classList.add('hidden');
-          menuBtn.setAttribute('aria-expanded', 'false');
-        });
-      });
-    }
-
-    // Acordeón de FAQs
-    const faqButtons = document.querySelectorAll('.faq-button');
-    faqButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const content = button.nextElementSibling;
-        const icon = button.querySelector('.faq-icon');
-        const isExpanded = button.getAttribute('aria-expanded') === 'true';
-
-        // Cerrar otros acordeones
-        faqButtons.forEach(otherBtn => {
-          if (otherBtn !== button) {
-            otherBtn.setAttribute('aria-expanded', 'false');
-            if (otherBtn.nextElementSibling) otherBtn.nextElementSibling.classList.add('hidden');
-            const otherIcon = otherBtn.querySelector('.faq-icon');
-            if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
-          }
-        });
-
-        // Alternar el actual
-        if (isExpanded) {
-          button.setAttribute('aria-expanded', 'false');
-          content.classList.add('hidden');
-          icon.style.transform = 'rotate(0deg)';
-        } else {
-          button.setAttribute('aria-expanded', 'true');
-          content.classList.remove('hidden');
-          icon.style.transform = 'rotate(180deg)';
-        }
-      });
-    });
-
-    // Abrir la primera pregunta por defecto para guiar al usuario
-    if (faqButtons.length > 0) {
-      faqButtons[0].click();
-    }
-  </script>
+  <!-- BOTÓN FLOTANTE WHATSAPP -->
+  <a href="https://wa.me/543875182523?text=Hola%20AutoCheck,%20necesito%20hacer%20una%20consulta" target="_blank" class="wa-float" title="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
 
 </body>
 </html>

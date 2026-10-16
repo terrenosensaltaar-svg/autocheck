@@ -211,11 +211,81 @@
       transition: all 0.2s;
     }
 
-    .chip-radio input:checked + .chip-label {
+    /* SUBIDA DE FOTOS DEL VEHÍCULO */
+    .photo-upload-box {
+      border: 1.5px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      background: var(--bg-alt);
+      transition: border-color 0.2s;
+      cursor: pointer;
+    }
+    .photo-upload-box:hover {
       border-color: var(--green);
-      background: var(--green-soft);
-      color: var(--green);
-      font-weight: 600;
+    }
+    .photo-previews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .photo-thumb {
+      position: relative;
+      height: 90px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #f1f5f9;
+    }
+    .photo-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-thumb .btn-del-photo {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: rgba(0,0,0,0.65);
+      color: #fff;
+      border: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    /* EXENCIÓN DE RESPONSABILIDAD */
+    .disclaimer-box {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      font-size: 0.83rem;
+      color: #7f1d1d;
+      line-height: 1.5;
+    }
+    .disclaimer-box h4 {
+      font-size: 0.86rem;
+      color: #991b1b;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .disclaimer-box ul {
+      margin-left: 18px;
+      margin-top: 4px;
+    }
+    .disclaimer-box li {
+      margin-bottom: 3px;
     }
 
     /* FIRMA DIGITAL Y CONSENTIMIENTO */
@@ -375,9 +445,14 @@
       <a href="index.html" class="logo">
         <img src="logo.png" alt="AutoCheck Logo">
       </a>
-      <a href="index.html" class="btn-back">
-        <i class="fa-solid fa-arrow-left"></i> Volver al inicio
-      </a>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <a href="panel.html" class="btn-back" style="color:var(--green); font-weight:600;">
+          <i class="fa-solid fa-table-columns"></i> Panel de Control
+        </a>
+        <a href="index.html" class="btn-back">
+          <i class="fa-solid fa-arrow-left"></i> Volver al inicio
+        </a>
+      </div>
     </div>
   </header>
 
@@ -388,7 +463,7 @@
       <div class="form-header">
         <span class="badge-tag"><i class="fa-solid fa-screwdriver-wrench"></i> Recepción de Taller</span>
         <h1>Ficha de Ingreso a Reparación</h1>
-        <p>Completá los datos del vehículo y la falla. Al enviar, guardaremos la ficha y la firma en el registro del taller y se abrirá WhatsApp al <strong>+54 387 518 2523</strong>.</p>
+        <p>Completá los datos del vehículo y la falla. Al enviar, se generará la ficha en formato ordenado y se abrirá WhatsApp al <strong>+54 387 518 2523</strong>.</p>
       </div>
 
       <div class="form-card">
@@ -449,24 +524,6 @@
 
           <!-- DIAGNÓSTICO Y PROBLEMA -->
           <div class="section-subtitle">3. Estado y Falla de Arranque / Diagnóstico</div>
-          
-          <div class="form-group" style="margin-bottom: 16px;">
-            <label>¿Cómo está respondiendo el vehículo al dar arranque? <span class="required">*</span></label>
-            <div class="chips-group">
-              <div class="chip-radio">
-                <input type="radio" id="st1" name="estadoArranque" value="No hace nada / Batería agotada" checked>
-                <label for="st1" class="chip-label">No hace nada (Muerto)</label>
-              </div>
-              <div class="chip-radio">
-                <input type="radio" id="st2" name="estadoArranque" value="Gira pero no llega a encender">
-                <label for="st2" class="chip-label">Gira y no enciende</label>
-              </div>
-              <div class="chip-radio">
-                <input type="radio" id="st3" name="estadoArranque" value="Enciende pero falla / Check Engine">
-                <label for="st3" class="chip-label">Arranca pero falla</label>
-              </div>
-            </div>
-          </div>
 
           <div class="form-grid">
             <div class="form-group col-full">
@@ -475,8 +532,8 @@
             </div>
 
             <div class="form-group">
-              <label for="modoLlegada">¿Cómo ingresa el vehículo?</label>
-              <select id="modoLlegada">
+              <label for="modoLlegada">¿Cómo ingresa el vehículo? <span class="required">*</span></label>
+              <select id="modoLlegada" required>
                 <option value="Andando">Llega funcionando</option>
                 <option value="En grúa / Remolque">En grúa / Remolque</option>
                 <option value="A coordinar auxilio / revisión">A coordinar auxilio / revisión en domicilio</option>
@@ -488,7 +545,7 @@
               <input type="date" id="fechaTurno" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-full">
               <label for="franjaTurno">Horario preferido de atención <span class="required">*</span></label>
               <select id="franjaTurno" required>
                 <option value="">Seleccionar horario...</option>
@@ -499,13 +556,35 @@
                 <option value="Urgente / A coordinar por auxilio">Urgencia inmediata / Auxilio</option>
               </select>
             </div>
+
+            <!-- FOTOS DEL ESTADO GENERAL DEL VEHÍCULO -->
+            <div class="form-group col-full">
+              <label>Fotos del estado general del vehículo (Hasta 3 imágenes opcionales):</label>
+              <div class="photo-upload-box" onclick="document.getElementById('inputFotos').click()">
+                <i class="fa-solid fa-camera" style="font-size:1.5rem; color:var(--green); margin-bottom:6px; display:block;"></i>
+                <span style="font-size:0.88rem; font-weight:600; color:var(--text-main);">Tocar aquí para adjuntar o tomar fotos</span>
+                <span style="font-size:0.75rem; color:var(--text-muted); display:block; margin-top:2px;">Frente, laterales o detalles de carrocería</span>
+              </div>
+              <input type="file" id="inputFotos" accept="image/*" multiple style="display:none;" onchange="manejarFotos(event)">
+              <div id="previewsContainer" class="photo-previews"></div>
+            </div>
           </div>
 
-          <!-- 4. CONSENTIMIENTO Y FIRMA -->
-          <div class="section-subtitle">4. Consentimiento y Firma del Propietario</div>
+          <!-- 4. CONSENTIMIENTO Y EXENCIÓN DE RESPONSABILIDAD -->
+          <div class="section-subtitle">4. Consentimiento y Exención de Responsabilidad</div>
+
+          <!-- CLÁUSULA DE EXENCIÓN DE RESPONSABILIDAD -->
+          <div class="disclaimer-box">
+            <h4><i class="fa-solid fa-triangle-exclamation"></i> Cláusula de Exención de Responsabilidad y Custodia:</h4>
+            <ul>
+              <li><strong>Objetos personales y de valor:</strong> El taller <em>no se responsabiliza</em> por la pérdida, extravío o sustracción de objetos personales, herramientas sueltas, dinero o pertenencias dejadas en el habitáculo o baúl. Se solicita retirar todo elemento de valor antes del ingreso.</li>
+              <li><strong>Fallas preexistentes o vicios ocultos:</strong> AutoCheck no responderá por roturas o desperfectos mecánicos/eléctricos derivados del estado de deterioro previo del vehículo, fatiga de materiales o piezas alteradas por reparaciones deficientes anteriores.</li>
+              <li><strong>Pruebas de ensayo y diagnóstico:</strong> El propietario autoriza al personal técnico a realizar pruebas de arranque, escaneo y ensayos dinámicos en vía pública necesarios para la comprobación del síntoma.</li>
+            </ul>
+          </div>
 
           <div class="consent-box">
-            <p><strong>Autorización de Diagnóstico y Custodia:</strong> Por la presente autorizo al personal técnico de <strong>AutoCheck Salta</strong> a realizar el escaneo electrónico, pruebas de arranque, mediciones de circuito y ensayos dinámicos necesarios sobre el vehículo indicado para la determinación de fallas, comprometiéndose el taller a informar previamente cualquier presupuesto de reparación integral.</p>
+            <p><strong>Autorización de Diagnóstico:</strong> Por la presente autorizo las revisiones sobre el vehículo indicado, comprometiéndose el taller a informar y presupuestar previamente cualquier reparación integral antes de proceder.</p>
           </div>
 
           <div class="signature-area">
@@ -523,7 +602,7 @@
 
           <label class="checkbox-consent">
             <input type="checkbox" id="checkAcepto" required>
-            <span>He leído y presto mi total conformidad para el ingreso y evaluación técnica de mi vehículo.</span>
+            <span>He leído, comprendo y acepto la exención de responsabilidad y presto mi total conformidad para el ingreso y evaluación de mi vehículo.</span>
           </label>
 
           <!-- BOTÓN ENVIAR -->
@@ -544,11 +623,6 @@
   </main>
 
   <script>
-    // La clave publishable está diseñada para usarse en el navegador; los permisos
-    // de escritura quedan limitados por RLS en Supabase.
-    const SUPABASE_URL = 'https://bqqmosyoehjfyljoycyj.supabase.co';
-    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_QV4V6faO5FPjEPtRKFOpqQ_yjK52W1m';
-
     // Configuración del Lienzo (Canvas) para la Firma Digital
     const canvas = document.getElementById('signaturePad');
     const ctx = canvas.getContext('2d');
@@ -653,7 +727,66 @@
       sigStatus.classList.remove('signed');
     }
 
-    async function enviarWhatsApp(e) {
+    // GESTIÓN DE HASTA 3 FOTOS DEL VEHÍCULO
+    let fotosVehiculo = [];
+
+    function manejarFotos(event) {
+      const files = Array.from(event.target.files);
+      if (!files.length) return;
+
+      const cupoRestante = 3 - fotosVehiculo.length;
+      if (cupoRestante <= 0) {
+        alert("Ya has cargado el máximo de 3 imágenes.");
+        return;
+      }
+
+      const aProcesar = files.slice(0, cupoRestante);
+
+      aProcesar.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          // Redimensionar para no saturar memoria en localStorage
+          const img = new Image();
+          img.onload = function() {
+            const canvasImg = document.createElement('canvas');
+            const maxW = 600;
+            const scale = Math.min(1, maxW / img.width);
+            canvasImg.width = img.width * scale;
+            canvasImg.height = img.height * scale;
+            const ctxImg = canvasImg.getContext('2d');
+            ctxImg.drawImage(img, 0, 0, canvasImg.width, canvasImg.height);
+            const dataUrl = canvasImg.toDataURL('image/jpeg', 0.7);
+
+            fotosVehiculo.push(dataUrl);
+            renderizarFotos();
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+      event.target.value = '';
+    }
+
+    function renderizarFotos() {
+      const cont = document.getElementById('previewsContainer');
+      cont.innerHTML = '';
+      fotosVehiculo.forEach((src, idx) => {
+        const div = document.createElement('div');
+        div.className = 'photo-thumb';
+        div.innerHTML = `
+          <img src="${src}" alt="Foto ${idx + 1}">
+          <button type="button" class="btn-del-photo" onclick="eliminarFoto(${idx})" title="Eliminar foto">&times;</button>
+        `;
+        cont.appendChild(div);
+      });
+    }
+
+    function eliminarFoto(idx) {
+      fotosVehiculo.splice(idx, 1);
+      renderizarFotos();
+    }
+
+    function enviarWhatsApp(e) {
       e.preventDefault();
 
       if (!hasSigned) {
@@ -666,7 +799,7 @@
 
       const acepto = document.getElementById('checkAcepto').checked;
       if (!acepto) {
-        alert("Debes tildar la casilla de conformidad.");
+        alert("Debes aceptar la exención de responsabilidad y conformidad para continuar.");
         return;
       }
 
@@ -676,9 +809,6 @@
       const modelo = document.getElementById('vehiculoModelo').value.trim();
       const patente = document.getElementById('vehiculoPatente').value.trim().toUpperCase() || 'A confirmar';
       const combustible = document.getElementById('vehiculoCombustible').value;
-      
-      const estadoRadio = document.querySelector('input[name="estadoArranque"]:checked');
-      const estado = estadoRadio ? estadoRadio.value : 'No especificado';
       
       const motivo = document.getElementById('motivoIngreso').value.trim();
       const modoLlegada = document.getElementById('modoLlegada').value;
@@ -697,24 +827,42 @@
       // Fecha y hora del consentimiento
       const ahora = new Date();
       const fechaHoraFirma = ahora.toLocaleString('es-AR', { dateStyle: 'short', timeStyle: 'short' });
-      const firmaDataUrl = canvas.toDataURL('image/png');
 
-      const ficha = {
-        cliente_nombre: nombre,
-        cliente_telefono: telefono,
-        vehiculo_marca: marca,
-        vehiculo_modelo: modelo,
-        vehiculo_patente: patente,
-        combustible,
-        estado_arranque: estado,
-        motivo,
-        modo_llegada: modoLlegada,
-        fecha_turno: rawFecha,
-        franja_turno: franja,
-        firma_data_url: firmaDataUrl,
-        consentimiento: acepto,
-        fecha_hora_firma: ahora.toISOString()
-      };
+      // Guardar automáticamente en el Panel de Control (localStorage)
+      try {
+        const STORAGE_KEY = 'autocheck_ingresos_data';
+        const listaActual = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        const nuevoId = "ING-" + (listaActual.length + 101);
+        
+        const nuevoRegistro = {
+          id: nuevoId,
+          fecha: ahora.toLocaleDateString('es-AR'),
+          hora: ahora.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' }),
+          turnoFecha: fechaFormateada,
+          turnoFranja: franja,
+          cliente: nombre,
+          telefono: telefono,
+          marca: marca,
+          modelo: modelo,
+          patente: patente,
+          combustible: combustible,
+          falla: motivo,
+          modoLlegada: modoLlegada,
+          fotos: fotosVehiculo, // Array de hasta 3 fotos en base64
+          estado: 'INGRESADO',
+          diagnostico: 'Recepción registrada. Pendiente de escaneo técnico.',
+          presupuesto: '',
+          firmaRegistrada: true,
+          exencionAceptada: true
+        };
+
+        listaActual.unshift(nuevoRegistro);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(listaActual));
+      } catch (err) {
+        console.error('Error guardando en el panel:', err);
+      }
+
+      const fotosTexto = fotosVehiculo.length > 0 ? `📸 ${fotosVehiculo.length} foto(s) del vehículo adjuntadas en sistema` : '📸 Sin fotos adjuntas';
 
       // Mensaje formateado para WhatsApp
       const mensaje = 
@@ -727,18 +875,17 @@
 🔢 *Patente:* ${patente}
 ⛽ *Combustible:* ${combustible}
 
-⚡ *Estado al dar arranque:*
-👉 ${estado}
-
 📝 *Motivo / Síntomas:*
 ${motivo}
 
 🚚 *Modo de llegada:* ${modoLlegada}
+${fotosTexto}
 📅 *Día del turno elegido:* ${fechaFormateada}
 ⏰ *Franja horaria:* ${franja}
 
+⚠️ *Exención de responsabilidad:* Aceptada por el titular (sin objetos de valor y fallas preexistentes).
 ✍️ *CONSENTIMIENTO Y FIRMA:*
-✅ Autorización de diagnóstico y revisión firmada digitalmente por el titular.
+✅ Autorización de diagnóstico firmada digitalmente.
 🕒 *Fecha/Hora de registro:* ${fechaHoraFirma}
 ----------------------------------------
 _Enviado desde el formulario web de AutoCheck_`;
@@ -746,37 +893,8 @@ _Enviado desde el formulario web de AutoCheck_`;
       const numeroDestino = "543875182523";
       const url = `https://wa.me/${numeroDestino}?text=${encodeURIComponent(mensaje)}`;
 
-      // Abrir una pestaña en esta acción del usuario para evitar que el navegador
-      // bloquee WhatsApp mientras se espera la confirmación de Supabase.
-      const whatsappTab = window.open('about:blank', '_blank');
-      const submitButton = document.querySelector('#ingresoForm button[type="submit"]');
-      submitButton.disabled = true;
-      submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Guardando ficha...';
-
-      try {
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/ingresos_vehiculos`, {
-          method: 'POST',
-          headers: {
-            'apikey': SUPABASE_PUBLISHABLE_KEY,
-            'Content-Type': 'application/json',
-            'Prefer': 'return=minimal'
-          },
-          body: JSON.stringify(ficha)
-        });
-
-        if (!response.ok) throw new Error(`Supabase respondió ${response.status}`);
-        if (whatsappTab) {
-          whatsappTab.location.href = url;
-        } else {
-          window.location.href = url;
-        }
-      } catch (error) {
-        console.error('No se pudo guardar la ficha de ingreso.', error);
-        if (whatsappTab) whatsappTab.close();
-        alert('No se pudo guardar la ficha. Verificá tu conexión e intentá nuevamente; todavía no se abrió WhatsApp.');
-        submitButton.disabled = false;
-        submitButton.innerHTML = '<i class="fa-brands fa-whatsapp" style="font-size: 1.25rem;"></i> Enviar Ficha y Consentimiento por WhatsApp';
-      }
+      // Abrir WhatsApp en nueva pestaña
+      window.open(url, '_blank');
     }
   </script>
 

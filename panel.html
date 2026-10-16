@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Taller | AutoCheck Salta</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --green: #21a75f;
+      --green-soft: #eaf7ef;
+      --ink: #142b3b;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --amber: #f59e0b;
+      --blue: #2563eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* HEADER */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-inner {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .brand img {
+      height: 36px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-outline {
+      border-color: var(--border);
+      background: #ffffff;
+      color: var(--text);
+    }
+    .btn-outline:hover {
+      background: #f1f5f9;
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: #ffffff;
+    }
+    .btn-green:hover {
+      background: #19874b;
+    }
+
+    /* MAIN */
+    main {
+      padding: 28px 0 50px;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .page-header h1 {
+      font-size: 1.6rem;
+      color: var(--ink);
+    }
+
+    .page-header p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* BUSCADOR Y FILTROS */
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      outline: none;
+      background: #fff;
+    }
+
+    .search-input:focus {
+      border-color: var(--green);
+    }
+
+    .filter-select {
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* LISTADO DE TARJETAS LIMPIAS */
+    .cards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .vehicle-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: 2fr 3fr 1.5fr auto;
+      gap: 16px;
+      align-items: center;
+      transition: border-color 0.15s;
+    }
+
+    .vehicle-card:hover {
+      border-color: #cbd5e1;
+    }
+
+    .col-car strong {
+      font-size: 1.05rem;
+      color: var(--ink);
+      display: block;
+    }
+
+    .plate {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-top: 4px;
+    }
+
+    .client-tag {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* MINIATURAS DE FOTOS EN LA TARJETA */
+    .vehicle-photos-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .v-thumb {
+      width: 48px;
+      height: 38px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    .v-thumb:hover {
+      transform: scale(1.08);
+      border-color: var(--green);
+    }
+
+    .no-photos-tag {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    .col-diag {
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .diag-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    /* ESTADOS */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      width: fit-content;
+    }
+
+    .status-ingresado {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    .status-revision {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .status-listo {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .status-entregado {
+      background: #f1f5f9;
+      color: #64748b;
+    }
+
+    .col-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-sm {
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      border-radius: 5px;
+    }
+
+    .btn-wa {
+      background: #25d366;
+      color: #fff;
+      border: none;
+    }
+    .btn-wa:hover {
+      background: #20bd5a;
+    }
+
+    /* MODAL SIMPLE */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 100;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 480px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .modal-box h3 {
+      font-size: 1.15rem;
+      color: var(--ink);
+    }
+
+    .modal-box label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .modal-box select, .modal-box textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 36px 12px;
+      color: var(--muted);
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .vehicle-card {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .col-actions {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="AutoCheck Logo">
+        <span>Panel de Taller</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="ingreso.html" class="btn btn-green">
+          <i class="fa-solid fa-plus"></i> Ingresar Vehículo
+        </a>
+        <a href="index.html" class="btn btn-outline">
+          <i class="fa-solid fa-house"></i> Inicio
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main>
+    <div class="container">
+      
+      <div class="page-header">
+        <div>
+          <h1>Vehículos en Taller</h1>
+          <p>Monitoreo rápido de ingresos y publicación del estado de reparación.</p>
+        </div>
+        <span id="totalBadge" style="font-size:0.85rem; font-weight:600; color:var(--muted); background:#fff; padding:6px 12px; border:1px solid var(--border); border-radius:6px;">
+          Total: 0 vehículos
+        </span>
+      </div>
+
+      <!-- CONTROLES -->
+      <div class="controls">
+        <input type="text" id="searchInput" class="search-input" placeholder="Buscar por patente, cliente o modelo..." oninput="filtrar()">
+        <select id="statusFilter" class="filter-select" onchange="filtrar()">
+          <option value="TODOS">Todos los estados</option>
+          <option value="INGRESADO">🟡 Ingresados</option>
+          <option value="EN_REVISION">🔵 En Revisión</option>
+          <option value="LISTO">🟢 Listos</option>
+          <option value="ENTREGADO">⚪ Entregados</option>
+        </select>
+      </div>
+
+      <!-- LISTA DE VEHÍCULOS -->
+      <div id="cardsList" class="cards-list">
+        <!-- Generado con JS -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- MODAL CAMBIAR ESTADO -->
+  <div id="modalEstado" class="modal-overlay">
+    <div class="modal-box">
+      <h3 id="modalVehiculoTitle">Actualizar Estado</h3>
+      <input type="hidden" id="editIndex">
+
+      <div>
+        <label>Estado de reparación:</label>
+        <select id="modalEstadoSelect">
+          <option value="INGRESADO">🟡 Ingresado / En espera</option>
+          <option value="EN_REVISION">🔵 En Revisión / Diagnóstico</option>
+          <option value="LISTO">🟢 Listo para Retirar</option>
+          <option value="ENTREGADO">⚪ Entregado al Cliente</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Informe de revisión / diagnóstico:</label>
+        <textarea id="modalDiagText" rows="3" placeholder="Detalle qué se revisó o reparó..."></textarea>
+      </div>
+
+  <!-- MODAL VISOR DE FOTOS -->
+  <div id="modalFotos" class="modal-overlay" onclick="cerrarVisorFotos()">
+    <div class="modal-box" style="max-width:650px; text-align:center; padding:16px;" onclick="event.stopPropagation();">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h3 id="modalFotosTitle" style="font-size:1.05rem;">Fotos del Vehículo</h3>
+        <button class="btn btn-outline btn-sm" onclick="cerrarVisorFotos()">&times;</button>
+      </div>
+      <div id="modalFotosGallery" style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;"></div>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'autocheck_ingresos_data';
+
+    const datosDemo = [
+      {
+        id: "ING-101",
+        fecha: "15/10/2026",
+        cliente: "Carlos Romero",
+        telefono: "3874551234",
+        marca: "Volkswagen",
+        modelo: "Gol Trend",
+        patente: "AA 421 XY",
+        falla: "Gira pesado y no enciende",
+        estado: "EN_REVISION",
+        diagnostico: "Revisión de batería y burro. Tensión cae en arranque.",
+        fotos: ["hero-breakdown.jpg", "portadafc.jpg"]
+      },
+      {
+        id: "ING-102",
+        fecha: "15/10/2026",
+        cliente: "Mariana Albornoz",
+        telefono: "3875129876",
+        marca: "Chevrolet",
+        modelo: "Cruze 1.4T",
+        patente: "AC 890 OP",
+        falla: "Tironea en frío / Check Engine",
+        estado: "LISTO",
+        diagnostico: "Escaneo OBD2: Fallo en cilindro 3. Se cambió bobina y bujías.",
+        fotos: ["problemascontubateria.jpg"]
+      },
+      {
+        id: "ING-103",
+        fecha: "16/10/2026",
+        cliente: "Martín Benítez",
+        telefono: "3876443322",
+        marca: "Fiat",
+        modelo: "Cronos",
+        patente: "AF 112 LK",
+        falla: "Gira con fuerza pero no inyecta nafta",
+        estado: "INGRESADO",
+        diagnostico: "En espera de escaneo en rampa.",
+        fotos: []
+      }
+    ];
+
+    function obtenerDatos() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(datosDemo));
+        return datosDemo;
+      }
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        return datosDemo;
+      }
+    }
+
+    function guardarDatos(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function getBadge(estado) {
+      switch (estado) {
+        case 'INGRESADO':
+          return '<span class="status-badge status-ingresado"><i class="fa-solid fa-clock"></i> Ingresado</span>';
+        case 'EN_REVISION':
+        case 'ESPERANDO_REPUESTO':
+          return '<span class="status-badge status-revision"><i class="fa-solid fa-wrench"></i> En Revisión</span>';
+        case 'LISTO':
+          return '<span class="status-badge status-listo"><i class="fa-solid fa-check"></i> Listo</span>';
+        case 'ENTREGADO':
+          return '<span class="status-badge status-entregado"><i class="fa-solid fa-car"></i> Entregado</span>';
+        default:
+          return `<span class="status-badge status-ingresado">${estado}</span>`;
+      }
+    }
+
+    function render() {
+      const lista = obtenerDatos();
+      const container = document.getElementById('cardsList');
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
+      const filtro = document.getElementById('statusFilter').value;
+
+      container.innerHTML = '';
+
+      const filtrados = lista.filter(item => {
+        const matchFiltro = (filtro === 'TODOS') || 
+                            (filtro === 'EN_REVISION' && (item.estado === 'EN_REVISION' || item.estado === 'ESPERANDO_REPUESTO')) ||
+                            (item.estado === filtro);
+        const matchSearch = 
+          item.patente.toLowerCase().includes(search) ||
+          item.cliente.toLowerCase().includes(search) ||
+          item.modelo.toLowerCase().includes(search) ||
+          item.marca.toLowerCase().includes(search);
+        return matchFiltro && matchSearch;
+      });
+
+      document.getElementById('totalBadge').textContent = `Total: ${filtrados.length} vehículo${filtrados.length === 1 ? '' : 's'}`;
+
+      if (filtrados.length === 0) {
+        container.innerHTML = '<div class="empty">No se encontraron vehículos.</div>';
+        return;
+      }
+
+      filtrados.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'vehicle-card';
+
+        // Render miniaturas de fotos del vehículo
+        let fotosHtml = '';
+        if (item.fotos && item.fotos.length > 0) {
+          fotosHtml = `
+            <div class="vehicle-photos-row">
+              ${item.fotos.map((src, fIdx) => `
+                <img src="${src}" class="v-thumb" alt="Foto ${fIdx + 1}" onclick="ampliarFotos(${index})" title="Ver foto">
+              `).join('')}
+            </div>
+          `;
+        } else {
+          fotosHtml = `<div class="no-photos-tag"><i class="fa-regular fa-image"></i> Sin fotos cargadas</div>`;
+        }
+
+        card.innerHTML = `
+          <div class="col-car">
+            <strong>${item.marca} ${item.modelo}</strong>
+            <span class="plate">${item.patente}</span>
+            <div class="client-tag"><i class="fa-regular fa-user"></i> ${item.cliente} (${item.telefono})</div>
+            ${fotosHtml}
+          </div>
+
+          <div class="col-diag">
+            <div class="diag-title">Problema / Revisión:</div>
+            <div>${item.falla}</div>
+            ${item.diagnostico ? `<div style="color:var(--muted); font-size:0.8rem; margin-top:3px;"><strong>Informe:</strong> ${item.diagnostico}</div>` : ''}
+          </div>
+
+          <div>
+            ${getBadge(item.estado)}
+          </div>
+
+          <div class="col-actions">
+            <button class="btn btn-outline btn-sm" onclick="abrirModal(${index})">
+              <i class="fa-solid fa-pen"></i> Estado
+            </button>
+            <button class="btn btn-wa btn-sm" onclick="notificarWA(${index})" title="Avisar por WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function ampliarFotos(index) {
+      const lista = obtenerDatos();
+      const item = lista[index];
+      if (!item || !item.fotos || !item.fotos.length) return;
+
+      document.getElementById('modalFotosTitle').textContent = `Fotos: ${item.marca} ${item.modelo} (${item.patente})`;
+      const galeria = document.getElementById('modalFotosGallery');
+      galeria.innerHTML = item.fotos.map(src => `
+        <div style="flex:1; min-width:180px; max-width:280px; border-radius:6px; overflow:hidden; border:1px solid var(--border); background:#000;">
+          <img src="${src}" style="width:100%; height:200px; object-fit:cover; display:block;" alt="Vehículo">
+        </div>
+      `).join('');
+
+      document.getElementById('modalFotos').classList.add('active');
+    }
+
+    function cerrarVisorFotos() {
+      document.getElementById('modalFotos').classList.remove('active');
+    }
+
+    function filtrar() {
+      render();
+    }
+
+    function abrirModal(index) {
+      const lista = obtenerDatos();
+      const item = lista[index];
+      if (!item) return;
+
+      document.getElementById('editIndex').value = index;
+      document.getElementById('modalVehiculoTitle').textContent = `${item.marca} ${item.modelo} (${item.patente})`;
+      document.getElementById('modalEstadoSelect').value = item.estado === 'ESPERANDO_REPUESTO' ? 'EN_REVISION' : item.estado;
+      document.getElementById('modalDiagText').value = item.diagnostico || '';
+      document.getElementById('modalEstado').classList.add('active');
+    }
+
+    function cerrarModal() {
+      document.getElementById('modalEstado').classList.remove('active');
+    }
+
+    function guardarEstado() {
+      const idx = document.getElementById('editIndex').value;
+      const lista = obtenerDatos();
+      if (!lista[idx]) return;
+
+      lista[idx].estado = document.getElementById('modalEstadoSelect').value;
+      lista[idx].diagnostico = document.getElementById('modalDiagText').value.trim();
+
+      guardarDatos(lista);
+      cerrarModal();
+      render();
+
+      if (confirm("¿Querés enviar la actualización al cliente por WhatsApp?")) {
+        notificarWA(idx);
+      }
+    }
+
+    function notificarWA(index) {
+      const lista = obtenerDatos();
+      const item = lista[index];
+      if (!item) return;
+
+      let estadoTexto = "EN REVISIÓN";
+      if (item.estado === "INGRESADO") estadoTexto = "INGRESADO AL TALLER";
+      if (item.estado === "LISTO") estadoTexto = "LISTO PARA RETIRAR";
+      if (item.estado === "ENTREGADO") estadoTexto = "ENTREGADO";
+
+      const mensaje = 
+`*AUTOCHECK SALTA - ESTADO DE REVISIÓN*
+----------------------------------------
+Hola *${item.cliente}*, te informamos el estado de tu vehículo:
+
+🚗 *Vehículo:* ${item.marca} ${item.modelo}
+🔢 *Patente:* ${item.patente}
+
+📌 *ESTADO:*
+👉 *${estadoTexto}*
+
+📋 *Detalle:*
+${item.diagnostico || item.falla}
+
+📍 *Taller:* Av. Roque Sáenz Peña, Salta
+📞 387 518-2523
+----------------------------------------`;
+
+      let tel = item.telefono.replace(/\D/g, '');
+      if (tel.length === 10 && !tel.startsWith('54')) {
+        tel = '549' + tel;
+      }
+
+      window.open(`https://wa.me/${tel}?text=${encodeURIComponent(mensaje)}`, '_blank');
+    }
+
+    document.addEventListener('DOMContentLoaded', render);
+  </script>
+
+</body>
+</html>
