@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingreso de Vehículo a Reparación | AutoCheck Salta</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --green: #328b18;
+      --green-hover: #276e13;
+      --green-soft: #f0f8ee;
+      --text-main: #181a1b;
+      --text-muted: #5f6368;
+      --border: #e8eaed;
+      --input-bg: #ffffff;
+      --bg-alt: #fbfbfb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background-color: #ffffff;
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* HEADER */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    .btn-back {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .btn-back:hover {
+      color: var(--text-main);
+    }
+
+    /* FORM CONTENT */
+    .form-wrapper {
+      padding: 48px 0 70px;
+    }
+
+    .form-header {
+      margin-bottom: 32px;
+    }
+
+    .badge-tag {
+      display: inline-block;
+      background: var(--green-soft);
+      color: var(--green);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .form-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .form-header p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .form-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      background: #ffffff;
+    }
+
+    .section-subtitle {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin: 24px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-subtitle:first-of-type {
+      margin-top: 0;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .col-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .required {
+      color: #e53935;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      background: var(--input-bg);
+      color: var(--text-main);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(50, 139, 24, 0.12);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 85px;
+    }
+
+    /* ESTADO DEL VEHICULO (CHIPS) */
+    .chips-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .chip-radio {
+      position: relative;
+    }
+
+    .chip-radio input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .chip-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 11px 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .chip-radio input:checked + .chip-label {
+      border-color: var(--green);
+      background: var(--green-soft);
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    /* FIRMA DIGITAL Y CONSENTIMIENTO */
+    .consent-box {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .consent-box strong {
+      color: var(--text-main);
+    }
+
+    .signature-area {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .canvas-container {
+      position: relative;
+      background: #ffffff;
+      border: 1.5px dashed #cbd5e1;
+      border-radius: 8px;
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    .canvas-container:hover, .canvas-container.active {
+      border-color: var(--green);
+    }
+
+    #signaturePad {
+      display: block;
+      width: 100%;
+      height: 160px;
+      cursor: crosshair;
+    }
+
+    .canvas-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    .btn-clear-sig {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 6px 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-clear-sig:hover {
+      border-color: #e53935;
+      color: #e53935;
+      background: #fff5f5;
+    }
+
+    .sig-status {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .sig-status.signed {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    .checkbox-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 14px;
+      cursor: pointer;
+    }
+
+    .checkbox-consent input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--green);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .checkbox-consent span {
+      font-size: 0.86rem;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    /* BOTON DE ENVIO A WHATSAPP */
+    .submit-btn {
+      width: 100%;
+      background: #25d366;
+      color: #ffffff;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 28px;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .submit-btn:hover {
+      background: #20bd5a;
+    }
+
+    .submit-btn:active {
+      transform: scale(0.99);
+    }
+
+    .form-footer-note {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .chips-group { grid-template-columns: 1fr; }
+      .form-card { padding: 22px 18px; }
+      .form-header h1 { font-size: 1.65rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="AutoCheck Logo">
+      </a>
+      <a href="index.html" class="btn-back">
+        <i class="fa-solid fa-arrow-left"></i> Volver al inicio
+      </a>
+    </div>
+  </header>
+
+  <!-- FORM CONTAINER -->
+  <main class="form-wrapper">
+    <div class="container">
+      
+      <div class="form-header">
+        <span class="badge-tag"><i class="fa-solid fa-screwdriver-wrench"></i> Recepción de Taller</span>
+        <h1>Ficha de Ingreso a Reparación</h1>
+        <p>Completá los datos del vehículo y la falla. Al enviar, se generará la ficha en formato ordenado y se abrirá WhatsApp al <strong>+54 387 518 2523</strong>.</p>
+      </div>
+
+      <div class="form-card">
+        <form id="ingresoForm" onsubmit="enviarWhatsApp(event)">
+          
+          <!-- DATOS DEL CLIENTE -->
+          <div class="section-subtitle">1. Datos del Propietario / Conductor</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="clienteNombre">Nombre y Apellido <span class="required">*</span></label>
+              <input type="text" id="clienteNombre" placeholder="Ej: Juan Pérez" required>
+            </div>
+
+            <div class="form-group">
+              <label for="clienteTelefono">Teléfono de Contacto <span class="required">*</span></label>
+              <input type="tel" id="clienteTelefono" placeholder="Ej: 387 154 123456" required>
+            </div>
+          </div>
+
+          <!-- DATOS DEL VEHÍCULO -->
+          <div class="section-subtitle">2. Datos del Vehículo</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="vehiculoMarca">Marca <span class="required">*</span></label>
+              <select id="vehiculoMarca" required>
+                <option value="">Seleccionar marca...</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="Fiat">Fiat</option>
+                <option value="Renault">Renault</option>
+                <option value="Ford">Ford</option>
+                <option value="Peugeot">Peugeot</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Citroën">Citroën</option>
+                <option value="Otra">Otra marca</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="vehiculoModelo">Modelo y Año <span class="required">*</span></label>
+              <input type="text" id="vehiculoModelo" placeholder="Ej: Gol Trend 2015" required>
+            </div>
+
+            <div class="form-group">
+              <label for="vehiculoPatente">Patente / Dominio</label>
+              <input type="text" id="vehiculoPatente" placeholder="Ej: AB 123 CD" style="text-transform: uppercase;">
+            </div>
+
+            <div class="form-group">
+              <label for="vehiculoCombustible">Combustible</label>
+              <select id="vehiculoCombustible">
+                <option value="Nafta">Nafta</option>
+                <option value="Nafta + GNC">Nafta + GNC</option>
+                <option value="Diesel">Diesel</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- DIAGNÓSTICO Y PROBLEMA -->
+          <div class="section-subtitle">3. Estado y Falla de Arranque / Diagnóstico</div>
+          
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label>¿Cómo está respondiendo el vehículo al dar arranque? <span class="required">*</span></label>
+            <div class="chips-group">
+              <div class="chip-radio">
+                <input type="radio" id="st1" name="estadoArranque" value="No hace nada / Batería agotada" checked>
+                <label for="st1" class="chip-label">No hace nada (Muerto)</label>
+              </div>
+              <div class="chip-radio">
+                <input type="radio" id="st2" name="estadoArranque" value="Gira pero no llega a encender">
+                <label for="st2" class="chip-label">Gira y no enciende</label>
+              </div>
+              <div class="chip-radio">
+                <input type="radio" id="st3" name="estadoArranque" value="Enciende pero falla / Check Engine">
+                <label for="st3" class="chip-label">Arranca pero falla</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group col-full">
+              <label for="motivoIngreso">Motivo de ingreso / Síntomas observados <span class="required">*</span></label>
+              <textarea id="motivoIngreso" placeholder="Describí brevemente qué sentís o escuchás (ej: hace un ruido metálico, se descargó la batería de un día para el otro, tironea al acelerar...)" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="modoLlegada">¿Cómo ingresa el vehículo?</label>
+              <select id="modoLlegada">
+                <option value="Andando">Llega funcionando</option>
+                <option value="En grúa / Remolque">En grúa / Remolque</option>
+                <option value="A coordinar auxilio / revisión">A coordinar auxilio / revisión en domicilio</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="fechaTurno">Día del Turno (Calendario) <span class="required">*</span></label>
+              <input type="date" id="fechaTurno" required>
+            </div>
+
+            <div class="form-group">
+              <label for="franjaTurno">Horario preferido de atención <span class="required">*</span></label>
+              <select id="franjaTurno" required>
+                <option value="">Seleccionar horario...</option>
+                <option value="Mañana (09:00 a 11:00 hs)">Mañana (09:00 a 11:00 hs)</option>
+                <option value="Mediodía (11:00 a 13:00 hs)">Mediodía (11:00 a 13:00 hs)</option>
+                <option value="Tarde temprano (13:00 a 15:00 hs)">Tarde temprano (13:00 a 15:00 hs)</option>
+                <option value="Tarde (15:00 a 17:00 hs)">Tarde (15:00 a 17:00 hs)</option>
+                <option value="Urgente / A coordinar por auxilio">Urgencia inmediata / Auxilio</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 4. CONSENTIMIENTO Y FIRMA -->
+          <div class="section-subtitle">4. Consentimiento y Firma del Propietario</div>
+
+          <div class="consent-box">
+            <p><strong>Autorización de Diagnóstico y Custodia:</strong> Por la presente autorizo al personal técnico de <strong>AutoCheck Salta</strong> a realizar el escaneo electrónico, pruebas de arranque, mediciones de circuito y ensayos dinámicos necesarios sobre el vehículo indicado para la determinación de fallas, comprometiéndose el taller a informar previamente cualquier presupuesto de reparación integral.</p>
+          </div>
+
+          <div class="signature-area">
+            <label>Firma digital del propietario / conductor <span class="required">*</span></label>
+            <div class="canvas-container" id="canvasContainer">
+              <canvas id="signaturePad"></canvas>
+            </div>
+            <div class="canvas-actions">
+              <span id="sigStatus" class="sig-status">Dibuja tu firma con el dedo o mouse en el recuadro</span>
+              <button type="button" class="btn-clear-sig" onclick="limpiarFirma()">
+                <i class="fa-solid fa-eraser"></i> Borrar y volver a firmar
+              </button>
+            </div>
+          </div>
+
+          <label class="checkbox-consent">
+            <input type="checkbox" id="checkAcepto" required>
+            <span>He leído y presto mi total conformidad para el ingreso y evaluación técnica de mi vehículo.</span>
+          </label>
+
+          <!-- BOTÓN ENVIAR -->
+          <button type="submit" class="submit-btn">
+            <i class="fa-brands fa-whatsapp" style="font-size: 1.25rem;"></i>
+            Enviar Ficha y Consentimiento por WhatsApp
+          </button>
+
+          <div class="form-footer-note">
+            <i class="fa-solid fa-lock"></i>
+            Envío directo al WhatsApp oficial de AutoCheck (+54 387 518 2523)
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // Configuración del Lienzo (Canvas) para la Firma Digital
+    const canvas = document.getElementById('signaturePad');
+    const ctx = canvas.getContext('2d');
+    const container = document.getElementById('canvasContainer');
+    const sigStatus = document.getElementById('sigStatus');
+    let drawing = false;
+    let hasSigned = false;
+
+    function resizeCanvas() {
+      const rect = container.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      
+      // Preservar si ya había firmado al redimensionar
+      const prevData = hasSigned ? canvas.toDataURL() : null;
+      
+      canvas.width = rect.width * dpr;
+      canvas.height = 160 * dpr;
+      canvas.style.width = `${rect.width}px`;
+      canvas.style.height = `160px`;
+      ctx.scale(dpr, dpr);
+      ctx.strokeStyle = '#181a1b';
+      ctx.lineWidth = 2.2;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      if (prevData) {
+        const img = new Image();
+        img.src = prevData;
+        img.onload = () => ctx.drawImage(img, 0, 0, rect.width, 160);
+      }
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('DOMContentLoaded', () => {
+      resizeCanvas();
+      
+      // Bloquear fechas pasadas en el calendario
+      const inputFecha = document.getElementById('fechaTurno');
+      if (inputFecha) {
+        const hoy = new Date().toISOString().split('T')[0];
+        inputFecha.min = hoy;
+        inputFecha.value = hoy; // Sugiere el día actual por defecto
+      }
+    });
+
+    function getCoords(e) {
+      const rect = canvas.getBoundingClientRect();
+      if (e.touches && e.touches.length > 0) {
+        return {
+          x: e.touches[0].clientX - rect.left,
+          y: e.touches[0].clientY - rect.top
+        };
+      }
+      return {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+      };
+    }
+
+    function startDraw(e) {
+      drawing = true;
+      const { x, y } = getCoords(e);
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      container.classList.add('active');
+      if (e.cancelable) e.preventDefault();
+    }
+
+    function draw(e) {
+      if (!drawing) return;
+      const { x, y } = getCoords(e);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      hasSigned = true;
+      sigStatus.textContent = "✓ Firma registrada correctamente";
+      sigStatus.classList.add('signed');
+      if (e.cancelable) e.preventDefault();
+    }
+
+    function endDraw(e) {
+      if (!drawing) return;
+      drawing = false;
+      ctx.closePath();
+      container.classList.remove('active');
+    }
+
+    // Eventos Mouse
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', draw);
+    window.addEventListener('mouseup', endDraw);
+
+    // Eventos Touch (Celulares y Tablets)
+    canvas.addEventListener('touchstart', startDraw, { passive: false });
+    canvas.addEventListener('touchmove', draw, { passive: false });
+    window.addEventListener('touchend', endDraw);
+    window.addEventListener('touchcancel', endDraw);
+
+    function limpiarFirma() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      hasSigned = false;
+      sigStatus.textContent = "Dibuja tu firma con el dedo o mouse en el recuadro";
+      sigStatus.classList.remove('signed');
+    }
+
+    function enviarWhatsApp(e) {
+      e.preventDefault();
+
+      if (!hasSigned) {
+        alert("Por favor firma en el recuadro de consentimiento antes de continuar.");
+        container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        container.style.borderColor = '#e53935';
+        setTimeout(() => container.style.borderColor = '', 2000);
+        return;
+      }
+
+      const acepto = document.getElementById('checkAcepto').checked;
+      if (!acepto) {
+        alert("Debes tildar la casilla de conformidad.");
+        return;
+      }
+
+      const nombre = document.getElementById('clienteNombre').value.trim();
+      const telefono = document.getElementById('clienteTelefono').value.trim();
+      const marca = document.getElementById('vehiculoMarca').value;
+      const modelo = document.getElementById('vehiculoModelo').value.trim();
+      const patente = document.getElementById('vehiculoPatente').value.trim().toUpperCase() || 'A confirmar';
+      const combustible = document.getElementById('vehiculoCombustible').value;
+      
+      const estadoRadio = document.querySelector('input[name="estadoArranque"]:checked');
+      const estado = estadoRadio ? estadoRadio.value : 'No especificado';
+      
+      const motivo = document.getElementById('motivoIngreso').value.trim();
+      const modoLlegada = document.getElementById('modoLlegada').value;
+      
+      // Formatear fecha del turno seleccionada en el calendario (AAAA-MM-DD a DD/MM/AAAA)
+      const rawFecha = document.getElementById('fechaTurno').value;
+      let fechaFormateada = rawFecha;
+      if (rawFecha) {
+        const partes = rawFecha.split('-');
+        if (partes.length === 3) {
+          fechaFormateada = `${partes[2]}/${partes[1]}/${partes[0]}`;
+        }
+      }
+      const franja = document.getElementById('franjaTurno').value;
+
+      // Fecha y hora del consentimiento
+      const ahora = new Date();
+      const fechaHoraFirma = ahora.toLocaleString('es-AR', { dateStyle: 'short', timeStyle: 'short' });
+
+      // Mensaje formateado para WhatsApp
+      const mensaje = 
+`*AUTOCHECK - INGRESO DE VEHÍCULO*
+----------------------------------------
+👤 *Cliente:* ${nombre}
+📞 *Teléfono:* ${telefono}
+
+🚗 *Vehículo:* ${marca} ${modelo}
+🔢 *Patente:* ${patente}
+⛽ *Combustible:* ${combustible}
+
+⚡ *Estado al dar arranque:*
+👉 ${estado}
+
+📝 *Motivo / Síntomas:*
+${motivo}
+
+🚚 *Modo de llegada:* ${modoLlegada}
+📅 *Día del turno elegido:* ${fechaFormateada}
+⏰ *Franja horaria:* ${franja}
+
+✍️ *CONSENTIMIENTO Y FIRMA:*
+✅ Autorización de diagnóstico y revisión firmada digitalmente por el titular.
+🕒 *Fecha/Hora de registro:* ${fechaHoraFirma}
+----------------------------------------
+_Enviado desde el formulario web de AutoCheck_`;
+
+      const numeroDestino = "543875182523";
+      const url = `https://wa.me/${numeroDestino}?text=${encodeURIComponent(mensaje)}`;
+
+      // Abrir WhatsApp en nueva pestaña
+      window.open(url, '_blank');
+    }
+  </script>
+
+</body>
+</html>

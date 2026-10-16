@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="0 0 900 650" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="42" x2="850" y2="620" gradientUnits="userSpaceOnUse"><stop stop-color="#F5FAF7"/><stop offset="1" stop-color="#E5F2EA"/></linearGradient>
+    <linearGradient id="body" x1="225" y1="255" x2="702" y2="430" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF"/><stop offset="1" stop-color="#DCE8E2"/></linearGradient>
+    <linearGradient id="glass" x1="348" y1="260" x2="575" y2="345" gradientUnits="userSpaceOnUse"><stop stop-color="#E4F2EC"/><stop offset="1" stop-color="#BBD4C8"/></linearGradient>
+    <filter id="shadow" x="142" y="375" width="610" height="115" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="13"/></filter>
+  </defs>
+  <rect width="900" height="650" rx="28" fill="url(#bg)"/>
+  <circle cx="720" cy="125" r="177" stroke="#21A75F" stroke-opacity=".15" stroke-width="2"/><circle cx="720" cy="125" r="218" stroke="#21A75F" stroke-opacity=".08" stroke-width="2"/>
+  <path d="M0 500H900" stroke="#D3E3D9" stroke-width="2"/><path d="M0 526H900" stroke="#DCEAE1" stroke-width="1"/>
+  <ellipse cx="454" cy="443" rx="283" ry="25" fill="#142B3B" fill-opacity=".15" filter="url(#shadow)"/>
+  <!-- Car body -->
+  <path d="M202 391c12-31 29-57 59-72l76-37 56-73c13-17 31-26 54-26h94c22 0 42 9 57 27l70 83 60 20c18 6 29 20 34 40l7 39c2 13-8 24-22 24H214c-16 0-25-13-19-25Z" fill="url(#body)" stroke="#142B3B" stroke-width="5" stroke-linejoin="round"/>
+  <path d="m357 279 48-64c9-12 23-19 40-19h93c17 0 31 7 43 21l55 62H357Z" fill="url(#glass)" stroke="#142B3B" stroke-width="4" stroke-linejoin="round"/>
+  <path d="m472 201-3 77m72-77 56 77" stroke="#142B3B" stroke-opacity=".52" stroke-width="3"/>
+  <path d="M224 361h48m366-9 67 9" stroke="#21A75F" stroke-width="7" stroke-linecap="round"/>
+  <path d="M210 384h-16m586 0h-17" stroke="#142B3B" stroke-width="5" stroke-linecap="round"/>
+  <path d="M336 317h82m121 0h87" stroke="#142B3B" stroke-opacity=".16" stroke-width="3" stroke-linecap="round"/>
+  <!-- Wheels -->
+  <circle cx="323" cy="412" r="59" fill="#142B3B"/><circle cx="323" cy="412" r="39" fill="#F9FCFA" stroke="#80968B" stroke-width="5"/><circle cx="323" cy="412" r="12" fill="#21A75F"/>
+  <path d="m323 374v26m0 24v26m38-38h-26m-24 0h-26m27-27 18 18m-36 18 18 18m26-54-18 18m-18 18-18 18" stroke="#9DB2A6" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="672" cy="412" r="59" fill="#142B3B"/><circle cx="672" cy="412" r="39" fill="#F9FCFA" stroke="#80968B" stroke-width="5"/><circle cx="672" cy="412" r="12" fill="#21A75F"/>
+  <path d="m672 374v26m0 24v26m38-38h-26m-24 0h-26m27-27 18 18m-36 18 18 18m26-54-18 18m-18 18-18 18" stroke="#9DB2A6" stroke-width="4" stroke-linecap="round"/>
+  <!-- Diagnostic tablet -->
+  <g transform="translate(55 215) rotate(-9 69 88)"><rect x="0" y="0" width="142" height="186" rx="18" fill="#142B3B"/><rect x="9" y="10" width="124" height="156" rx="11" fill="#fff"/><rect x="22" y="24" width="98" height="53" rx="8" fill="#EAF7EF"/><path d="M31 54h17l10-14 14 27 11-20 8 7h17" stroke="#21A75F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="71" cy="177" r="4" fill="#7F968A"/><rect x="23" y="91" width="96" height="8" rx="4" fill="#DDE7E1"/><rect x="23" y="108" width="70" height="8" rx="4" fill="#DDE7E1"/><rect x="23" y="132" width="44" height="18" rx="9" fill="#21A75F"/></g>
+  <path d="M192 400c20-6 30-4 48 8" stroke="#21A75F" stroke-width="4" stroke-dasharray="7 9" stroke-linecap="round"/>
+  <!-- Signal mark -->
+  <g transform="translate(735 319)"><circle r="36" fill="#fff"/><circle r="36" stroke="#D7E8DD" stroke-width="2"/><path d="m-15 1 10 10 21-24" stroke="#21A75F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <circle cx="161" cy="122" r="7" fill="#21A75F"/><circle cx="187" cy="122" r="3" fill="#21A75F" fill-opacity=".5"/><circle cx="205" cy="122" r="3" fill="#21A75F" fill-opacity=".25"/>
+</svg>

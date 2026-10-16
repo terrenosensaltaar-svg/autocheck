@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="520" viewBox="0 0 780 520" fill="none">
+  <rect width="780" height="520" fill="#EFF4F0"/>
+  <path d="M0 97 780 35M0 206 780 145M0 318 780 255M0 428 780 365M92 0l48 520M265 0l-20 520M461 0l23 520M654 0l43 520" stroke="#D5E0D8" stroke-width="16"/>
+  <path d="M0 97 780 35M0 206 780 145M0 318 780 255M0 428 780 365M92 0l48 520M265 0l-20 520M461 0l23 520M654 0l43 520" stroke="#fff" stroke-width="11"/>
+  <path d="M0 206 780 145" stroke="#E9B94A" stroke-width="4" stroke-dasharray="14 12"/>
+  <path d="M0 0h168l32 110-61 71H0V0Z" fill="#DDEFE3"/>
+  <path d="M568 374h212v146H537l31-146Z" fill="#DDEFE3"/>
+  <path d="M72 255h151m243-154h114M289 421h176M564 304h155" stroke="#B9C9BF" stroke-width="3" stroke-linecap="round"/>
+  <g transform="translate(409 233)"><path d="M0-73c-34 0-61 27-61 61 0 45 61 112 61 112S61 33 61-12C61-46 34-73 0-73Z" fill="#21A75F"/><circle cy="-12" r="24" fill="#fff"/><path d="M-9-12h18m-9-9v18" stroke="#21A75F" stroke-width="4" stroke-linecap="round"/></g>
+  <rect x="275" y="327" width="268" height="57" rx="10" fill="#fff"/><path d="M296 347h15m-7.5-7.5v15" stroke="#21A75F" stroke-width="3" stroke-linecap="round"/><text x="322" y="351" fill="#142B3B" font-family="Arial,sans-serif" font-size="13" font-weight="700">AUTOCHECK SALTA</text><text x="296" y="370" fill="#64727C" font-family="Arial,sans-serif" font-size="11">B.º Parque Belgrano</text>
+  <circle cx="162" cy="152" r="5" fill="#21A75F"/><circle cx="174" cy="152" r="3" fill="#21A75F" fill-opacity=".45"/><circle cx="184" cy="152" r="3" fill="#21A75F" fill-opacity=".25"/>
+</svg>
