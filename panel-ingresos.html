@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Ingresos | AutoCheck Salta</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root{--green:#328b18;--green-dark:#276e13;--green-soft:#f0f8ee;--ink:#181a1b;--muted:#687076;--line:#e8eaed;--bg:#f6f8f6;--white:#fff;--shadow:0 12px 36px rgba(20,35,20,.07)}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,sans-serif;line-height:1.5}button,input,select,textarea{font:inherit}button{cursor:pointer}header{height:74px;background:#fff;border-bottom:1px solid var(--line)}.header-inner{height:100%;max-width:1180px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);font-weight:800}.brand img{height:42px}.header-actions{display:flex;align-items:center;gap:14px}.header-user{font-size:.85rem;color:var(--muted)}.text-button{border:0;background:none;color:var(--green-dark);font-weight:700;padding:9px}.wrap{max-width:1180px;margin:36px auto;padding:0 24px 56px}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 11px;border-radius:999px;background:var(--green-soft);color:var(--green-dark);font-size:.78rem;font-weight:700}.page-title{font-size:clamp(1.8rem,4vw,2.5rem);letter-spacing:-.04em;margin:12px 0 4px}.subtitle{color:var(--muted);margin:0}.login-wrap{max-width:460px;margin:8vh auto;padding:24px}.card{background:var(--white);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.login-card{padding:32px}.login-card h1{margin:0 0 5px;font-size:1.55rem}.login-card>p{color:var(--muted);margin:0 0 24px}.field{display:grid;gap:7px;margin:16px 0}.field label{font-size:.87rem;font-weight:700}.field input,.field select,.field textarea,.toolbar input,.toolbar select{width:100%;padding:11px 12px;border:1px solid #d7dce0;border-radius:9px;background:#fff;color:var(--ink);outline:none}.field input:focus,.field select:focus,.field textarea:focus,.toolbar input:focus,.toolbar select:focus{border-color:var(--green);box-shadow:0 0 0 3px #328b181a}.primary{border:0;border-radius:9px;background:var(--green);color:#fff;font-weight:700;padding:12px 16px;transition:background .15s}.primary:hover{background:var(--green-dark)}.primary:disabled{opacity:.6;cursor:wait}.wide{width:100%;margin-top:8px}.message{min-height:22px;margin:12px 0 0;color:#b42318;font-size:.88rem}.small-note{font-size:.78rem;color:var(--muted);margin:14px 0 0}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0}.metric{padding:18px 20px}.metric-label{color:var(--muted);font-size:.82rem;font-weight:600}.metric-number{font-size:1.75rem;font-weight:800;letter-spacing:-.04em;margin-top:4px}.toolbar{padding:16px;display:grid;grid-template-columns:minmax(180px,1fr) 240px auto;gap:12px;align-items:center;margin-bottom:18px}.toolbar .search{position:relative}.toolbar .search i{position:absolute;left:13px;top:13px;color:#879098}.toolbar .search input{padding-left:38px}.refresh{white-space:nowrap}.records{display:grid;gap:14px}.record{padding:20px 22px}.record-top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.person{font-size:1.08rem;font-weight:800}.muted{color:var(--muted);font-size:.88rem}.record-date{text-align:right;color:var(--muted);font-size:.8rem;white-space:nowrap}.vehicle-line{margin-top:12px;font-weight:700}.details-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:15px}.detail-label{display:block;color:var(--muted);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}.detail-value{font-size:.88rem;overflow-wrap:anywhere}.reason{margin-top:13px;padding:12px 14px;border-radius:9px;background:#f8faf8;font-size:.88rem;white-space:pre-wrap}.management{display:grid;grid-template-columns:minmax(190px,.75fr) minmax(250px,1.25fr) auto;gap:12px;align-items:end;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}.management .field{margin:0}.management .field textarea{min-height:43px;resize:vertical}.management .primary{padding:11px 15px}.signature{margin-top:14px}.signature summary{color:var(--green-dark);font-size:.82rem;font-weight:700;cursor:pointer}.signature img{display:block;max-width:min(100%,420px);max-height:180px;object-fit:contain;margin-top:9px;padding:10px;background:#fff;border:1px solid var(--line);border-radius:8px}.empty,.loading{padding:36px;text-align:center;color:var(--muted)}.empty i{font-size:1.5rem;color:var(--green);margin-bottom:10px}.toast{position:fixed;right:22px;bottom:22px;max-width:min(430px,calc(100vw - 44px));padding:12px 16px;background:#1d2b1b;color:#fff;border-radius:10px;box-shadow:var(--shadow);opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateY(0)}.hidden{display:none!important}
+    @media(max-width:760px){.metrics{grid-template-columns:repeat(2,1fr)}.toolbar{grid-template-columns:1fr}.details-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.management{grid-template-columns:1fr 1fr}.management .notes-field{grid-column:1/-1}.management button{grid-column:1/-1}.record-top{gap:8px}.wrap{margin-top:26px;padding:0 14px 40px}.header-inner{padding:0 14px}.header-user{display:none}}
+    @media(max-width:440px){.login-wrap{padding:14px}.login-card{padding:24px}.details-grid{grid-template-columns:1fr 1fr}.record{padding:16px}.record-date{font-size:.72rem}.brand span{font-size:.9rem}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="index.html"><img src="logo.png" alt="AutoCheck"><span>Panel de ingresos</span></a>
+      <div id="headerActions" class="header-actions hidden"><span id="headerUser" class="header-user"></span><button id="logoutButton" class="text-button" type="button"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar sesión</button></div>
+    </div>
+  </header>
+
+  <main id="loginView" class="login-wrap">
+    <section class="card login-card">
+      <span class="eyebrow"><i class="fa-solid fa-lock"></i> Acceso del taller</span>
+      <h1>Ingresar al panel</h1>
+      <p>Usá tu usuario y contraseña de AutoCheck.</p>
+      <form id="loginForm">
+        <div class="field"><label for="username">Usuario</label><input id="username" name="username" autocomplete="username" required></div>
+        <div class="field"><label for="password">Contraseña</label><input id="password" name="password" type="password" autocomplete="current-password" required></div>
+        <button class="primary wide" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Ingresar</button>
+      </form>
+      <p id="loginMessage" class="message" role="status"></p>
+      <p class="small-note"><i class="fa-solid fa-shield-halved"></i> Las fichas solo están disponibles para el acceso autorizado del taller.</p>
+    </section>
+  </main>
+
+  <main id="changePasswordView" class="login-wrap hidden">
+    <section class="card login-card">
+      <span class="eyebrow"><i class="fa-solid fa-key"></i> Primer ingreso</span>
+      <h1>Elegí una contraseña nueva</h1>
+      <p>Por seguridad, cambiá la contraseña temporal antes de abrir las fichas.</p>
+      <form id="changePasswordForm">
+        <div class="field"><label for="newPassword">Nueva contraseña</label><input id="newPassword" type="password" autocomplete="new-password" minlength="16" required><span class="small-note">Usá al menos 16 caracteres.</span></div>
+        <div class="field"><label for="confirmPassword">Repetir contraseña</label><input id="confirmPassword" type="password" autocomplete="new-password" minlength="16" required></div>
+        <button class="primary wide" type="submit">Guardar contraseña</button>
+      </form>
+      <p id="changeMessage" class="message" role="status"></p>
+    </section>
+  </main>
+
+  <main id="dashboardView" class="wrap hidden">
+    <span class="eyebrow"><i class="fa-solid fa-screwdriver-wrench"></i> Recepción y seguimiento</span>
+    <h1 class="page-title">Fichas de ingreso</h1>
+    <p class="subtitle">Consultá los datos recibidos y actualizá el estado de cada reparación.</p>
+    <section class="metrics" aria-label="Resumen de ingresos">
+      <div class="card metric"><div class="metric-label">Total de fichas</div><div class="metric-number" id="countTotal">—</div></div>
+      <div class="card metric"><div class="metric-label">En diagnóstico</div><div class="metric-number" id="countDiagnosis">—</div></div>
+      <div class="card metric"><div class="metric-label">En reparación</div><div class="metric-number" id="countRepair">—</div></div>
+      <div class="card metric"><div class="metric-label">Listos para retirar</div><div class="metric-number" id="countReady">—</div></div>
+    </section>
+    <section class="card toolbar" aria-label="Buscar y filtrar fichas">
+      <label class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="searchInput" type="search" placeholder="Buscar cliente, vehículo o patente"></label>
+      <select id="statusFilter" aria-label="Filtrar por estado"><option value="">Todos los estados</option></select>
+      <button id="refreshButton" class="primary refresh" type="button"><i class="fa-solid fa-rotate"></i> Actualizar</button>
+    </section>
+    <section id="records" class="records" aria-live="polite"><div class="card loading"><i class="fa-solid fa-spinner fa-spin"></i> Cargando fichas…</div></section>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+
+  <script>
+    const EDGE_FUNCTION_URL = 'https://bqqmosyoehjfyljoycyj.supabase.co/functions/v1/panel-ingresos';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_QV4V6faO5FPjEPtRKFOpqQ_yjK52W1m';
+    const STATUSES = ['Recibido', 'En diagnóstico', 'Esperando aprobación', 'Esperando repuestos', 'En reparación', 'Listo para retirar', 'Entregado', 'Cancelado'];
+    let credentials = null;
+    let records = [];
+
+    const byId = (id) => document.getElementById(id);
+    const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[char]);
+    const localDate = (value) => {
+      if (!value) return '—';
+      const parts = value.slice(0, 10).split('-').map(Number);
+      return parts.length === 3 && parts.every(Boolean) ? new Date(parts[0], parts[1] - 1, parts[2]).toLocaleDateString('es-AR') : '—';
+    };
+    const dateTime = (value) => value ? new Date(value).toLocaleString('es-AR', { dateStyle: 'short', timeStyle: 'short' }) : '—';
+
+    async function requestPanel(action, extra = {}) {
+      const response = await fetch(EDGE_FUNCTION_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_PUBLISHABLE_KEY },
+        body: JSON.stringify({ action, username: credentials.username, password: credentials.password, ...extra })
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || 'No se pudo completar la operación.');
+      return result;
+    }
+
+    function show(view) {
+      ['loginView', 'changePasswordView', 'dashboardView'].forEach((id) => byId(id).classList.toggle('hidden', id !== view));
+      byId('headerActions').classList.toggle('hidden', view !== 'dashboardView');
+    }
+
+    function showToast(message) {
+      const toast = byId('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+
+    async function loadRecords() {
+      byId('records').innerHTML = '<div class="card loading"><i class="fa-solid fa-spinner fa-spin"></i> Cargando fichas…</div>';
+      try {
+        const result = await requestPanel('list');
+        records = result.data || [];
+        renderRecords();
+        updateMetrics();
+      } catch (error) {
+        byId('records').innerHTML = `<div class="card empty">${escapeHtml(error.message)}</div>`;
+      }
+    }
+
+    function updateMetrics() {
+      byId('countTotal').textContent = records.length;
+      byId('countDiagnosis').textContent = records.filter((r) => r.estado_reparacion === 'En diagnóstico').length;
+      byId('countRepair').textContent = records.filter((r) => r.estado_reparacion === 'En reparación').length;
+      byId('countReady').textContent = records.filter((r) => r.estado_reparacion === 'Listo para retirar').length;
+    }
+
+    function renderRecords() {
+      const term = byId('searchInput').value.trim().toLocaleLowerCase('es-AR');
+      const filter = byId('statusFilter').value;
+      const visible = records.filter((r) => {
+        const searchable = [r.cliente_nombre, r.cliente_telefono, r.vehiculo_marca, r.vehiculo_modelo, r.vehiculo_patente].join(' ').toLocaleLowerCase('es-AR');
+        return (!term || searchable.includes(term)) && (!filter || r.estado_reparacion === filter);
+      });
+      if (!visible.length) {
+        byId('records').innerHTML = `<div class="card empty"><i class="fa-regular fa-folder-open"></i><div>${records.length ? 'No hay fichas que coincidan con la búsqueda.' : 'Todavía no hay fichas de ingreso.'}</div></div>`;
+        return;
+      }
+      byId('records').innerHTML = visible.map((r) => {
+        const signature = typeof r.firma_data_url === 'string' && r.firma_data_url.startsWith('data:image/png;base64,') ? r.firma_data_url : '';
+        const statusOptions = STATUSES.map((status) => `<option value="${escapeHtml(status)}" ${r.estado_reparacion === status ? 'selected' : ''}>${escapeHtml(status)}</option>`).join('');
+        return `<article class="card record" data-id="${escapeHtml(r.id)}">
+          <div class="record-top"><div><div class="person">${escapeHtml(r.cliente_nombre)}</div><div class="muted"><i class="fa-solid fa-phone"></i> ${escapeHtml(r.cliente_telefono)}</div><div class="vehicle-line"><i class="fa-solid fa-car-side"></i> ${escapeHtml(r.vehiculo_marca)} ${escapeHtml(r.vehiculo_modelo)}</div></div><div class="record-date">Ingreso<br><strong>${escapeHtml(dateTime(r.created_at))}</strong></div></div>
+          <div class="details-grid">
+            <div><span class="detail-label">Patente</span><span class="detail-value">${escapeHtml(r.vehiculo_patente)}</span></div>
+            <div><span class="detail-label">Combustible</span><span class="detail-value">${escapeHtml(r.combustible)}</span></div>
+            <div><span class="detail-label">Cómo llegó</span><span class="detail-value">${escapeHtml(r.modo_llegada)}</span></div>
+            <div><span class="detail-label">Turno</span><span class="detail-value">${escapeHtml(localDate(r.fecha_turno))} · ${escapeHtml(r.franja_turno)}</span></div>
+            <div><span class="detail-label">Estado al arrancar</span><span class="detail-value">${escapeHtml(r.estado_arranque)}</span></div>
+            <div><span class="detail-label">Consentimiento</span><span class="detail-value">${r.consentimiento ? 'Firmado · ' + escapeHtml(dateTime(r.fecha_hora_firma)) : 'Sin confirmar'}</span></div>
+          </div>
+          <div class="reason"><span class="detail-label">Motivo / síntomas</span>${escapeHtml(r.motivo)}</div>
+          ${signature ? `<details class="signature"><summary><i class="fa-solid fa-signature"></i> Ver firma digital</summary><img src="${signature}" alt="Firma de ${escapeHtml(r.cliente_nombre)}"></details>` : ''}
+          <div class="management">
+            <div class="field"><label>Estado de reparación</label><select data-field="estado">${statusOptions}</select></div>
+            <div class="field notes-field"><label>Notas del taller</label><textarea data-field="notas" maxlength="5000" placeholder="Seguimiento interno…">${escapeHtml(r.notas_taller || '')}</textarea></div>
+            <button class="primary save-button" type="button"><i class="fa-solid fa-floppy-disk"></i> Guardar cambios</button>
+          </div>
+        </article>`;
+      }).join('');
+    }
+
+    for (const status of STATUSES) byId('statusFilter').insertAdjacentHTML('beforeend', `<option value="${escapeHtml(status)}">${escapeHtml(status)}</option>`);
+    byId('loginForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const button = event.currentTarget.querySelector('button');
+      button.disabled = true;
+      byId('loginMessage').textContent = '';
+      credentials = { username: byId('username').value.trim(), password: byId('password').value };
+      try {
+        const result = await requestPanel('login');
+        byId('headerUser').textContent = credentials.username;
+        if (result.mustChangePassword) show('changePasswordView');
+        else { show('dashboardView'); await loadRecords(); }
+      } catch (error) {
+        credentials = null;
+        byId('loginMessage').textContent = error.message;
+      } finally { button.disabled = false; }
+    });
+
+    byId('changePasswordForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const nextPassword = byId('newPassword').value;
+      const confirmation = byId('confirmPassword').value;
+      if (nextPassword !== confirmation) { byId('changeMessage').textContent = 'Las contraseñas no coinciden.'; return; }
+      const button = event.currentTarget.querySelector('button');
+      button.disabled = true;
+      byId('changeMessage').textContent = '';
+      try {
+        await requestPanel('change_password', { new_password: nextPassword });
+        credentials.password = nextPassword;
+        show('dashboardView');
+        await loadRecords();
+      } catch (error) { byId('changeMessage').textContent = error.message; }
+      finally { button.disabled = false; }
+    });
+
+    byId('records').addEventListener('click', async (event) => {
+      const button = event.target.closest('.save-button');
+      if (!button) return;
+      const card = button.closest('.record');
+      button.disabled = true;
+      try {
+        await requestPanel('update', {
+          id: card.dataset.id,
+          estado_reparacion: card.querySelector('[data-field="estado"]').value,
+          notas_taller: card.querySelector('[data-field="notas"]').value
+        });
+        const row = records.find((item) => item.id === card.dataset.id);
+        if (row) {
+          row.estado_reparacion = card.querySelector('[data-field="estado"]').value;
+          row.notas_taller = card.querySelector('[data-field="notas"]').value;
+        }
+        updateMetrics();
+        showToast('Cambios guardados.');
+      } catch (error) { showToast(error.message); }
+      finally { button.disabled = false; }
+    });
+
+    byId('searchInput').addEventListener('input', renderRecords);
+    byId('statusFilter').addEventListener('change', renderRecords);
+    byId('refreshButton').addEventListener('click', loadRecords);
+    byId('logoutButton').addEventListener('click', () => {
+      credentials = null;
+      records = [];
+      byId('loginForm').reset();
+      byId('changePasswordForm').reset();
+      byId('searchInput').value = '';
+      byId('statusFilter').value = '';
+      show('loginView');
+    });
+  </script>
+</body>
+</html>

@@ -388,7 +388,7 @@
       <div class="form-header">
         <span class="badge-tag"><i class="fa-solid fa-screwdriver-wrench"></i> Recepción de Taller</span>
         <h1>Ficha de Ingreso a Reparación</h1>
-        <p>Completá los datos del vehículo y la falla. Al enviar, se generará la ficha en formato ordenado y se abrirá WhatsApp al <strong>+54 387 518 2523</strong>.</p>
+        <p>Completá los datos del vehículo y la falla. Al enviar, guardaremos la ficha y la firma en el registro del taller y se abrirá WhatsApp al <strong>+54 387 518 2523</strong>.</p>
       </div>
 
       <div class="form-card">
@@ -544,6 +544,11 @@
   </main>
 
   <script>
+    // La clave publishable está diseñada para usarse en el navegador; los permisos
+    // de escritura quedan limitados por RLS en Supabase.
+    const SUPABASE_URL = 'https://bqqmosyoehjfyljoycyj.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_QV4V6faO5FPjEPtRKFOpqQ_yjK52W1m';
+
     // Configuración del Lienzo (Canvas) para la Firma Digital
     const canvas = document.getElementById('signaturePad');
     const ctx = canvas.getContext('2d');
@@ -648,7 +653,7 @@
       sigStatus.classList.remove('signed');
     }
 
-    function enviarWhatsApp(e) {
+    async function enviarWhatsApp(e) {
       e.preventDefault();
 
       if (!hasSigned) {
@@ -692,6 +697,24 @@
       // Fecha y hora del consentimiento
       const ahora = new Date();
       const fechaHoraFirma = ahora.toLocaleString('es-AR', { dateStyle: 'short', timeStyle: 'short' });
+      const firmaDataUrl = canvas.toDataURL('image/png');
+
+      const ficha = {
+        cliente_nombre: nombre,
+        cliente_telefono: telefono,
+        vehiculo_marca: marca,
+        vehiculo_modelo: modelo,
+        vehiculo_patente: patente,
+        combustible,
+        estado_arranque: estado,
+        motivo,
+        modo_llegada: modoLlegada,
+        fecha_turno: rawFecha,
+        franja_turno: franja,
+        firma_data_url: firmaDataUrl,
+        consentimiento: acepto,
+        fecha_hora_firma: ahora.toISOString()
+      };
 
       // Mensaje formateado para WhatsApp
       const mensaje = 
@@ -723,8 +746,37 @@ _Enviado desde el formulario web de AutoCheck_`;
       const numeroDestino = "543875182523";
       const url = `https://wa.me/${numeroDestino}?text=${encodeURIComponent(mensaje)}`;
 
-      // Abrir WhatsApp en nueva pestaña
-      window.open(url, '_blank');
+      // Abrir una pestaña en esta acción del usuario para evitar que el navegador
+      // bloquee WhatsApp mientras se espera la confirmación de Supabase.
+      const whatsappTab = window.open('about:blank', '_blank');
+      const submitButton = document.querySelector('#ingresoForm button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Guardando ficha...';
+
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/ingresos_vehiculos`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_PUBLISHABLE_KEY,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(ficha)
+        });
+
+        if (!response.ok) throw new Error(`Supabase respondió ${response.status}`);
+        if (whatsappTab) {
+          whatsappTab.location.href = url;
+        } else {
+          window.location.href = url;
+        }
+      } catch (error) {
+        console.error('No se pudo guardar la ficha de ingreso.', error);
+        if (whatsappTab) whatsappTab.close();
+        alert('No se pudo guardar la ficha. Verificá tu conexión e intentá nuevamente; todavía no se abrió WhatsApp.');
+        submitButton.disabled = false;
+        submitButton.innerHTML = '<i class="fa-brands fa-whatsapp" style="font-size: 1.25rem;"></i> Enviar Ficha y Consentimiento por WhatsApp';
+      }
     }
   </script>
 
