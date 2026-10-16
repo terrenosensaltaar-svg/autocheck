@@ -459,6 +459,26 @@
         <textarea id="modalDiagText" rows="3" placeholder="Detalle qué se revisó o reparó..."></textarea>
       </div>
 
+      <!-- VISUALIZACIÓN DE FIRMA DIGITAL Y CONFORMIDAD -->
+      <div id="modalFirmaSection" style="margin-top:6px; padding:10px; background:#f8fafc; border:1px solid var(--border); border-radius:6px;">
+        <label style="margin-bottom:4px; display:flex; justify-content:space-between; align-items:center;">
+          <span><i class="fa-solid fa-signature" style="color:var(--green);"></i> Firma de Aceptación del Ingreso:</span>
+          <span id="modalFirmaStatus" style="font-size:0.75rem; color:var(--green); font-weight:700;">✓ Registrada</span>
+        </label>
+        <div id="modalFirmaImgContainer" style="background:#fff; border:1px dashed #cbd5e1; border-radius:6px; padding:6px; text-align:center; min-height:60px; display:flex; align-items:center; justify-content:center;">
+          <!-- Firma renderizada dinámicamente -->
+        </div>
+      </div>
+
+      <div class="modal-actions" style="margin-top:10px;">
+        <button type="button" class="btn btn-outline" onclick="cerrarModal()">Cancelar / Cerrar</button>
+        <button type="button" class="btn btn-green" onclick="guardarEstado()">
+          <i class="fa-solid fa-check"></i> Guardar Estado
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- MODAL VISOR DE FOTOS -->
   <div id="modalFotos" class="modal-overlay" onclick="cerrarVisorFotos()">
     <div class="modal-box" style="max-width:650px; text-align:center; padding:16px;" onclick="event.stopPropagation();">
@@ -598,6 +618,9 @@
             <strong>${item.marca} ${item.modelo}</strong>
             <span class="plate">${item.patente}</span>
             <div class="client-tag"><i class="fa-regular fa-user"></i> ${item.cliente} (${item.telefono})</div>
+            <div style="font-size:0.75rem; color:var(--green); font-weight:600; margin-top:2px;">
+              <i class="fa-solid fa-signature"></i> Firma de ingreso registrada
+            </div>
             ${fotosHtml}
           </div>
 
@@ -657,6 +680,24 @@
       document.getElementById('modalVehiculoTitle').textContent = `${item.marca} ${item.modelo} (${item.patente})`;
       document.getElementById('modalEstadoSelect').value = item.estado === 'ESPERANDO_REPUESTO' ? 'EN_REVISION' : item.estado;
       document.getElementById('modalDiagText').value = item.diagnostico || '';
+
+      // Renderizar Firma Digital de Aceptación
+      const firmaCont = document.getElementById('modalFirmaImgContainer');
+      const firmaStatus = document.getElementById('modalFirmaStatus');
+      if (item.firmaImagen) {
+        firmaCont.innerHTML = `<img src="${item.firmaImagen}" alt="Firma del cliente" style="max-height:80px; max-width:100%; display:inline-block;">`;
+        firmaStatus.textContent = "✓ Aceptación Firmada Digitalmente";
+        firmaStatus.style.color = "var(--green)";
+      } else if (item.firmaRegistrada) {
+        firmaCont.innerHTML = `<span style="font-size:0.85rem; color:#1e293b; font-weight:600;"><i class="fa-solid fa-file-circle-check" style="color:var(--green); margin-right:6px;"></i> Conformidad y Exención de Responsabilidad firmada en recepción (${item.cliente})</span>`;
+        firmaStatus.textContent = "✓ Validada";
+        firmaStatus.style.color = "var(--green)";
+      } else {
+        firmaCont.innerHTML = `<span style="font-size:0.8rem; color:#94a3b8; font-style:italic;">Sin firma registrada</span>`;
+        firmaStatus.textContent = "Pendiente";
+        firmaStatus.style.color = "var(--muted)";
+      }
+
       document.getElementById('modalEstado').classList.add('active');
     }
 
