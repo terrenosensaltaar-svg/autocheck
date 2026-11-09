@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fallas frecuentes explicadas en 3D | Autocheck Salta</title>
-<meta name="description" content="Recorré una Amarok en 3D y entendé las fallas más comunes: testigo de motor, cuerpo mariposa, batería, luces, ABS, kilometraje y combustible. Diagnóstico automotriz multimarca en Salta.">
+<meta name="description" content="Recorré un Golf GTI en 3D y entendé las fallas más comunes: testigo de motor, cuerpo mariposa, batería, luces, ABS, kilometraje y combustible. Diagnóstico automotriz multimarca en Salta.">
 <meta property="og:title" content="Autocheck Salta · Primero entender. Después reparar.">
-<meta property="og:description" content="Fallas frecuentes explicadas paso a paso sobre una camioneta 3D.">
+<meta property="og:description" content="Fallas frecuentes explicadas paso a paso sobre un auto 3D.">
 <meta property="og:image" content="https://autochecksalta.com.ar/autos-portada.png">
 <meta property="og:url" content="https://autochecksalta.com.ar/">
 <link rel="canonical" href="https://autochecksalta.com.ar/">
@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" crossorigin>
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/loaders/GLTFLoader.js" crossorigin>
-<link rel="preload" href="amarok.glb" as="fetch" type="model/gltf-binary" crossorigin>
+<link rel="preload" href="golf-gti.glb" as="fetch" type="model/gltf-binary" crossorigin>
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="logo.png">
@@ -202,7 +202,7 @@
   <div class="box">
     <img src="logo.png" alt="Autocheck Salta">
     <div class="bar"><i id="loadbar"></i></div>
-    <small id="loadtxt">Preparando la camioneta…</small>
+    <small id="loadtxt">Preparando el auto…</small>
   </div>
 </div>
 
@@ -228,7 +228,7 @@
     <div class="panel">
       <div class="kicker">Autocheck Salta</div>
       <h1>Primero <em>entender</em>.<br>Después reparar.</h1>
-      <p class="lead">Recorré la camioneta y conocé las fallas que más vemos en el taller: qué síntoma da cada una, qué revisamos y cuál es el próximo paso.</p>
+      <p class="lead">Recorré el auto y conocé las fallas que más vemos en el taller: qué síntoma da cada una, qué revisamos y cuál es el próximo paso.</p>
       <div class="intro-cta">
         <a class="btn primary" href="https://wa.me/5493875182523?text=Hola%20Autocheck!%20Quiero%20consultar%20por%20mi%20veh%C3%ADculo.%20Marca%2C%20modelo%2C%20a%C3%B1o%20y%20s%C3%ADntoma%3A%20" target="_blank" rel="noopener">💬 WhatsApp</a>
         <a class="btn" href="#fallas">Ver fallas ↓</a>
@@ -373,7 +373,6 @@
     <img src="logo.png" alt="Autocheck Salta">
     <div>Autocheck Salta · Diagnóstico automotriz multimarca · Salta Capital</div>
   </div>
-  <div class="credit">Modelo 3D: “2009 Volkswagen Amarok (LP)” de KrStolorz en Sketchfab (licencia Sketchfab Standard). Uso ilustrativo; Volkswagen y Amarok son marcas de sus respectivos titulares.</div>
 </footer>
 
 <a id="wa" href="https://wa.me/5493875182523?text=Hola%20Autocheck!%20Quiero%20consultar%20por%20mi%20veh%C3%ADculo.%20Marca%2C%20modelo%2C%20a%C3%B1o%20y%20s%C3%ADntoma%3A%20" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
@@ -501,7 +500,7 @@ if (renderer) {
   };
 
   const pct = document.getElementById('loadbar');
-  new GLTFLoader().load('amarok.glb', (gltf) => {
+  new GLTFLoader().load('golf-gti.glb', (gltf) => {
     const model = gltf.scene;
     model.traverse((o) => {
       if (!o.isMesh) return;
@@ -521,17 +520,16 @@ if (renderer) {
     const c = box.getCenter(new THREE.Vector3());
     model.position.sub(new THREE.Vector3(c.x, box.min.y, c.z));
     model.updateMatrixWorld(true);
-    const grille = findNode(model, 'grille');
+    const grille = findNode(model, 'ext body grilleinterior');
     const g = centerOf(grille);
     pivot.rotation.y = Math.atan2(g.x, g.z) * -1;
     pivot.updateMatrixWorld(true);
 
     const N = (name) => findNode(model, name);
     const parts = {
-      grille: N('grille'), hood: N('hood'), headlight: N('headlight'),
-      wheelFL: N('f wheell'), wheelFR: N('f wheelr'),
-      steering: N('steering wheel'), interior: N('interior parts'), gas: N('gas cap'),
-      doorL: N('f doorl'), doorR: N('f doorr'), seats: N('seats'),
+      grille: N('ext body grilleinterior'),
+      wheelFL: N('jerez 19 fl'), wheelFR: N('jerez 19 fr'), wheelRL: N('jerez 19 rl'), wheelRR: N('jerez 19 rr'),
+      steering: N('int steering wheel'), doorL: N('ext door fl'), doorR: N('ext door fr'),
     };
     const P = Object.fromEntries(Object.entries(parts).map(([k, v]) => [k, v ? centerOf(v) : new THREE.Vector3()]));
     const bodyBox = new THREE.Box3().setFromObject(model);
@@ -539,15 +537,12 @@ if (renderer) {
     const side = (v) => Math.sign(v.x) || 1;
 
     // Puertas y capot: guardamos la rotación original para abrirlos
-    const hingeBase = {};
-    ['hood', 'doorL', 'doorR'].forEach((k) => { if (parts[k]) hingeBase[k] = parts[k].quaternion.clone(); });
-    // Eje de bisagra expresado en el espacio local de cada hueso
-    const localAxis = (bone, worldAxis) => bone
-      ? worldAxis.clone().applyQuaternion(bone.getWorldQuaternion(new THREE.Quaternion()).invert()).normalize()
-      : new THREE.Vector3(1, 0, 0);
     const driverDoor = side(P.steering) === side(P.doorL) ? 'doorL' : 'doorR';
-    const hoodAxis = localAxis(parts.hood, new THREE.Vector3(1, 0, 0));
-    const doorAxis = localAxis(parts[driverDoor], new THREE.Vector3(0, side(P.steering), 0));
+    const mixer = new THREE.AnimationMixer(model);
+    const doorClip = THREE.AnimationClip.findByName(gltf.animations, driverDoor === 'doorL' ? 'Front left door' : 'Front right door');
+    const doorAction = doorClip ? mixer.clipAction(doorClip) : null;
+    if (doorAction) { doorAction.setLoop(THREE.LoopOnce); doorAction.clampWhenFinished = true; doorAction.play(); doorAction.paused = true; }
+    let doorT = -1;
 
     // Brillo de piezas: materiales propios para cada pieza resaltable
     const glowSets = {};
@@ -561,33 +556,54 @@ if (renderer) {
     };
     function makeGlowMesh(key, mesh) { glowSets[key] = [mesh.material]; }
     makeGlow('grille', [parts.grille]);
-    makeGlow('headlight', [parts.headlight]);
-    makeGlow('gas', [parts.gas]);
+
     // Llantas: forman parte de una malla con huesos, así que se ilumina su material
     glowSets.wheels = [];
     model.traverse((m) => {
-      if (m.isMesh && /aluminium/i.test(m.material.name)) { m.material = m.material.clone(); glowSets.wheels.push(m.material); }
+      if (m.isMesh && /^rim_/i.test(m.name)) {
+        if (!glowSets.wheels.length) glowSets.wheels.push(m.material.clone());
+        m.material = glowSets.wheels[0];
+      }
     });
 
     /* Puntos reales de cada falla (el modelo no trae motor: se ubican dentro del vano motor) */
     const D = side(P.steering);                 // lado del conductor
     const front = bodyBox.max.z;                // paragolpes delantero
-    const hinge = P.hood;                       // bisagra del capot (junto al parabrisas)
-    const bayZ = (hinge.z + front) / 2;         // centro del vano motor
-    const bayY = hinge.y - 0.22;                // debajo de la chapa del capot
+    // El Golf no trae capot separado: se mide la altura del capot con un rayo y se muestra en "rayos X"
+    const paintMeshes = [];
+    model.traverse((o) => { if (o.isMesh && o.material && o.material.userData.paint) paintMeshes.push(o); });
+    const ray = new THREE.Raycaster();
+    const hitY = (x, z) => { ray.set(new THREE.Vector3(x, 10, z), new THREE.Vector3(0, -1, 0)); const h = ray.intersectObjects(paintMeshes, false)[0]; return h ? h.point.y : null; };
+    const hoodY = hitY(0, front - 0.75) ?? H * 0.6;
+    const hinge = new THREE.Vector3(0, hoodY, front - 1.45);   // base del parabrisas (aprox.)
+    const bayZ = front - 0.8;                   // centro del vano motor
+    const bayY = hoodY - 0.24;                  // debajo de la chapa del capot
     const engineTop = new THREE.Vector3(-D * 0.06, bayY + 0.1, bayZ);                // encendido: bobinas sobre el motor
     const throttle = new THREE.Vector3(-D * 0.18, bayY, bayZ - 0.05);                 // cuerpo mariposa, sobre el múltiple
     const battery = new THREE.Vector3(D * 0.52, bayY, hinge.z + 0.32);                // batería, lado conductor junto al torpedo
-    const hlBox = new THREE.Box3().setFromObject(parts.headlight);
-    const headlight = new THREE.Vector3(hlBox.max.x - 0.22, hlBox.getCenter(new THREE.Vector3()).y, hlBox.max.z - 0.12); // óptica derecha (+X)
     const frontWheel = (side(P.wheelFL) > 0 ? P.wheelFL : P.wheelFR).clone();
     const absSensor = frontWheel.clone().setX(frontWheel.x * 1.12);                   // sensor en la maza
-    const dash = P.steering.clone().add(new THREE.Vector3(0, 0.12, 0.16));            // tablero detrás del volante
-    const fuelCap = P.gas.clone();
+    // Tablero digital: la pantalla del modelo más cercana al volante se reemplaza por la nuestra
+    let screen = null, best = Infinity;
+    model.traverse((o) => {
+      if (!o.isMesh || !/screen/i.test(o.material.name)) return;
+      const d = centerOf(o).distanceTo(P.steering);
+      if (d < best) { best = d; screen = o; }
+    });
+    const scrBox = new THREE.Box3().setFromObject(screen);
+    const dash = scrBox.getCenter(new THREE.Vector3()).add(new THREE.Vector3(0, 0, -0.012));
+    screen.visible = false;
+    // Tapa de combustible: lado derecho, sobre la rueda trasera (se busca la chapa con un rayo lateral)
+    const S = -D;
+    const rearWheel = side(P.wheelRL) === S ? P.wheelRL : P.wheelRR;
+    const fuelY = rearWheel.y + 0.78, fuelZ = rearWheel.z - 0.3;
+    ray.set(new THREE.Vector3(S * 5, fuelY, fuelZ), new THREE.Vector3(-S, 0, 0));
+    const fh = ray.intersectObjects(paintMeshes, false)[0];
+    const fuelCap = new THREE.Vector3(fh ? fh.point.x : S * bodyBox.max.x, fuelY, fuelZ);
     const radiator = new THREE.Vector3(0, P.grille.y + 0.05, front - 0.25);       // radiador detrás de la parrilla
 
     /* ---------- Tablero de instrumentos (pantalla dibujada en canvas) ---------- */
-    const CW = 0.34, CH = 0.13;
+    const CW = (scrBox.max.x - scrBox.min.x) * 0.98, CH = CW * 294 / 768;
     const clusterCanvas = document.createElement('canvas');
     clusterCanvas.width = 768; clusterCanvas.height = 294;
     const cctx = clusterCanvas.getContext('2d');
@@ -603,7 +619,7 @@ if (renderer) {
     const CE = { x: 384, y: 62 };                       // posición del testigo check engine en el canvas
     const ODO = { x: 384, y: 160 };
     const checkEngineSpot = onCluster((CE.x + 70) / 768, CE.y / 294);
-    const odoSpot = onCluster(ODO.x / 768, ODO.y / 294);
+    const odoSpot = onCluster((ODO.x + 92) / 768, ODO.y / 294);
 
     const drawGauge = (cx, cy, r, val, label, max) => {
       const c = cctx;
@@ -684,16 +700,15 @@ if (renderer) {
     battery.setY(bayY + 0.06);
 
     /* Recorrido: target, ángulos, distancia, pieza a iluminar, hotspot */
-    const S = side(P.gas);
     const STEPS = [
-      { t: new THREE.Vector3(0, H * 0.48, 0), az: 0.78, el: 0.16, dist: 11.5 },
+      { t: new THREE.Vector3(0, H * 0.48, 0), az: 0.78, el: 0.16, dist: 11.5, spin: 1 },
       { t: engineTop, az: -D * 0.35, el: 0.75, dist: 4.4, hood: 1, glow: 'engine', hot: engineTop, tag: 'Bujías · bobinas · inyectores' },
       { t: throttle, az: 0.25, el: 0.8, dist: 4.2, hood: 1, glow: 'throttle', hot: throttle, tag: 'Cuerpo mariposa' },
       { t: battery, az: D * 0.55, el: 0.85, dist: 4.0, hood: 1, glow: 'battery', hot: battery, tag: 'Batería · burro · alternador' },
       { t: radiator, az: -0.3, el: 0.1, dist: 3.4, glow: 'grille', hot: radiator, tag: 'Radiador · electroventilador', alerta: true },
-      { t: cluster.position.clone(), az: Math.PI + D * 0.1, el: 0.3, dist: 0.58, hot: checkEngineSpot, tag: 'Alerta', alerta: true, blink: true },
+      { t: cluster.position.clone(), az: Math.PI - D * 0.12, el: 0.18, dist: 0.55, hot: checkEngineSpot, tag: 'Alerta', alerta: true, blink: true },
       { t: absSensor, az: 1.4, el: 0.1, dist: 3.0, glow: 'wheels', hot: absSensor, tag: 'Sensor de rueda ABS', alerta: true },
-      { t: cluster.position.clone(), az: Math.PI - D * 0.5, el: 0.22, dist: 0.95, door: 1, hot: odoSpot, tag: 'Tablero · odómetro', odo: true },
+      { t: cluster.position.clone(), az: Math.PI - D * 0.3, el: 0.2, dist: 0.62, door: 1, hot: odoSpot, tag: 'Tablero · odómetro', odo: true },
       { t: fuelCap, az: S * 1.9, el: 0.14, dist: 3.0, glow: 'gas', hot: fuelCap, tag: 'Boca de carga · tanque' },
       { t: new THREE.Vector3(0, H * 0.45, 0), az: S * 2.6, el: 0.14, dist: 11.5, spin: 1 },
     ];
@@ -761,6 +776,11 @@ if (renderer) {
       const k = reduceMotion ? 1 : 1 - Math.exp(-dt * 6);
       KEYS.forEach((key) => { cam[key] += (goal[key] - cam[key]) * k; });
       if (!reduceMotion) spinAngle += dt * 0.12 * cam.spin;
+      // Al salir de una toma giratoria, el giro vuelve suave a cero para no desacomodar las demás vistas
+      if (cam.spin < 0.5) {
+        spinAngle = Math.atan2(Math.sin(spinAngle), Math.cos(spinAngle));
+        spinAngle -= spinAngle * k;
+      }
       const az = cam.az + spinAngle;
       let distK = 1;
       if (camera.aspect < 1) {
@@ -777,9 +797,17 @@ if (renderer) {
       camera.lookAt(target);
 
       // Capot y puerta
-      if (parts.hood) parts.hood.quaternion.copy(hingeBase.hood).multiply(q.setFromAxisAngle(hoodAxis, cam.hood * HOOD_ANGLE));
-      const door = parts[driverDoor];
-      if (door) door.quaternion.copy(hingeBase[driverDoor]).multiply(q.setFromAxisAngle(doorAxis, cam.door * DOOR_ANGLE));
+      // "Rayos X" de la chapa para ver el vano motor
+      if (PAINT) {
+        const xr = cam.hood > 0.02;
+        if (PAINT.transparent !== xr) { PAINT.transparent = xr; PAINT.depthWrite = !xr; PAINT.needsUpdate = true; }
+        PAINT.opacity = 1 - 0.85 * Math.min(1, cam.hood);
+      }
+      // Puerta del conductor con la animación original del modelo
+      if (doorAction) {
+        const dtD = Math.min(1, Math.max(0, cam.door)) * doorClip.duration * 0.999;
+        if (Math.abs(dtD - doorT) > 1e-4) { doorT = dtD; doorAction.time = dtD; mixer.update(0); }
+      }
 
       // Brillo de la pieza activa
       const step = STEPS[activeStep];
@@ -840,6 +868,7 @@ const HOOD_ANGLE = -1.0;
 
 /* ---------- terminación de la camioneta ---------- */
 const matCache = new Map();
+let PAINT = null;
 function upgradeMaterial(m) {
   if (matCache.has(m)) return matCache.get(m);
   const n = (m.name || '').toLowerCase();
@@ -850,28 +879,15 @@ function upgradeMaterial(m) {
     const { clearcoat, clearcoatRoughness, ...rest } = opts;
     return new THREE.MeshStandardMaterial({ name: m.name, map: m.map || null, ...rest });
   };
-  if (n.includes('paint_metallic')) {
+  if (n.startsWith('rojo kings')) {
     // Pintura verde del logo, metalizada con laca
     out = phys({ color: CAR_COLOR, metalness: 0.45, roughness: 0.38, clearcoat: 1, clearcoatRoughness: 0.06, envMapIntensity: 1.15 });
-  } else if (n === 'black_paint') {
-    out = phys({ color: 0x15181b, metalness: 0.3, roughness: 0.4, clearcoat: 0.8, clearcoatRoughness: 0.1 });
-  } else if (n.includes('aluminium')) {
-    out = phys({ color: RIM_COLOR, metalness: 0.9, roughness: 0.28, clearcoat: 0.4, envMapIntensity: 1.2 });   // llantas grises
-  } else if (n === 'rubber') {
-    out = phys({ color: 0x1a1c1e, metalness: 0, roughness: 0.92 });
-  } else if (n.startsWith('chrom')) {
-    out = phys({ color: 0xd9dee2, metalness: 1, roughness: n.includes('matte') ? 0.35 : 0.08 });
-  } else if (n === 'glass' || n === 'windshield') {
-    out = phys({ color: 0x1d2a30, metalness: 0, roughness: 0.04, transparent: true, opacity: 0.55, clearcoat: 1, envMapIntensity: 1.4 });
-  } else if (n === 'headlight' || n === 'reflector') {
-    out = phys({ color: 0xeef3f6, metalness: 0.9, roughness: 0.12 });
-  } else if (n === 'tail_lights') {
-    out = phys({ color: 0xb3121a, metalness: 0.1, roughness: 0.15, clearcoat: 1, emissive: 0x3a0005 });
-  } else if (n === 'black_plastic' || n === 'underbody' || n === 'cutter') {
-    out = phys({ color: 0x202326, metalness: 0.05, roughness: 0.7 });
+    out.userData.paint = true;
+    PAINT = out;
+    matCache.set(m, out);
+    return out;
   }
-  matCache.set(m, out);
-  return out;
+  return m;
 }
 
 const DOOR_ANGLE = -1.1; // hacia afuera
