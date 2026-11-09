@@ -1,705 +1,822 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es-AR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- SEO -->
-  <title>AutoCheck Salta | Diagnóstico Automotriz y Solución de Fallas de Arranque</title>
-  <meta name="description" content="Especialistas en diagnóstico electrónico, fallas de arranque, chequeo pre-compra y mecánica general en Parque Belgrano / Roque Sáenz Peña, Salta.">
-  <meta name="keywords" content="diagnóstico automotriz Salta, fallas de arranque Salta, escaneo computarizado Salta, chequeo pre-compra Salta, peritaje autos usados Salta, taller mecánico Parque Belgrano, Roque Sáenz Peña Salta">
-  <meta name="author" content="AutoCheck Salta">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#0B1A24">
-  <link rel="canonical" href="https://autochecksalta.com.ar/">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://autochecksalta.com.ar/">
-  <meta property="og:title" content="AutoCheck Salta | Diagnóstico Automotriz y Solución de Fallas de Arranque">
-  <meta property="og:description" content="¿Tu auto no arranca? Diagnóstico con mediciones reales, sin cambiar piezas a ciegas. Parque Belgrano, Salta.">
-  <meta property="og:image" content="portadafc.jpg">
-  <meta property="og:locale" content="es_AR">
-  <meta property="og:site_name" content="AutoCheck Salta">
-  <meta property="twitter:card" content="summary_large_image">
-  <link rel="icon" type="image/png" href="logo.png">
-
-  <!-- Fuentes e iconos -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              night: '#0B1A24',
-              ink: '#142B3B',
-              slate: '#1E3A4F',
-              green: '#21B573',
-              greenDark: '#16834A',
-              greenSoft: '#EAF7EF',
-              amber: '#EFA83B',
-              grayLight: '#F6F8FA'
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Manrope', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-    .font-display { font-family: 'Manrope', sans-serif; }
-
-    /* Revelado al hacer scroll */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
-    .reveal.in { opacity: 1; transform: none; }
-    .reveal-d1 { transition-delay: .08s; } .reveal-d2 { transition-delay: .16s; } .reveal-d3 { transition-delay: .24s; } .reveal-d4 { transition-delay: .32s; }
-    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } * { animation: none !important; } }
-
-    /* Texto con degradado */
-    .grad-text { background: linear-gradient(90deg, #21B573, #7BE3B0); -webkit-background-clip: text; background-clip: text; color: transparent; }
-
-    /* Hero */
-    .hero-bg { background-image: linear-gradient(100deg, rgba(11,26,36,.97) 0%, rgba(11,26,36,.88) 45%, rgba(11,26,36,.35) 100%), url('hero-breakdown.jpg'); background-size: cover; background-position: center right; }
-    .grid-dots { background-image: radial-gradient(rgba(33,181,115,.18) 1px, transparent 1px); background-size: 22px 22px; }
-
-    /* Medidor animado de batería */
-    .gauge-ring { stroke-dasharray: 251; stroke-dashoffset: 251; animation: gaugeFill 2.2s .6s ease-out forwards; }
-    @keyframes gaugeFill { to { stroke-dashoffset: 62; } }
-    .pulse-dot { animation: pulseDot 1.6s infinite; }
-    @keyframes pulseDot { 0%,100% { box-shadow: 0 0 0 0 rgba(33,181,115,.6);} 50% { box-shadow: 0 0 0 8px rgba(33,181,115,0);} }
-    .float-y { animation: floatY 5s ease-in-out infinite; }
-    @keyframes floatY { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-8px);} }
-
-    /* Marquee */
-    .marquee { display: flex; width: max-content; animation: marquee 32s linear infinite; }
-    @keyframes marquee { to { transform: translateX(-50%); } }
-
-    /* Chips de síntomas */
-    .sym-chip { transition: all .2s; }
-    .sym-chip.active { background: #21B573; color: #fff; border-color: #21B573; box-shadow: 0 8px 22px -8px rgba(33,181,115,.7); }
-
-    /* Línea de pasos */
-    .step-line::before { content: ''; position: absolute; left: 21px; top: 44px; bottom: -24px; width: 2px; background: linear-gradient(#21B573, rgba(33,181,115,.1)); }
-    .step-item:last-child .step-line::before { display: none; }
-
-    /* FAQ */
-    details > summary { list-style: none; cursor: pointer; }
-    details > summary::-webkit-details-marker { display: none; }
-    details[open] .faq-icon { transform: rotate(45deg); }
-    .faq-icon { transition: transform .25s; }
-
-    /* Header */
-    #header.scrolled { background: rgba(11,26,36,.92); backdrop-filter: blur(14px); box-shadow: 0 10px 30px -15px rgba(0,0,0,.6); }
-    .nav-link { position: relative; }
-    .nav-link::after { content: ''; position: absolute; left: 0; bottom: -6px; height: 2px; width: 0; background: #21B573; transition: width .25s; }
-    .nav-link:hover::after { width: 100%; }
-
-    html { scroll-padding-top: 80px; }
-  </style>
-
-  <!-- Datos estructurados -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "AutoRepair",
-        "@id": "https://autochecksalta.com.ar/#autorepair",
-        "name": "AutoCheck Salta",
-        "description": "Taller de diagnóstico automotriz y mecánica especializada en fallas de arranque, escaneo computarizado y chequeo pre-compra en Salta Norte.",
-        "url": "https://autochecksalta.com.ar/",
-        "telephone": "+54 9 387 518-2523",
-        "image": "logo.png",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Manzana 9 Casa 8, B° Roque Sáenz Peña (Zona Parque Belgrano)",
-          "addressLocality": "Salta Capital",
-          "addressRegion": "Salta",
-          "postalCode": "4400",
-          "addressCountry": "AR"
-        },
-        "geo": { "@type": "GeoCoordinates", "latitude": -24.7554, "longitude": -65.4158 },
-        "openingHoursSpecification": [
-          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:00" }
-        ],
-        "sameAs": ["https://www.instagram.com/autochecksalta/"]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          { "@type": "Question", "name": "¿Tienen servicio de diagnóstico a domicilio si el auto no arranca?", "acceptedAnswer": { "@type": "Answer", "text": "Coordinamos asistencias puntuales en Zona Norte para verificación rápida de batería y arranque en el lugar, o bien recepción directa en taller con turno previo." } },
-          { "@type": "Question", "name": "¿Cuánto demora un diagnóstico computarizado completo?", "acceptedAnswer": { "@type": "Answer", "text": "Un escaneo general con informe suele tomar entre 30 y 45 minutos, evaluando códigos de falla y parámetros en vivo." } },
-          { "@type": "Question", "name": "¿Qué incluye el peritaje pre-compra de un auto usado?", "acceptedAnswer": { "@type": "Answer", "text": "Incluye escaneo electrónico, inspección visual de vano motor, detección de fugas, estado de batería/alternador, verificación de tren rodante y prueba de funcionamiento general." } },
-          { "@type": "Question", "name": "¿Es necesario sacar turno previo?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, trabajamos con turnos programados para dedicarle el tiempo exclusivo que requiere cada vehículo." } }
-        ]
-      }
-    ]
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fallas frecuentes explicadas en 3D | Autocheck Salta</title>
+<meta name="description" content="Recorré una Amarok en 3D y entendé las fallas más comunes: testigo de motor, cuerpo mariposa, batería, luces, ABS, kilometraje y combustible. Diagnóstico automotriz multimarca en Salta.">
+<meta property="og:title" content="Autocheck Salta · Primero entender. Después reparar.">
+<meta property="og:description" content="Fallas frecuentes explicadas paso a paso sobre una camioneta 3D.">
+<meta property="og:image" content="https://autochecksalta.com.ar/autos-portada.png">
+<meta property="og:url" content="https://autochecksalta.com.ar/">
+<link rel="canonical" href="https://autochecksalta.com.ar/">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" crossorigin>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/loaders/GLTFLoader.js" crossorigin>
+<link rel="preload" href="amarok.glb" as="fetch" type="model/gltf-binary" crossorigin>
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noche:#142B3B; --noche-2:#0D1E2A; --verde:#008F00; --verde-osc:#007300; --grafito:#343B40;
+    --claro:#F2F5F6; --ambar:#E08A00; --texto:#1B2A33; --muted:#5D6C76; --linea:rgba(20,43,59,.1);
+    --panel-w:min(440px, 38vw);
   }
-  </script>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:auto}
+  body{
+    font-family:'Inter',system-ui,sans-serif; color:var(--texto); line-height:1.55;
+    background:radial-gradient(120% 90% at 68% 45%, #ffffff 0%, #f6f8f9 55%, #e9eef1 100%) fixed;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Manrope',sans-serif;line-height:1.15;letter-spacing:-.01em}
+  a{color:inherit}
+
+  /* ---------- escena ---------- */
+  #scene{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-index:0}
+  .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;
+    background-image:linear-gradient(rgba(20,43,59,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(20,43,59,.05) 1px,transparent 1px);
+    background-size:48px 48px; mask-image:radial-gradient(70% 60% at 65% 55%,#000 30%,transparent 80%)}
+  #fallback{position:fixed;inset:0;z-index:0;display:none;background:url('autos-portada.png') center/cover;opacity:.35}
+  .no-webgl #fallback{display:block}
+
+  /* ---------- hotspot ---------- */
+  #hotspot{position:fixed;left:0;top:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .35s}
+  #hotspot .dot{position:absolute;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 4px rgba(0,143,0,.22)}
+  #hotspot .dot::after{content:"";position:absolute;inset:-10px;border-radius:50%;border:2px solid var(--verde);animation:ping 1.8s ease-out infinite}
+  #hotspot.alerta .dot{background:var(--ambar);box-shadow:0 0 0 4px rgba(242,169,59,.25)}
+  #hotspot.alerta .dot::after{border-color:var(--ambar)}
+  #hotspot .tag{position:absolute;left:18px;top:-38px;white-space:nowrap;font:600 12px/1 'Inter';letter-spacing:.06em;text-transform:uppercase;
+    padding:8px 10px;border-radius:6px;background:var(--noche);color:#fff;border:1px solid rgba(255,255,255,.12);box-shadow:0 8px 20px -8px rgba(20,43,59,.5)}
+  #hotspot .tag::before{content:"";position:absolute;left:-14px;bottom:-10px;width:16px;height:1px;background:var(--noche);transform:rotate(-45deg);transform-origin:right}
+  @keyframes ping{from{transform:scale(.5);opacity:1}to{transform:scale(1.6);opacity:0}}
+
+  /* ---------- header ---------- */
+  header{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;
+    padding:14px clamp(16px,4vw,48px);background:linear-gradient(to bottom,rgba(255,255,255,.95),rgba(255,255,255,0))}
+  header .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  header .brand img{height:40px;width:auto}
+  header .brand span{font:700 15px 'Manrope';letter-spacing:.02em}
+  header nav{display:flex;gap:10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font:600 14px 'Inter';text-decoration:none;padding:10px 16px;border-radius:999px;border:1px solid var(--linea);background:#fff;transition:background .2s,transform .2s}
+  .btn:hover{transform:translateY(-1px);background:var(--claro)}
+  .btn.primary{background:var(--verde);border-color:var(--verde);color:#fff}
+  .btn.primary:hover{background:var(--verde-osc)}
+
+  /* ---------- progreso ---------- */
+  #progress{position:fixed;right:clamp(10px,2vw,28px);top:50%;transform:translateY(-50%);z-index:10;display:flex;flex-direction:column;gap:10px}
+  #progress button{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:flex-end;gap:10px;font:600 11px 'Inter';color:var(--muted)}
+  #progress button i{display:block;width:10px;height:10px;border-radius:50%;border:2px solid rgba(20,43,59,.3);transition:all .3s}
+  #progress button span{opacity:0;transform:translateX(6px);transition:all .25s;white-space:nowrap}
+  #progress button:hover span,#progress button.on span{opacity:1;transform:none}
+  #progress button.on{color:var(--texto)}
+  #progress button.on i{background:var(--verde);border-color:var(--verde);transform:scale(1.25)}
+  #progress button:focus-visible i{outline:2px solid var(--ambar);outline-offset:3px}
+
+  /* ---------- historia ---------- */
+  main{position:relative;z-index:5}
+  .step{min-height:115vh;display:flex;align-items:center;padding:110px clamp(16px,5vw,72px)}
+  .panel{width:var(--panel-w);padding:28px 28px 24px;border-radius:18px;
+    background:rgba(255,255,255,.86);border:1px solid var(--linea);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    box-shadow:0 30px 60px -30px rgba(20,43,59,.35);
+    opacity:0;transform:translateY(40px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+  .step.visible .panel,.intro .panel{opacity:1;transform:none}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font:600 12px 'Inter';letter-spacing:.12em;text-transform:uppercase;color:var(--verde);margin-bottom:12px}
+  .kicker.alerta{color:var(--ambar)}
+  .kicker::before{content:"";width:22px;height:2px;background:currentColor}
+  .panel h2{font-size:clamp(24px,2.4vw,32px);margin-bottom:16px}
+  .panel .lead{color:var(--muted);margin-bottom:18px}
+  .rows{display:grid;gap:12px}
+  .row{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+  .row .ic{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-size:14px;background:var(--claro)}
+  .row b{display:block;font:600 12px 'Inter';letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+  .row p{font-size:15px}
+  .note{margin-top:18px;padding-top:14px;border-top:1px solid var(--linea);font-size:13px;color:var(--muted)}
+
+  /* intro */
+  .intro .panel{background:none;border:none;backdrop-filter:none;box-shadow:none;padding:0;width:min(560px,46vw)}
+  .intro h1{font-size:clamp(38px,5vw,64px);margin:6px 0 18px}
+  .intro h1 em{font-style:normal;color:var(--verde)}
+  .intro .lead{font-size:18px;color:var(--grafito);max-width:44ch}
+  .intro .marcas{margin-top:26px;display:flex;align-items:center;gap:14px;color:var(--muted);font-size:13px}
+  .intro .marcas img{height:38px}
+  .scroll-hint{margin-top:36px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+  .scroll-hint i{width:22px;height:34px;border:2px solid rgba(20,43,59,.3);border-radius:12px;position:relative}
+  .scroll-hint i::after{content:"";position:absolute;left:50%;top:6px;width:4px;height:7px;margin-left:-2px;border-radius:2px;background:var(--verde);animation:wheel 1.6s infinite}
+  @keyframes wheel{0%{opacity:0;transform:translateY(-3px)}40%{opacity:1}100%{opacity:0;transform:translateY(9px)}}
+
+  /* cierre */
+  .cierre .panel{width:min(520px,44vw)}
+  .cierre ul{list-style:none;display:grid;gap:8px;margin:14px 0 22px}
+  .cierre li{display:flex;gap:10px;font-size:15px}
+  .cierre li::before{content:"✓";color:var(--verde);font-weight:700}
+  .cierre .cta{display:flex;flex-wrap:wrap;gap:10px}
+
+  footer{position:relative;z-index:5;padding:48px clamp(16px,5vw,72px) 36px;background:linear-gradient(to bottom,transparent,#fff 40%);border-top:1px solid var(--linea);
+    display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-end;font-size:13px;color:var(--muted)}
+  footer img{height:44px;margin-bottom:10px}
+  footer .credit{max-width:52ch}
+
+  /* WhatsApp flotante */
+  #wa{position:fixed;right:20px;bottom:20px;z-index:20;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;
+    box-shadow:0 10px 30px -8px rgba(37,211,102,.6);transition:transform .2s}
+  #wa:hover{transform:scale(1.07)}
+  #wa svg{width:30px;height:30px;fill:#fff}
+
+  /* loader */
+  /* indicador de carga chico: no tapa el contenido mientras baja el 3D */
+  #loader{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:15;padding:10px 16px;border-radius:999px;
+    background:rgba(255,255,255,.92);border:1px solid var(--linea);box-shadow:0 10px 30px -12px rgba(20,43,59,.35);transition:opacity .6s,visibility .6s}
+  #loader.done{opacity:0;visibility:hidden}
+  #loader .box{display:flex;align-items:center;gap:12px}
+  #loader img{display:none}
+  #loader .bar{width:90px;height:3px;border-radius:3px;background:rgba(20,43,59,.1);overflow:hidden}
+  #loader .bar i{display:block;height:100%;width:0;background:var(--verde);transition:width .2s}
+  #loader small{color:var(--muted);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+
+  /* ---------- celular ---------- */
+  @media (max-width:820px){
+    :root{--panel-w:100%}
+    header .brand span{display:none}
+    header nav .btn:not(.primary){display:none}
+    #progress{right:8px;gap:8px}
+    #progress button span{display:none}
+    .step{min-height:125vh;align-items:flex-end;padding:0 10px 9vh}
+    .panel{padding:20px 18px 18px}
+    .panel h2{font-size:22px;margin-bottom:12px}
+    .row p{font-size:13px;line-height:1.45}
+    /* tarjeta compacta para que la camioneta siga visible */
+    .step:not(.intro):not(.cierre) .panel .lead,.step:not(.intro):not(.cierre) .panel .note{display:none}
+    .rows{gap:8px}
+    .row{grid-template-columns:24px 1fr;gap:8px}
+    .row .ic{width:24px;height:24px;font-size:12px}
+    .row b{font-size:10px}
+    .kicker{margin-bottom:8px;font-size:11px}
+    .intro{align-items:flex-end}
+    .intro .panel,.cierre .panel{width:100%}
+    .intro .panel{background:linear-gradient(to top,rgba(255,255,255,.95),rgba(255,255,255,0));padding:24px 6px 0}
+    .intro h1{font-size:36px}
+    .intro .lead{font-size:16px}
+    .scroll-hint{display:none}
+    #wa{width:52px;height:52px;right:14px;bottom:14px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .panel{transition:none}
+    #hotspot .dot::after,.scroll-hint i::after{animation:none}
+  }
+</style>
 </head>
+<body>
 
-<body class="bg-white text-slate-800 antialiased selection:bg-brand-green selection:text-white">
-
-  <!-- ============ HEADER ============ -->
-  <header id="header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between">
-      <a href="#inicio" class="flex items-center gap-2.5" aria-label="AutoCheck Salta - Inicio">
-        <span class="bg-white rounded-lg px-2 py-1 shadow"><img src="logo.png" alt="AutoCheck Salta" class="h-8 w-auto"></span>
-      </a>
-
-      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-200" aria-label="Navegación principal">
-        <a href="#diagnostico" class="nav-link hover:text-white">¿Qué le pasa a tu auto?</a>
-        <a href="#protocolo" class="nav-link hover:text-white">Protocolo</a>
-        <a href="#servicios" class="nav-link hover:text-white">Servicios</a>
-        <a href="#pre-compra" class="nav-link hover:text-white">Pre-Compra</a>
-        <a href="#faq" class="nav-link hover:text-white">Preguntas</a>
-        <a href="#contacto" class="nav-link hover:text-white">Contacto</a>
-      </nav>
-
-      <div class="hidden lg:flex items-center gap-2.5">
-        <a href="panel.html" class="px-3.5 py-2 rounded-lg text-xs font-bold text-slate-200 border border-white/20 hover:bg-white/10 transition"><i class="fa-solid fa-gauge-high text-brand-green mr-1.5"></i>Panel Taller</a>
-        <a href="ingreso.html" class="px-3.5 py-2 rounded-lg text-xs font-bold text-white border border-white/20 hover:bg-white/10 transition"><i class="fa-solid fa-file-signature text-brand-green mr-1.5"></i>Ingresar Auto</a>
-        <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20quiero%20pedir%20un%20turno" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-lg text-sm font-bold text-white bg-brand-green hover:bg-brand-greenDark shadow-lg shadow-brand-green/30 transition"><i class="fa-brands fa-whatsapp mr-1.5"></i>Pedir turno</a>
-      </div>
-
-      <button id="menuBtn" class="lg:hidden text-white p-2" aria-label="Abrir menú" aria-expanded="false">
-        <i id="iconBars" class="fa-solid fa-bars text-2xl"></i>
-        <i id="iconClose" class="fa-solid fa-xmark text-2xl hidden"></i>
-      </button>
-    </div>
-
-    <!-- Menú móvil -->
-    <div id="mobileMenu" class="hidden lg:hidden bg-brand-night/98 backdrop-blur-xl border-t border-white/10 px-5 pb-6 pt-3">
-      <nav class="flex flex-col text-white font-semibold">
-        <a href="#diagnostico" class="m-link py-3 border-b border-white/10">¿Qué le pasa a tu auto?</a>
-        <a href="#protocolo" class="m-link py-3 border-b border-white/10">Protocolo de arranque</a>
-        <a href="#servicios" class="m-link py-3 border-b border-white/10">Servicios</a>
-        <a href="#pre-compra" class="m-link py-3 border-b border-white/10">Chequeo Pre-Compra</a>
-        <a href="#faq" class="m-link py-3 border-b border-white/10">Preguntas frecuentes</a>
-        <a href="#contacto" class="m-link py-3">Ubicación y contacto</a>
-      </nav>
-      <div class="grid grid-cols-2 gap-2.5 mt-4">
-        <a href="ingreso.html" class="text-center py-3 rounded-lg border border-white/20 text-white text-sm font-bold"><i class="fa-solid fa-file-signature text-brand-green mr-1.5"></i>Ingresar auto</a>
-        <a href="panel.html" class="text-center py-3 rounded-lg border border-white/20 text-white text-sm font-bold"><i class="fa-solid fa-gauge-high text-brand-green mr-1.5"></i>Panel taller</a>
-      </div>
-    </div>
-  </header>
-
-  <main>
-
-    <!-- ============ HERO ============ -->
-    <section id="inicio" class="hero-bg relative text-white pt-[72px] overflow-hidden">
-      <div class="absolute inset-0 grid-dots opacity-60 pointer-events-none"></div>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28 grid lg:grid-cols-12 gap-12 items-center relative">
-
-        <div class="lg:col-span-7">
-          <span class="reveal inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-green/15 border border-brand-green/40 text-brand-green text-xs font-bold tracking-wide">
-            <span class="w-2 h-2 rounded-full bg-brand-green pulse-dot"></span> Centro de diagnóstico · Salta Capital
-          </span>
-
-          <h1 class="reveal reveal-d1 font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mt-5">
-            Tu auto no arranca.<br>
-            <span class="grad-text">Nosotros sabemos por qué.</span>
-          </h1>
-
-          <p class="reveal reveal-d2 mt-6 text-lg text-slate-300 max-w-xl leading-relaxed">
-            Diagnóstico con instrumentos y evidencia. Medimos antes de cambiar, para que pagues solo lo que tu auto realmente necesita.
-          </p>
-
-          <div class="reveal reveal-d3 mt-8 flex flex-col sm:flex-row gap-3">
-            <a href="#diagnostico" class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-brand-green hover:bg-brand-greenDark font-bold shadow-xl shadow-brand-green/30 transition">
-              <i class="fa-solid fa-stethoscope"></i> Diagnosticá tu síntoma
-            </a>
-            <a href="ingreso.html" class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-white/25 hover:bg-white/10 font-bold transition">
-              <i class="fa-solid fa-calendar-check"></i> Sacar turno online
-            </a>
-          </div>
-
-          <ul class="reveal reveal-d4 mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-slate-300">
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-green"></i> Escáner multimarca</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-green"></i> Informe con mediciones</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-green"></i> Trato directo con el técnico</li>
-          </ul>
-        </div>
-
-        <!-- Panel de telemetría -->
-        <div class="lg:col-span-5 reveal reveal-d2">
-          <div class="float-y bg-brand-night/80 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl max-w-md mx-auto">
-            <div class="flex items-center justify-between text-xs text-slate-400 mb-4">
-              <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-brand-green pulse-dot"></span> ESCANEO EN VIVO</span>
-              <span>AutoCheck · Diagnóstico</span>
-            </div>
-            <div class="flex items-center gap-5">
-              <div class="relative w-32 h-32 flex-shrink-0">
-                <svg viewBox="0 0 100 100" class="-rotate-90 w-full h-full">
-                  <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="9"/>
-                  <circle class="gauge-ring" cx="50" cy="50" r="40" fill="none" stroke="#21B573" stroke-width="9" stroke-linecap="round"/>
-                </svg>
-                <div class="absolute inset-0 flex flex-col items-center justify-center">
-                  <span id="voltNum" class="font-display font-extrabold text-2xl">0.0 V</span>
-                  <span class="text-[10px] text-slate-400">batería</span>
-                </div>
-              </div>
-              <div class="space-y-3 text-sm w-full">
-                <div><div class="flex justify-between text-xs text-slate-400 mb-1"><span>Carga de arranque</span><span class="text-brand-green font-bold">OK</span></div><div class="h-1.5 rounded bg-white/10"><div class="h-full w-4/5 rounded bg-brand-green"></div></div></div>
-                <div><div class="flex justify-between text-xs text-slate-400 mb-1"><span>Alternador</span><span class="text-brand-green font-bold">OK</span></div><div class="h-1.5 rounded bg-white/10"><div class="h-full w-[90%] rounded bg-brand-green"></div></div></div>
-                <div><div class="flex justify-between text-xs text-slate-400 mb-1"><span>Sensor CKP</span><span class="text-brand-amber font-bold">Revisar</span></div><div class="h-1.5 rounded bg-white/10"><div class="h-full w-2/5 rounded bg-brand-amber"></div></div></div>
-              </div>
-            </div>
-            <div class="mt-5 pt-4 border-t border-white/10 flex items-center justify-between">
-              <p class="text-xs text-slate-400">Primero entender.<br><span class="text-white font-bold text-sm">Después reparar.</span></p>
-              <i class="fa-solid fa-file-circle-check text-brand-green text-3xl"></i>
-            </div>
-          </div>
-          <p class="text-center text-[11px] text-slate-500 mt-3">Ilustración del tipo de informe que recibís.</p>
-        </div>
-      </div>
-
-      <!-- Marcas -->
-      <div class="border-t border-white/10 bg-white/[0.03]">
-        <div class="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-          <span class="text-xs uppercase tracking-widest text-slate-400 font-semibold">Atendemos todas las marcas</span>
-          <img src="marcas.png" alt="Volkswagen, Chevrolet, Fiat, Renault" class="h-9 bg-white rounded-lg px-3 py-1">
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ SELECTOR DE SÍNTOMAS ============ -->
-    <section id="diagnostico" class="py-20 sm:py-24 bg-brand-grayLight">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6">
-        <div class="text-center max-w-2xl mx-auto reveal">
-          <span class="text-brand-greenDark font-bold text-xs uppercase tracking-widest">Autodiagnóstico rápido</span>
-          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-ink mt-3 tracking-tight">¿Qué le pasa a tu auto?</h2>
-          <p class="mt-3 text-slate-600">Elegí lo que notás y te contamos las causas más comunes. Es una guía orientativa: la causa real se confirma midiendo.</p>
-        </div>
-
-        <div class="mt-10 flex flex-wrap justify-center gap-2.5 reveal" id="chips" role="tablist">
-          <button class="sym-chip active px-4 py-2.5 rounded-full border border-slate-300 bg-white text-sm font-semibold text-slate-700" data-k="noarranca">🔌 No arranca</button>
-          <button class="sym-chip px-4 py-2.5 rounded-full border border-slate-300 bg-white text-sm font-semibold text-slate-700" data-k="clac">🔊 Hace “clac-clac”</button>
-          <button class="sym-chip px-4 py-2.5 rounded-full border border-slate-300 bg-white text-sm font-semibold text-slate-700" data-k="pesado">🐌 Gira pesado</button>
-          <button class="sym-chip px-4 py-2.5 rounded-full border border-slate-300 bg-white text-sm font-semibold text-slate-700" data-k="luz">⚠️ Luz de check engine</button>
-          <button class="sym-chip px-4 py-2.5 rounded-full border border-slate-300 bg-white text-sm font-semibold text-slate-700" data-k="apaga">⏹️ Se apaga solo</button>
-          <button class="sym-chip px-4 py-2.5 rounded-full border border-slate-300 bg-white text-sm font-semibold text-slate-700" data-k="usado">🚗 Voy a comprar un usado</button>
-        </div>
-
-        <div class="mt-8 bg-white rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/60 overflow-hidden reveal">
-          <div class="grid md:grid-cols-5">
-            <div class="md:col-span-3 p-7 sm:p-9">
-              <h3 id="symTitle" class="font-display font-extrabold text-2xl text-brand-ink"></h3>
-              <p id="symIntro" class="text-slate-600 mt-2"></p>
-              <p class="mt-5 text-xs font-bold uppercase tracking-wider text-slate-400">Causas frecuentes</p>
-              <ul id="symCauses" class="mt-3 space-y-2.5"></ul>
-            </div>
-            <div class="md:col-span-2 bg-brand-night text-white p-7 sm:p-9 flex flex-col justify-between">
-              <div>
-                <p class="text-xs font-bold uppercase tracking-wider text-brand-green">Qué hacemos</p>
-                <p id="symAction" class="mt-3 text-slate-200 leading-relaxed"></p>
-              </div>
-              <a id="symCta" href="#" target="_blank" rel="noopener" class="mt-7 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-brand-green hover:bg-brand-greenDark font-bold transition">
-                <i class="fa-brands fa-whatsapp text-lg"></i> Consultar por WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ PROTOCOLO ============ -->
-    <section id="protocolo" class="py-20 sm:py-24 bg-brand-night text-white relative overflow-hidden">
-      <div class="absolute inset-0 grid-dots opacity-40 pointer-events-none"></div>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative grid lg:grid-cols-12 gap-14">
-        <div class="lg:col-span-5 lg:sticky lg:top-28 self-start reveal">
-          <span class="text-brand-green font-bold text-xs uppercase tracking-widest">Especialidad · Arranque seguro</span>
-          <h2 class="font-display font-extrabold text-3xl sm:text-4xl mt-3 tracking-tight">No cambies piezas <span class="grad-text">a ciegas.</span></h2>
-          <p class="mt-4 text-slate-300 leading-relaxed">Una caída de tensión, un relay defectuoso, bornes sulfatados o una señal de inmovilizador ausente pueden simular un daño mayor. Por eso aplicamos un protocolo de 5 pasos para darte una respuesta exacta.</p>
-          <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20mi%20auto%20tiene%20una%20falla%20de%20arranque" target="_blank" rel="noopener" class="mt-8 inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-green hover:bg-brand-greenDark font-bold transition">
-            <i class="fa-brands fa-whatsapp text-lg"></i> Consultar falla de arranque
-          </a>
-          <img src="problemascontubateria.jpg" alt="Tips AutoCheck: problemas con tu batería" loading="lazy" class="hidden lg:block mt-10 rounded-2xl border border-white/10 shadow-2xl w-64">
-        </div>
-
-        <ol class="lg:col-span-7 space-y-6">
-          <li class="step-item reveal"><div class="step-line relative flex gap-5">
-            <span class="w-11 h-11 rounded-xl bg-brand-green/15 border border-brand-green/40 text-brand-green font-display font-extrabold flex items-center justify-center flex-shrink-0 z-10">01</span>
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 flex-1 hover:border-brand-green/50 transition"><h3 class="font-display font-bold text-lg"><i class="fa-solid fa-car-battery text-brand-green mr-2"></i>Prueba de carga y salud de batería</h3><p class="text-sm text-slate-300 mt-1.5">Medición en reposo y caída bajo carga real para saber si retiene el amperaje de arranque (CCA).</p></div></div></li>
-          <li class="step-item reveal"><div class="step-line relative flex gap-5">
-            <span class="w-11 h-11 rounded-xl bg-brand-green/15 border border-brand-green/40 text-brand-green font-display font-extrabold flex items-center justify-center flex-shrink-0 z-10">02</span>
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 flex-1 hover:border-brand-green/50 transition"><h3 class="font-display font-bold text-lg"><i class="fa-solid fa-plug-circle-check text-brand-green mr-2"></i>Verificación de líneas y masa</h3><p class="text-sm text-slate-300 mt-1.5">Cables de potencia, conexiones a chasis y bloque para descartar falsos contactos o caídas de voltaje.</p></div></div></li>
-          <li class="step-item reveal"><div class="step-line relative flex gap-5">
-            <span class="w-11 h-11 rounded-xl bg-brand-green/15 border border-brand-green/40 text-brand-green font-display font-extrabold flex items-center justify-center flex-shrink-0 z-10">03</span>
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 flex-1 hover:border-brand-green/50 transition"><h3 class="font-display font-bold text-lg"><i class="fa-solid fa-gears text-brand-green mr-2"></i>Diagnóstico del solenoide y burro</h3><p class="text-sm text-slate-300 mt-1.5">Prueba de excitación (línea 50) y consumo del motor de arranque: ¿falla mecánica o eléctrica?</p></div></div></li>
-          <li class="step-item reveal"><div class="step-line relative flex gap-5">
-            <span class="w-11 h-11 rounded-xl bg-brand-green/15 border border-brand-green/40 text-brand-green font-display font-extrabold flex items-center justify-center flex-shrink-0 z-10">04</span>
-            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 flex-1 hover:border-brand-green/50 transition"><h3 class="font-display font-bold text-lg"><i class="fa-solid fa-wave-square text-brand-green mr-2"></i>Inyección y sensores</h3><p class="text-sm text-slate-300 mt-1.5">Lectura de señal CKP (cigüeñal) para descartar corte de ignición, inmovilizador o falta de pulso de inyección.</p></div></div></li>
-          <li class="step-item reveal"><div class="step-line relative flex gap-5">
-            <span class="w-11 h-11 rounded-xl bg-brand-green text-white font-display font-extrabold flex items-center justify-center flex-shrink-0 z-10">05</span>
-            <div class="bg-gradient-to-br from-brand-green/20 to-white/5 border border-brand-green/50 rounded-2xl p-5 flex-1"><h3 class="font-display font-bold text-lg"><i class="fa-solid fa-file-invoice text-brand-green mr-2"></i>Informe técnico con mediciones</h3><p class="text-sm text-slate-200 mt-1.5">Te mostramos los valores reales antes de desarmar o presupuestar repuestos. Sabés exactamente qué tiene tu vehículo.</p></div></div></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============ SERVICIOS (BENTO) ============ -->
-    <section id="servicios" class="py-20 sm:py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-2xl reveal">
-          <span class="text-brand-greenDark font-bold text-xs uppercase tracking-widest">Servicios</span>
-          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-ink mt-3 tracking-tight">Todo lo que tu auto necesita, con criterio técnico.</h2>
-        </div>
-
-        <div class="mt-12 grid md:grid-cols-6 gap-5">
-          <!-- Escaneo -->
-          <article class="reveal md:col-span-4 group relative overflow-hidden rounded-3xl bg-brand-ink text-white p-8 flex flex-col justify-between min-h-[280px]">
-            <div class="absolute -right-10 -top-10 w-56 h-56 rounded-full bg-brand-green/20 blur-3xl group-hover:bg-brand-green/30 transition"></div>
-            <div class="relative">
-              <span class="w-12 h-12 rounded-xl bg-brand-green/20 text-brand-green flex items-center justify-center text-xl"><i class="fa-solid fa-microchip"></i></span>
-              <h3 class="font-display font-extrabold text-2xl mt-5">Escaneo electrónico y diagnóstico computarizado</h3>
-              <ul class="mt-4 grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-slate-300">
-                <li><i class="fa-solid fa-check text-brand-green mr-2"></i>Lectura y borrado de códigos (DTC)</li>
-                <li><i class="fa-solid fa-check text-brand-green mr-2"></i>Datos en tiempo real: O2, MAF/MAP</li>
-                <li><i class="fa-solid fa-check text-brand-green mr-2"></i>Luces testigo: Check Engine, ABS, Airbag</li>
-                <li><i class="fa-solid fa-check text-brand-green mr-2"></i>Fallas intermitentes</li>
-              </ul>
-            </div>
-            <div class="relative mt-6 flex items-center justify-between">
-              <span class="text-xs text-slate-400"><i class="fa-regular fa-clock mr-1"></i> 30 a 45 min aprox.</span>
-              <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20quiero%20un%20escaneo%20computarizado" target="_blank" rel="noopener" class="text-sm font-bold text-brand-green hover:underline">Agendar escaneo <i class="fa-solid fa-arrow-right ml-1"></i></a>
-            </div>
-          </article>
-
-          <!-- Carga y arranque -->
-          <article class="reveal reveal-d1 md:col-span-2 rounded-3xl bg-brand-greenSoft border border-brand-green/20 p-8 hover:shadow-xl transition">
-            <span class="w-12 h-12 rounded-xl bg-white text-brand-greenDark flex items-center justify-center text-xl shadow-sm"><i class="fa-solid fa-bolt"></i></span>
-            <h3 class="font-display font-extrabold text-xl text-brand-ink mt-5">Carga y arranque</h3>
-            <ul class="mt-3 space-y-2 text-sm text-slate-700">
-              <li>• Alternadores: diodos y reguladores</li>
-              <li>• Motor de arranque: carbones, bendix, solenoide</li>
-              <li>• Fugas de corriente con el auto apagado</li>
-            </ul>
-          </article>
-
-          <!-- Mantenimiento -->
-          <article class="reveal md:col-span-2 rounded-3xl bg-brand-grayLight border border-slate-200 p-8 hover:shadow-xl transition">
-            <span class="w-12 h-12 rounded-xl bg-white text-brand-greenDark flex items-center justify-center text-xl shadow-sm"><i class="fa-solid fa-screwdriver-wrench"></i></span>
-            <h3 class="font-display font-extrabold text-xl text-brand-ink mt-5">Puesta a punto</h3>
-            <ul class="mt-3 space-y-2 text-sm text-slate-700">
-              <li>• Limpieza y calibración de cuerpo de aceleración</li>
-              <li>• Bujías, cables y bobinas</li>
-              <li>• Fluidos y filtros programados</li>
-            </ul>
-          </article>
-
-          <!-- Pre compra -->
-          <article class="reveal reveal-d1 md:col-span-4 relative overflow-hidden rounded-3xl border-2 border-brand-green/40 bg-white p-8 flex flex-col sm:flex-row gap-6 items-start hover:shadow-xl transition">
-            <span class="absolute top-0 right-0 bg-brand-green text-white text-[11px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wide">Recomendado</span>
-            <span class="w-12 h-12 rounded-xl bg-brand-greenSoft text-brand-greenDark flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid fa-magnifying-glass-chart"></i></span>
-            <div>
-              <h3 class="font-display font-extrabold text-xl text-brand-ink">Chequeo integral pre-compra</h3>
-              <p class="text-sm text-slate-600 mt-2">Peritaje mecánico completo antes de cerrar una compra: kilometraje real por módulos, compresión, tren delantero, frenos, fugas y signos de choque estructural.</p>
-              <a href="#pre-compra" class="inline-block mt-4 text-sm font-bold text-brand-greenDark hover:underline">Ver qué incluye <i class="fa-solid fa-arrow-right ml-1"></i></a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ PRE-COMPRA ============ -->
-    <section id="pre-compra" class="py-20 sm:py-24 bg-brand-grayLight">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
-        <div class="reveal">
-          <span class="text-brand-greenDark font-bold text-xs uppercase tracking-widest">Chequeo pre-compra</span>
-          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-ink mt-3 tracking-tight">Antes de pagar, que lo revise un especialista.</h2>
-          <p class="mt-4 text-slate-600 leading-relaxed">Comprar un usado sin revisarlo es apostar. Con nuestro peritaje sabés el estado real del auto y tenés argumentos para negociar o para evitar un mal negocio.</p>
-          <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20quiero%20un%20chequeo%20pre-compra%20para%20un%20auto%20usado" target="_blank" rel="noopener" class="mt-8 inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-ink hover:bg-brand-night text-white font-bold transition">
-            <i class="fa-brands fa-whatsapp text-brand-green text-lg"></i> Reservar chequeo
-          </a>
-        </div>
-        <div class="reveal reveal-d1 grid sm:grid-cols-2 gap-4">
-          <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm"><i class="fa-solid fa-microchip text-brand-green text-xl"></i><h4 class="font-bold text-brand-ink mt-3">Escaneo electrónico</h4><p class="text-sm text-slate-600 mt-1">Fallas almacenadas en todos los módulos.</p></div>
-          <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm"><i class="fa-solid fa-gauge text-brand-green text-xl"></i><h4 class="font-bold text-brand-ink mt-3">Kilometraje real</h4><p class="text-sm text-slate-600 mt-1">Verificado con el historial de módulos.</p></div>
-          <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm"><i class="fa-solid fa-oil-can text-brand-green text-xl"></i><h4 class="font-bold text-brand-ink mt-3">Motor y fugas</h4><p class="text-sm text-slate-600 mt-1">Vano motor, compresión y pérdidas de fluidos.</p></div>
-          <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm"><i class="fa-solid fa-car-burst text-brand-green text-xl"></i><h4 class="font-bold text-brand-ink mt-3">Tren rodante y choques</h4><p class="text-sm text-slate-600 mt-1">Tren delantero, frenos y señales estructurales.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CÓMO TRABAJAMOS ============ -->
-    <section class="py-20 sm:py-24 bg-white">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        <div class="text-center max-w-2xl mx-auto reveal">
-          <span class="text-brand-greenDark font-bold text-xs uppercase tracking-widest">Así de simple</span>
-          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-ink mt-3 tracking-tight">De la falla a la solución en 3 pasos</h2>
-        </div>
-        <div class="mt-12 grid md:grid-cols-3 gap-6">
-          <div class="reveal text-center p-7 rounded-3xl bg-brand-grayLight border border-slate-200">
-            <span class="mx-auto w-14 h-14 rounded-2xl bg-brand-ink text-brand-green flex items-center justify-center text-2xl"><i class="fa-solid fa-calendar-days"></i></span>
-            <h3 class="font-display font-bold text-lg text-brand-ink mt-5">1. Sacá tu turno</h3>
-            <p class="text-sm text-slate-600 mt-2">Completá la ficha de ingreso online, elegí día y horario y firmá tu consentimiento.</p>
-          </div>
-          <div class="reveal reveal-d1 text-center p-7 rounded-3xl bg-brand-grayLight border border-slate-200">
-            <span class="mx-auto w-14 h-14 rounded-2xl bg-brand-ink text-brand-green flex items-center justify-center text-2xl"><i class="fa-solid fa-laptop-code"></i></span>
-            <h3 class="font-display font-bold text-lg text-brand-ink mt-5">2. Diagnosticamos</h3>
-            <p class="text-sm text-slate-600 mt-2">Medimos y escaneamos tu vehículo con instrumental profesional. Sin suposiciones.</p>
-          </div>
-          <div class="reveal reveal-d2 text-center p-7 rounded-3xl bg-brand-grayLight border border-slate-200">
-            <span class="mx-auto w-14 h-14 rounded-2xl bg-brand-ink text-brand-green flex items-center justify-center text-2xl"><i class="fa-solid fa-file-circle-check"></i></span>
-            <h3 class="font-display font-bold text-lg text-brand-ink mt-5">3. Te mostramos la evidencia</h3>
-            <p class="text-sm text-slate-600 mt-2">Recibís el informe con valores reales y decidís con total claridad.</p>
-          </div>
-        </div>
-        <div class="text-center mt-10 reveal">
-          <a href="ingreso.html" class="inline-flex items-center gap-2 px-7 py-4 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-bold shadow-lg shadow-brand-green/30 transition"><i class="fa-solid fa-file-signature"></i> Ir a la ficha de ingreso</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ POR QUÉ ELEGIRNOS ============ -->
-    <section class="py-20 sm:py-24 bg-brand-night text-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="reveal font-display font-extrabold text-3xl sm:text-4xl text-center tracking-tight">¿Por qué <span class="grad-text">AutoCheck</span>?</h2>
-        <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div class="reveal p-6 rounded-2xl bg-white/5 border border-white/10"><i class="fa-solid fa-ruler-combined text-brand-green text-2xl"></i><h3 class="font-bold mt-4">Diagnóstico con evidencia</h3><p class="text-sm text-slate-400 mt-2">No cambiamos la batería “por las dudas”: te mostramos la medición exacta.</p></div>
-          <div class="reveal reveal-d1 p-6 rounded-2xl bg-white/5 border border-white/10"><i class="fa-solid fa-location-dot text-brand-green text-2xl"></i><h3 class="font-bold mt-4">Zona Norte accesible</h3><p class="text-sm text-slate-400 mt-2">A metros de Parque Belgrano y Roque Sáenz Peña, con lugar para pruebas.</p></div>
-          <div class="reveal reveal-d2 p-6 rounded-2xl bg-white/5 border border-white/10"><i class="fa-solid fa-user-gear text-brand-green text-2xl"></i><h3 class="font-bold mt-4">Atención personalizada</h3><p class="text-sm text-slate-400 mt-2">Trato directo con quien diagnostica y trabaja en tu vehículo.</p></div>
-          <div class="reveal reveal-d3 p-6 rounded-2xl bg-white/5 border border-white/10"><i class="fa-solid fa-piggy-bank text-brand-green text-2xl"></i><h3 class="font-bold mt-4">Ahorro real</h3><p class="text-sm text-slate-400 mt-2">Un diagnóstico preciso evita el ensayo y error que infla los costos.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ FAQ ============ -->
-    <section id="faq" class="py-20 sm:py-24 bg-white">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6">
-        <div class="text-center reveal">
-          <span class="text-brand-greenDark font-bold text-xs uppercase tracking-widest">Preguntas frecuentes</span>
-          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-ink mt-3 tracking-tight">Lo que más nos preguntan</h2>
-        </div>
-        <div class="mt-10 space-y-3 reveal">
-          <details class="group bg-brand-grayLight rounded-2xl border border-slate-200 p-5" open>
-            <summary class="flex items-center justify-between gap-4 font-bold text-brand-ink">¿Tienen servicio de diagnóstico a domicilio si el auto no arranca? <span class="faq-icon text-brand-green text-2xl leading-none">+</span></summary>
-            <p class="mt-3 text-slate-600 text-sm leading-relaxed">Coordinamos asistencias puntuales en Zona Norte para verificación rápida de batería y arranque en el lugar, o bien recepción directa en taller con turno previo.</p>
-          </details>
-          <details class="group bg-brand-grayLight rounded-2xl border border-slate-200 p-5">
-            <summary class="flex items-center justify-between gap-4 font-bold text-brand-ink">¿Cuánto demora un diagnóstico computarizado completo? <span class="faq-icon text-brand-green text-2xl leading-none">+</span></summary>
-            <p class="mt-3 text-slate-600 text-sm leading-relaxed">Un escaneo general con informe suele tomar entre 30 y 45 minutos, evaluando códigos de falla y parámetros en vivo.</p>
-          </details>
-          <details class="group bg-brand-grayLight rounded-2xl border border-slate-200 p-5">
-            <summary class="flex items-center justify-between gap-4 font-bold text-brand-ink">¿Qué incluye el peritaje pre-compra de un auto usado? <span class="faq-icon text-brand-green text-2xl leading-none">+</span></summary>
-            <p class="mt-3 text-slate-600 text-sm leading-relaxed">Incluye escaneo electrónico, inspección visual de vano motor, detección de fugas, estado de batería y alternador, verificación de tren rodante y prueba de funcionamiento general.</p>
-          </details>
-          <details class="group bg-brand-grayLight rounded-2xl border border-slate-200 p-5">
-            <summary class="flex items-center justify-between gap-4 font-bold text-brand-ink">¿Es necesario sacar turno previo? <span class="faq-icon text-brand-green text-2xl leading-none">+</span></summary>
-            <p class="mt-3 text-slate-600 text-sm leading-relaxed">Sí. Trabajamos con turnos programados para dedicarle el tiempo exclusivo que requiere cada vehículo. Podés sacarlo desde la <a href="ingreso.html" class="text-brand-greenDark font-semibold underline">ficha de ingreso online</a>.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CONTACTO ============ -->
-    <section id="contacto" class="py-20 sm:py-24 bg-brand-grayLight">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-xl grid lg:grid-cols-2 reveal">
-          <div class="p-8 sm:p-12">
-            <span class="text-brand-greenDark font-bold text-xs uppercase tracking-widest">Ubicación y contacto</span>
-            <h2 class="font-display font-extrabold text-3xl text-brand-ink mt-3 tracking-tight">Vení a visitarnos</h2>
-            <ul class="mt-7 space-y-5 text-sm">
-              <li class="flex gap-4"><span class="w-10 h-10 rounded-xl bg-brand-greenSoft text-brand-greenDark flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-location-dot"></i></span><div><p class="font-bold text-brand-ink">Dirección</p><p class="text-slate-600">Manzana 9 Casa 8, B° Roque Sáenz Peña<br>(Zona Parque Belgrano), Salta Capital · CP 4400</p></div></li>
-              <li class="flex gap-4"><span class="w-10 h-10 rounded-xl bg-brand-greenSoft text-brand-greenDark flex items-center justify-center flex-shrink-0"><i class="fa-regular fa-clock"></i></span><div><p class="font-bold text-brand-ink">Horarios</p><p class="text-slate-600">Lunes a Viernes de 09:00 a 17:00 hs<br>Sábados y domingos cerrado</p></div></li>
-              <li class="flex gap-4"><span class="w-10 h-10 rounded-xl bg-brand-greenSoft text-brand-greenDark flex items-center justify-center flex-shrink-0"><i class="fa-brands fa-whatsapp"></i></span><div><p class="font-bold text-brand-ink">WhatsApp</p><a href="https://wa.me/5493875182523" class="text-slate-600 hover:text-brand-greenDark">+54 9 387 518-2523</a></div></li>
-            </ul>
-            <div class="mt-8 flex flex-wrap gap-3">
-              <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20quiero%20pedir%20un%20turno" target="_blank" rel="noopener" class="px-6 py-3.5 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-bold transition"><i class="fa-brands fa-whatsapp mr-2"></i>Pedir turno</a>
-              <a href="tel:+5493875182523" class="px-6 py-3.5 rounded-xl border border-slate-300 hover:bg-slate-50 font-bold text-brand-ink transition"><i class="fa-solid fa-phone text-brand-green mr-2"></i>Llamar</a>
-            </div>
-          </div>
-          <div class="min-h-[320px] relative bg-slate-100">
-            <iframe title="Mapa AutoCheck Salta" loading="lazy" class="absolute inset-0 w-full h-full border-0" referrerpolicy="no-referrer-when-downgrade"
-              src="https://maps.google.com/maps?q=B%C2%B0%20Roque%20S%C3%A1enz%20Pe%C3%B1a,%20Parque%20Belgrano,%20Salta%20Capital&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CTA FINAL ============ -->
-    <section class="relative bg-gradient-to-r from-brand-greenDark to-brand-green text-white py-16 overflow-hidden">
-      <div class="absolute inset-0 grid-dots opacity-30"></div>
-      <div class="relative max-w-4xl mx-auto px-4 text-center">
-        <h2 class="font-display font-extrabold text-3xl sm:text-4xl tracking-tight">Primero entender. Después reparar.</h2>
-        <p class="mt-3 text-white/90">Contanos qué le pasa a tu auto y coordinamos la revisión.</p>
-        <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20necesito%20consultar%20por%20un%20diagn%C3%B3stico" target="_blank" rel="noopener" class="mt-7 inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white text-brand-greenDark font-extrabold shadow-xl hover:scale-105 transition"><i class="fa-brands fa-whatsapp text-xl"></i> Hablar con un técnico</a>
-      </div>
-    </section>
-  </main>
-
-  <!-- ============ FOOTER ============ -->
-  <footer class="bg-brand-night text-slate-400 pt-14 pb-24 lg:pb-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-        <div>
-          <span class="inline-block bg-white rounded-lg px-2.5 py-1.5"><img src="logo.png" alt="AutoCheck Salta" class="h-9"></span>
-          <p class="text-xs leading-relaxed mt-4">Taller de diagnóstico automotriz y mecánica especializada. Diagnóstico computarizado, problemas de arranque y peritaje pre-compra en Salta Norte.</p>
-          <div class="flex gap-3 mt-4">
-            <a href="https://www.instagram.com/autochecksalta/" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-green text-white flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://wa.me/5493875182523" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-green text-white flex items-center justify-center transition"><i class="fa-brands fa-whatsapp"></i></a>
-          </div>
-        </div>
-        <div>
-          <h4 class="text-white font-bold text-sm uppercase tracking-wider">Enlaces</h4>
-          <ul class="mt-4 space-y-2 text-xs">
-            <li><a href="#diagnostico" class="hover:text-brand-green">Autodiagnóstico</a></li>
-            <li><a href="#protocolo" class="hover:text-brand-green">Protocolo de arranque</a></li>
-            <li><a href="#servicios" class="hover:text-brand-green">Servicios</a></li>
-            <li><a href="#pre-compra" class="hover:text-brand-green">Chequeo pre-compra</a></li>
-            <li><a href="#faq" class="hover:text-brand-green">Preguntas frecuentes</a></li>
-            <li><a href="ingreso.html" class="text-brand-green font-semibold">Ficha de ingreso vehicular</a></li>
-            <li><a href="panel.html" class="hover:text-brand-green">Panel de control del taller</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-white font-bold text-sm uppercase tracking-wider">Especialidades</h4>
-          <ul class="mt-4 space-y-2 text-xs">
-            <li>Escaneo computarizado multimarca</li>
-            <li>Diagnóstico de motores de arranque</li>
-            <li>Prueba de baterías bajo carga real</li>
-            <li>Detección de fugas de corriente</li>
-            <li>Peritaje de kilometraje real</li>
-            <li>Limpieza de cuerpo de aceleración</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-white font-bold text-sm uppercase tracking-wider">AutoCheck Salta</h4>
-          <ul class="mt-4 space-y-3 text-xs">
-            <li class="flex gap-2"><i class="fa-solid fa-location-dot text-brand-green mt-0.5"></i><span>Manzana 9 Casa 8, B° Roque Sáenz Peña (Zona Parque Belgrano), Salta Capital (CP 4400)</span></li>
-            <li class="flex gap-2"><i class="fa-brands fa-whatsapp text-brand-green mt-0.5"></i><a href="https://wa.me/5493875182523" class="hover:text-white">+54 9 387 518-2523</a></li>
-            <li class="flex gap-2"><i class="fa-regular fa-clock text-brand-green mt-0.5"></i><span>Lun a Vie: 09:00 a 17:00 hs</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-2 text-xs text-slate-500">
-        <p>© 2026 AutoCheck Salta. Todos los derechos reservados.</p>
-        <p>Salta Capital · Argentina</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Barra de acción móvil -->
-  <div class="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-brand-night/95 backdrop-blur border-t border-white/10 p-3 grid grid-cols-2 gap-2.5">
-    <a href="tel:+5493875182523" class="text-center py-3 rounded-xl border border-white/20 text-white text-sm font-bold"><i class="fa-solid fa-phone text-brand-green mr-1.5"></i>Llamar</a>
-    <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20necesito%20consultar%20por%20mi%20auto" target="_blank" rel="noopener" class="text-center py-3 rounded-xl bg-brand-green text-white text-sm font-bold"><i class="fa-brands fa-whatsapp mr-1.5"></i>WhatsApp</a>
+<div id="loader" role="status" aria-live="polite">
+  <div class="box">
+    <img src="logo.png" alt="Autocheck Salta">
+    <div class="bar"><i id="loadbar"></i></div>
+    <small id="loadtxt">Preparando la camioneta…</small>
   </div>
+</div>
 
-  <!-- WhatsApp flotante (escritorio) -->
-  <a href="https://wa.me/5493875182523?text=Hola%20AutoCheck,%20necesito%20consultar%20por%20un%20diagn%C3%B3stico" target="_blank" rel="noopener" aria-label="WhatsApp"
-     class="hidden lg:flex fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-[#25D366] text-white items-center justify-center text-3xl shadow-2xl hover:scale-110 transition">
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
+<div class="grid-bg" aria-hidden="true"></div>
+<div id="fallback" aria-hidden="true"></div>
+<canvas id="scene" aria-hidden="true"></canvas>
+<div id="hotspot" aria-hidden="true"><div class="dot"></div><div class="tag" id="hotspot-tag"></div></div>
 
-  <script>
-    // Header con fondo al hacer scroll
-    const header = document.getElementById('header');
-    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 30);
-    onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+<header>
+  <a class="brand" href="index.html"><img src="logo.png" alt="Autocheck Salta"><span>Diagnóstico automotriz · Salta</span></a>
+  <nav>
+    <a class="btn" href="sitio-anterior.html">Sitio principal</a>
+    <a class="btn primary" href="https://wa.me/5493875182523?text=Hola%20Autocheck!%20Quiero%20consultar%20por%20mi%20veh%C3%ADculo.%20Marca%2C%20modelo%2C%20a%C3%B1o%20y%20s%C3%ADntoma%3A%20" target="_blank" rel="noopener">Consultar</a>
+  </nav>
+</header>
 
-    // Menú móvil
-    const menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
-    const iconBars = document.getElementById('iconBars'), iconClose = document.getElementById('iconClose');
-    function toggleMenu(open) {
-      mobileMenu.classList.toggle('hidden', !open);
-      iconBars.classList.toggle('hidden', open);
-      iconClose.classList.toggle('hidden', !open);
-      menuBtn.setAttribute('aria-expanded', open);
-      if (open) header.classList.add('scrolled');
-      else onScroll();
+<nav id="progress" aria-label="Recorrido de fallas"></nav>
+
+<main id="story">
+
+  <section class="step intro" data-label="Inicio">
+    <div class="panel">
+      <div class="kicker">Autocheck Salta</div>
+      <h1>Primero <em>entender</em>.<br>Después reparar.</h1>
+      <p class="lead">Recorré la camioneta y conocé las fallas que más vemos en el taller: qué síntoma da cada una, qué revisamos y cuál es el próximo paso.</p>
+      <div class="marcas"><img src="marcas.png" alt="Marcas que atendemos"><span>Diagnóstico electrónico multimarca</span></div>
+      <div class="scroll-hint"><i></i>Bajá para empezar el recorrido</div>
+    </div>
+  </section>
+
+  <section class="step" data-label="Motor">
+    <div class="panel">
+      <div class="kicker alerta">Falla 01 · Motor y encendido</div>
+      <h2>El motor ratea o pierde fuerza</h2>
+      <p class="lead">Cuando un cilindro no quema bien, el motor vibra, consume más y responde menos. Es una de las fallas más comunes.</p>
+      <div class="rows">
+        <div class="row"><span class="ic">⚠️</span><div><b>Síntoma</b><p>Tiembla en ralentí, tironea al acelerar, le falta fuerza en subida o gasta más de lo normal.</p></div></div>
+        <div class="row"><span class="ic">🔍</span><div><b>Qué revisamos</b><p>Bujías, bobinas, cables e inyectores, y en qué cilindro aparece la falla.</p></div></div>
+        <div class="row"><span class="ic">➡️</span><div><b>Próximo paso</b><p>Puesta a punto o reemplazo solo de lo que está fallando.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-label="Cuerpo mariposa">
+    <div class="panel">
+      <div class="kicker alerta">Falla 02 · Admisión</div>
+      <h2>Cuerpo mariposa y afinación</h2>
+      <p class="lead">Controla cuánto aire entra al motor. Con suciedad o fallas de señal, el motor regula mal.</p>
+      <div class="rows">
+        <div class="row"><span class="ic">⚠️</span><div><b>Síntoma</b><p>Ralentí inestable, tirones, se apaga al frenar o tarda en responder al acelerar.</p></div></div>
+        <div class="row"><span class="ic">🔍</span><div><b>Qué revisamos</b><p>Señal del sensor de posición, estado de limpieza y aprendizaje (adaptación) del cuerpo mariposa.</p></div></div>
+        <div class="row"><span class="ic">➡️</span><div><b>Próximo paso</b><p>Según el caso: limpieza, reaprendizaje o revisión del cableado.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-label="No arranca">
+    <div class="panel">
+      <div class="kicker alerta">Falla 03 · Arranque y carga</div>
+      <h2>No arranca o le cuesta arrancar</h2>
+      <p class="lead">No siempre es la batería: también puede ser el burro de arranque, el alternador o un sensor que corta el encendido.</p>
+      <div class="rows">
+        <div class="row"><span class="ic">⚠️</span><div><b>Síntoma</b><p>Hace “clic” y no gira, gira lento, se descarga de un día para el otro o arranca y se apaga.</p></div></div>
+        <div class="row"><span class="ic">🔍</span><div><b>Qué revisamos</b><p>Batería bajo carga, cables y masas, burro y solenoide, carga del alternador y señal del sensor de cigüeñal.</p></div></div>
+        <div class="row"><span class="ic">➡️</span><div><b>Próximo paso</b><p>Te mostramos la medición para no cambiar una batería que estaba bien.</p></div></div>
+      </div>
+      <p class="note">Si te quedaste en la calle, consultanos por la asistencia a domicilio.</p>
+    </div>
+  </section>
+
+  <section class="step" data-label="Temperatura">
+    <div class="panel">
+      <div class="kicker alerta">Falla 04 · Temperatura del motor</div>
+      <h2>Calienta de más</h2>
+      <p class="lead">Un motor que levanta temperatura puede dañarse en serio. Conviene revisarlo antes de seguir usándolo.</p>
+      <div class="rows">
+        <div class="row"><span class="ic">⚠️</span><div><b>Síntoma</b><p>La aguja sube más de lo normal, el electroventilador no arranca o pierde líquido refrigerante.</p></div></div>
+        <div class="row"><span class="ic">🔍</span><div><b>Qué revisamos</b><p>Sensor de temperatura, electroventilador y su relé, termostato y circuito de refrigeración.</p></div></div>
+        <div class="row"><span class="ic">➡️</span><div><b>Próximo paso</b><p>Ubicamos si la falla es eléctrica o del sistema de refrigeración y te decimos cómo seguir.</p></div></div>
+      </div>
+      <p class="note">Si la temperatura sube mucho, frená en un lugar seguro y apagá el motor.</p>
+    </div>
+  </section>
+
+  <section class="step" data-label="Testigos">
+    <div class="panel">
+      <div class="kicker alerta">Falla 05 · Testigos del tablero</div>
+      <h2>Se encendió el check engine</h2>
+      <p class="lead">Es un aviso de la computadora: algún sensor o actuador informó valores fuera de lo normal. Si titila, conviene revisarlo cuanto antes.</p>
+      <div class="rows">
+        <div class="row"><span class="ic">⚠️</span><div><b>Síntoma</b><p>Testigo fijo o titilando, a veces con pérdida de fuerza, mayor consumo u otros testigos encendidos.</p></div></div>
+        <div class="row"><span class="ic">🔍</span><div><b>Qué revisamos</b><p>Escaneo computarizado de códigos y comprobación de la señal de los sensores involucrados.</p></div></div>
+        <div class="row"><span class="ic">➡️</span><div><b>Próximo paso</b><p>Reparación del punto que falla y borrado de averías una vez solucionado.</p></div></div>
+      </div>
+      <p class="note">Un código orienta, pero no es la causa definitiva: se confirma con pruebas.</p>
+    </div>
+  </section>
+
+  <section class="step" data-label="ABS / frenos">
+    <div class="panel">
+      <div class="kicker alerta">Falla 06 · Seguridad</div>
+      <h2>ABS y frenos</h2>
+      <p class="lead">El ABS evita que las ruedas se bloqueen. Si el testigo se enciende, el sistema puede estar desactivado.</p>
+      <div class="rows">
+        <div class="row"><span class="ic">⚠️</span><div><b>Síntoma</b><p>Testigo de ABS encendido, a veces junto al de control de estabilidad.</p></div></div>
+        <div class="row"><span class="ic">🔍</span><div><b>Qué revisamos</b><p>Sensores de velocidad de cada rueda, su cableado y los códigos del módulo de ABS.</p></div></div>
+        <div class="row"><span class="ic">➡️</span><div><b>Próximo paso</b><p>Ubicamos la rueda o el componente que falla y te recomendamos cómo seguir.</p></div></div>
+      </div>
+      <p class="note">Es un sistema de seguridad: conviene revisarlo cuanto antes.</p>
+    </div>
+  </section>
+
+  <section class="step" data-label="Kilometraje">
+    <div class="panel">
+      <div class="kicker">Servicio · Chequeo pre-compra</div>
+      <h2>Kilometraje verificado</h2>
+      <p class="lead">Si vas a comprar un usado, el número del tablero no siempre cuenta toda la historia.</p>
+      <div class="rows">
+        <div class="row"><span class="ic">📟</span><div><b>Qué pasa</b><p>El tablero puede mostrar un kilometraje que no coincide con el uso real del vehículo.</p></div></div>
+        <div class="row"><span class="ic">🔍</span><div><b>Qué revisamos</b><p>Comparamos el registro del tablero con la información guardada en otros módulos del auto.</p></div></div>
+        <div class="row"><span class="ic">➡️</span><div><b>Próximo paso</b><p>Te contamos qué encontramos para que decidas la compra con más información.</p></div></div>
+      </div>
+      <p class="note">Forma parte del chequeo integral pre-compra. El alcance depende de la marca y el modelo.</p>
+    </div>
+  </section>
+
+  <section class="step" data-label="Combustible">
+    <div class="panel">
+      <div class="kicker alerta">Falla 07 · Combustible</div>
+      <h2>Combustible y sensor de nivel</h2>
+      <p class="lead">Desde el aforador hasta la bomba, varios componentes influyen en cómo se alimenta el motor.</p>
+      <div class="rows">
+        <div class="row"><span class="ic">⚠️</span><div><b>Síntoma</b><p>El indicador marca mal, el auto se queda sin fuerza en subida o cuesta arrancarlo en caliente.</p></div></div>
+        <div class="row"><span class="ic">🔍</span><div><b>Qué revisamos</b><p>Señal del sensor de nivel, funcionamiento de la bomba y los parámetros de inyección.</p></div></div>
+        <div class="row"><span class="ic">➡️</span><div><b>Próximo paso</b><p>Definimos si es un tema eléctrico, de la bomba o de inyección antes de reemplazar algo.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step cierre" data-label="Consultá">
+    <div class="panel">
+      <div class="kicker">Cómo trabajamos</div>
+      <h2>Contanos qué le pasa a tu vehículo</h2>
+      <p class="lead">Escribinos por WhatsApp con estos datos y coordinamos cómo revisarlo:</p>
+      <ul>
+        <li>Marca, modelo y año</li>
+        <li>Qué síntoma notás y cuándo aparece</li>
+        <li>Tu zona, por si necesitás asistencia a domicilio</li>
+      </ul>
+      <div class="cta">
+        <a class="btn primary" href="https://wa.me/5493875182523?text=Hola%20Autocheck!%20Quiero%20consultar%20por%20mi%20veh%C3%ADculo.%20Marca%2C%20modelo%2C%20a%C3%B1o%20y%20s%C3%ADntoma%3A%20" target="_blank" rel="noopener">💬 Escribir por WhatsApp</a>
+        <a class="btn" href="tel:+5493875182523">📞 Llamar</a>
+        <a class="btn" href="https://www.instagram.com/autochecksalta/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <p class="note">Cada caso se confirma con pruebas. No diagnosticamos por chat sin revisar el vehículo.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div>
+    <img src="logo.png" alt="Autocheck Salta">
+    <div>Autocheck Salta · Diagnóstico automotriz multimarca · Salta Capital</div>
+  </div>
+  <div class="credit">Modelo 3D: “2009 Volkswagen Amarok (LP)” de KrStolorz en Sketchfab (licencia Sketchfab Standard). Uso ilustrativo; Volkswagen y Amarok son marcas de sus respectivos titulares.</div>
+</footer>
+
+<a id="wa" href="https://wa.me/5493875182523?text=Hola%20Autocheck!%20Quiero%20consultar%20por%20mi%20veh%C3%ADculo.%20Marca%2C%20modelo%2C%20a%C3%B1o%20y%20s%C3%ADntoma%3A%20" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.2.6 4.4 1.7 6.3L3 29l7.3-1.9c1.8 1 3.8 1.5 5.8 1.5 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23.1c-1.9 0-3.7-.5-5.3-1.4l-.4-.2-4.3 1.1 1.2-4.2-.3-.4a10.4 10.4 0 0 1-1.6-5.5C5.3 9.8 10.1 5.1 16 5.1s10.6 4.7 10.6 10.5S21.9 26.1 16 26.1zm5.8-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.4c.2.2 2.4 3.6 5.7 5 .8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
+</a>
+
+
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobile = () => innerWidth <= 820;
+const steps = [...document.querySelectorAll('.step')];
+const loader = document.getElementById('loader');
+
+/* ---------- barra de progreso ---------- */
+const progress = document.getElementById('progress');
+const dots = steps.map((s, i) => {
+  const b = document.createElement('button');
+  b.innerHTML = `<span>${s.dataset.label}</span><i></i>`;
+  b.setAttribute('aria-label', `Ir a: ${s.dataset.label}`);
+  b.onclick = () => s.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+  progress.appendChild(b);
+  return b;
+});
+let activeStep = 0;
+const setActive = (i) => {
+  activeStep = i;
+  dots.forEach((d, j) => d.classList.toggle('on', j === i));
+  steps.forEach((s, j) => { if (j === i) s.classList.add('visible'); });
+};
+// Sección activa = la que cruza el 60% de la pantalla (sin librerías externas)
+let rafPending = false;
+const updateActive = () => {
+  rafPending = false;
+  const line = innerHeight * 0.6;
+  let idx = 0;
+  steps.forEach((s, i) => { if (s.getBoundingClientRect().top <= line) idx = i; });
+  if (idx !== activeStep || !steps[idx].classList.contains('visible')) setActive(idx);
+};
+addEventListener('scroll', () => { if (!rafPending) { rafPending = true; requestAnimationFrame(updateActive); } }, { passive: true });
+addEventListener('resize', updateActive);
+setActive(0);
+updateActive();
+
+/* ---------- WebGL ---------- */
+const canvas = document.getElementById('scene');
+let renderer;
+try {
+  // En pantallas de alta densidad el antialias casi no se nota y cuesta mucho en celulares
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: devicePixelRatio < 2, alpha: true, powerPreference: 'high-performance' });
+} catch (e) {
+  document.documentElement.classList.add('no-webgl');
+  loader.classList.add('done');
+}
+
+if (renderer) {
+  renderer.setPixelRatio(Math.min(devicePixelRatio, isMobile() ? 1.5 : 1.75));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.0;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  const scene = new THREE.Scene();
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+  const camera = new THREE.PerspectiveCamera(32, 1, 0.05, 100);
+
+  const key = new THREE.DirectionalLight(0xffffff, 2.2);
+  key.position.set(4, 7, 5);
+  key.castShadow = true;
+  key.shadow.mapSize.setScalar(isMobile() ? 512 : 1024);
+  Object.assign(key.shadow.camera, { left: -5, right: 5, top: 5, bottom: -5, near: 1, far: 20 });
+  key.shadow.radius = 6;
+  scene.add(key);
+  const rim = new THREE.DirectionalLight(0x6fd3ff, 1.1);
+  rim.position.set(-6, 3, -5);
+  scene.add(rim);
+  scene.add(new THREE.HemisphereLight(0xbfd8ff, 0x0d1e2a, 0.35));
+
+  const ground = new THREE.Mesh(new THREE.CircleGeometry(9, 64), new THREE.ShadowMaterial({ opacity: 0.22 }));
+  ground.rotation.x = -Math.PI / 2;
+  ground.receiveShadow = true;
+  scene.add(ground);
+
+  // Anillo de "escaneo" en el piso
+  const ring = new THREE.Mesh(
+    new THREE.RingGeometry(3.1, 3.16, 128),
+    new THREE.MeshBasicMaterial({ color: 0x008f00, transparent: true, opacity: 0.35, side: THREE.DoubleSide })
+  );
+  ring.rotation.x = -Math.PI / 2; ring.position.y = 0.005;
+  scene.add(ring);
+
+  /* ---------- estado de cámara animado por scroll ---------- */
+  const cam = { tx: 0, ty: 0.9, tz: 0, az: 0.8, el: 0.2, dist: 9, hood: 0, door: 0, spin: 0 };
+  const hotspotEl = document.getElementById('hotspot');
+  const hotspotTag = document.getElementById('hotspot-tag');
+
+  const findNode = (root, prefix) => {
+    const p = prefix.toLowerCase();
+    let found = null;
+    root.traverse((o) => { if (!found && o.name.replace(/_/g, ' ').toLowerCase().startsWith(p)) found = o; });
+    return found;
+  };
+  // Centro de una pieza: caja si tiene mallas, posición si es un hueso (capot, puertas, ruedas)
+  const centerOf = (obj) => {
+    const box = new THREE.Box3().setFromObject(obj);
+    return box.isEmpty() ? obj.getWorldPosition(new THREE.Vector3()) : box.getCenter(new THREE.Vector3());
+  };
+
+  const pct = document.getElementById('loadbar');
+  new GLTFLoader().load('amarok.glb', (gltf) => {
+    const model = gltf.scene;
+    model.traverse((o) => {
+      if (!o.isMesh) return;
+      o.castShadow = true; o.receiveShadow = true;
+      if (o.material) o.material = upgradeMaterial(o.material);
+    });
+
+    // Orientar: frente (parrilla) hacia +Z, apoyado en el piso, centrado
+    const pivot = new THREE.Group();
+    pivot.add(model);
+    scene.add(pivot);
+    let box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3());
+    const scale = 5.25 / Math.max(size.x, size.z);
+    model.scale.setScalar(scale);
+    box = new THREE.Box3().setFromObject(model);
+    const c = box.getCenter(new THREE.Vector3());
+    model.position.sub(new THREE.Vector3(c.x, box.min.y, c.z));
+    model.updateMatrixWorld(true);
+    const grille = findNode(model, 'grille');
+    const g = centerOf(grille);
+    pivot.rotation.y = Math.atan2(g.x, g.z) * -1;
+    pivot.updateMatrixWorld(true);
+
+    const N = (name) => findNode(model, name);
+    const parts = {
+      grille: N('grille'), hood: N('hood'), headlight: N('headlight'),
+      wheelFL: N('f wheell'), wheelFR: N('f wheelr'),
+      steering: N('steering wheel'), interior: N('interior parts'), gas: N('gas cap'),
+      doorL: N('f doorl'), doorR: N('f doorr'), seats: N('seats'),
+    };
+    const P = Object.fromEntries(Object.entries(parts).map(([k, v]) => [k, v ? centerOf(v) : new THREE.Vector3()]));
+    const bodyBox = new THREE.Box3().setFromObject(model);
+    const H = bodyBox.max.y;
+    const side = (v) => Math.sign(v.x) || 1;
+
+    // Puertas y capot: guardamos la rotación original para abrirlos
+    const hingeBase = {};
+    ['hood', 'doorL', 'doorR'].forEach((k) => { if (parts[k]) hingeBase[k] = parts[k].quaternion.clone(); });
+    // Eje de bisagra expresado en el espacio local de cada hueso
+    const localAxis = (bone, worldAxis) => bone
+      ? worldAxis.clone().applyQuaternion(bone.getWorldQuaternion(new THREE.Quaternion()).invert()).normalize()
+      : new THREE.Vector3(1, 0, 0);
+    const driverDoor = side(P.steering) === side(P.doorL) ? 'doorL' : 'doorR';
+    const hoodAxis = localAxis(parts.hood, new THREE.Vector3(1, 0, 0));
+    const doorAxis = localAxis(parts[driverDoor], new THREE.Vector3(0, side(P.steering), 0));
+
+    // Brillo de piezas: materiales propios para cada pieza resaltable
+    const glowSets = {};
+    const makeGlow = (key, objs) => {
+      glowSets[key] = [];
+      objs.filter(Boolean).forEach((o) => o.traverse((m) => {
+        if (!m.isMesh || !m.material || !('emissive' in m.material)) return;
+        m.material = m.material.clone();
+        glowSets[key].push(m.material);
+      }));
+    };
+    function makeGlowMesh(key, mesh) { glowSets[key] = [mesh.material]; }
+    makeGlow('grille', [parts.grille]);
+    makeGlow('headlight', [parts.headlight]);
+    makeGlow('gas', [parts.gas]);
+    // Llantas: forman parte de una malla con huesos, así que se ilumina su material
+    glowSets.wheels = [];
+    model.traverse((m) => {
+      if (m.isMesh && /aluminium/i.test(m.material.name)) { m.material = m.material.clone(); glowSets.wheels.push(m.material); }
+    });
+
+    /* Puntos reales de cada falla (el modelo no trae motor: se ubican dentro del vano motor) */
+    const D = side(P.steering);                 // lado del conductor
+    const front = bodyBox.max.z;                // paragolpes delantero
+    const hinge = P.hood;                       // bisagra del capot (junto al parabrisas)
+    const bayZ = (hinge.z + front) / 2;         // centro del vano motor
+    const bayY = hinge.y - 0.22;                // debajo de la chapa del capot
+    const engineTop = new THREE.Vector3(-D * 0.06, bayY + 0.1, bayZ);                // encendido: bobinas sobre el motor
+    const throttle = new THREE.Vector3(-D * 0.18, bayY, bayZ - 0.05);                 // cuerpo mariposa, sobre el múltiple
+    const battery = new THREE.Vector3(D * 0.52, bayY, hinge.z + 0.32);                // batería, lado conductor junto al torpedo
+    const hlBox = new THREE.Box3().setFromObject(parts.headlight);
+    const headlight = new THREE.Vector3(hlBox.max.x - 0.22, hlBox.getCenter(new THREE.Vector3()).y, hlBox.max.z - 0.12); // óptica derecha (+X)
+    const frontWheel = (side(P.wheelFL) > 0 ? P.wheelFL : P.wheelFR).clone();
+    const absSensor = frontWheel.clone().setX(frontWheel.x * 1.12);                   // sensor en la maza
+    const dash = P.steering.clone().add(new THREE.Vector3(0, 0.12, 0.16));            // tablero detrás del volante
+    const fuelCap = P.gas.clone();
+    const radiator = new THREE.Vector3(0, P.grille.y + 0.05, front - 0.25);       // radiador detrás de la parrilla
+
+    /* ---------- Tablero de instrumentos (pantalla dibujada en canvas) ---------- */
+    const CW = 0.34, CH = 0.13;
+    const clusterCanvas = document.createElement('canvas');
+    clusterCanvas.width = 768; clusterCanvas.height = 294;
+    const cctx = clusterCanvas.getContext('2d');
+    const clusterTex = new THREE.CanvasTexture(clusterCanvas);
+    clusterTex.colorSpace = THREE.SRGBColorSpace;
+    clusterTex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    const cluster = new THREE.Mesh(new THREE.PlaneGeometry(CW, CH), new THREE.MeshBasicMaterial({ map: clusterTex, toneMapped: false }));
+    cluster.position.copy(dash);
+    cluster.lookAt(dash.clone().add(new THREE.Vector3(0, 0.3, -1)));   // mirando al conductor
+    scene.add(cluster);
+    cluster.updateMatrixWorld(true);
+    const onCluster = (u, v) => cluster.localToWorld(new THREE.Vector3((u - 0.5) * CW, (0.5 - v) * CH, 0.004));
+    const CE = { x: 384, y: 62 };                       // posición del testigo check engine en el canvas
+    const ODO = { x: 384, y: 160 };
+    const checkEngineSpot = onCluster((CE.x + 70) / 768, CE.y / 294);
+    const odoSpot = onCluster(ODO.x / 768, ODO.y / 294);
+
+    const drawGauge = (cx, cy, r, val, label, max) => {
+      const c = cctx;
+      c.lineWidth = 6; c.strokeStyle = '#2a3238';
+      c.beginPath(); c.arc(cx, cy, r, Math.PI * 0.75, Math.PI * 2.25); c.stroke();
+      c.strokeStyle = '#e8eef2'; c.lineWidth = 3;
+      for (let i = 0; i <= 10; i++) {
+        const a = Math.PI * 0.75 + (Math.PI * 1.5 * i) / 10;
+        c.beginPath(); c.moveTo(cx + Math.cos(a) * (r - 14), cy + Math.sin(a) * (r - 14)); c.lineTo(cx + Math.cos(a) * (r - 4), cy + Math.sin(a) * (r - 4)); c.stroke();
+      }
+      c.fillStyle = '#9fb2bf'; c.font = '600 18px Inter, sans-serif'; c.textAlign = 'center';
+      c.fillText(label, cx, cy + r * 0.55);
+      const a = Math.PI * 0.75 + Math.PI * 1.5 * (val / max);
+      c.strokeStyle = '#ff5a36'; c.lineWidth = 5;
+      c.beginPath(); c.moveTo(cx, cy); c.lineTo(cx + Math.cos(a) * (r - 18), cy + Math.sin(a) * (r - 18)); c.stroke();
+      c.fillStyle = '#11161a'; c.beginPath(); c.arc(cx, cy, 10, 0, Math.PI * 2); c.fill();
+    };
+    const drawCheckEngine = (x, y, on) => {
+      const c = cctx;
+      c.save(); c.translate(x, y);
+      if (on) { c.shadowColor = '#ffb000'; c.shadowBlur = 28; }
+      c.fillStyle = on ? '#ffb000' : '#3a3324';
+      // silueta de motor: block, tapa, toma y escape
+      c.fillRect(-30, -14, 52, 30);
+      c.fillRect(-20, -24, 28, 10);
+      c.fillRect(-12, -30, 12, 6);
+      c.fillRect(22, -6, 12, 14);
+      c.fillRect(34, -12, 6, 26);
+      c.fillRect(-40, -4, 10, 12);
+      c.fillRect(-44, -12, 6, 28);
+      c.restore();
+    };
+    const drawSmallLamp = (x, y, color, text) => {
+      cctx.fillStyle = color; cctx.font = '700 20px Inter, sans-serif'; cctx.textAlign = 'center'; cctx.fillText(text, x, y + 7);
+    };
+    const drawCluster = (blink, odoFocus) => {
+      const c = cctx;
+      const g = c.createLinearGradient(0, 0, 0, 294);
+      g.addColorStop(0, '#0b0f12'); g.addColorStop(1, '#151b20');
+      c.fillStyle = g; c.fillRect(0, 0, 768, 294);
+      drawGauge(150, 150, 118, 2.4, 'x1000 rpm', 7);
+      drawGauge(618, 150, 118, 62, 'km/h', 220);
+      // odómetro
+      c.fillStyle = odoFocus ? 'rgba(0,143,0,.35)' : '#0f1418';
+      c.strokeStyle = odoFocus ? '#2fd12f' : '#2a3238'; c.lineWidth = 3;
+      c.beginPath(); c.roundRect(ODO.x - 92, ODO.y - 30, 184, 52, 8); c.fill(); c.stroke();
+      c.fillStyle = '#e8eef2'; c.font = '600 30px "Courier New", monospace'; c.textAlign = 'center';
+      c.fillText('128.450 km', ODO.x, ODO.y + 6);
+      // testigos
+      drawCheckEngine(CE.x, CE.y, blink);
+      drawSmallLamp(CE.x - 110, CE.y, '#2b3a2b', 'ABS');
+      drawSmallLamp(CE.x + 110, CE.y, '#3b2626', '⚡');
+      clusterTex.needsUpdate = true;
+    };
+    drawCluster(false, false);
+    let clusterState = '';
+
+    // Componentes ilustrativos dentro del vano motor (se ven al abrir el capot)
+    const mat = (color, metal = 0.3, rough = 0.55) => new THREE.MeshStandardMaterial({ color, metalness: metal, roughness: rough });
+    const addBox = (w, h, d, pos, m) => {
+      const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m);
+      mesh.position.copy(pos); mesh.castShadow = true; scene.add(mesh); return mesh;
+    };
+    const engineMat = mat(0x3a4148, 0.6, 0.45);
+    const block = addBox(0.62, 0.34, 0.5, new THREE.Vector3(-D * 0.06, bayY - 0.2, bayZ), engineMat); // block
+    makeGlowMesh('engine', block);
+    // bobinas sobre la tapa de válvulas
+    for (let i = 0; i < 4; i++) addBox(0.05, 0.07, 0.05, new THREE.Vector3(-D * 0.06 + (i - 1.5) * 0.12, bayY + 0.06, bayZ), mat(0x0f1215, 0.1, 0.6));
+    addBox(0.56, 0.08, 0.42, new THREE.Vector3(-D * 0.06, bayY - 0.0, bayZ), mat(0x1c2126, 0.2, 0.7)); // tapa de válvulas
+    const tb = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.065, 0.12, 24), mat(0xb8c0c6, 0.9, 0.3));
+    tb.rotation.z = Math.PI / 2; tb.position.copy(throttle).setY(bayY + 0.02); scene.add(tb);
+    makeGlowMesh('throttle', tb);
+    const batt = addBox(0.24, 0.19, 0.3, new THREE.Vector3(battery.x, bayY - 0.08, battery.z), mat(0x15181b, 0.1, 0.8));
+    addBox(0.04, 0.03, 0.04, new THREE.Vector3(battery.x - 0.07, bayY + 0.03, battery.z + 0.1), mat(0xd23b3b));
+    addBox(0.04, 0.03, 0.04, new THREE.Vector3(battery.x + 0.07, bayY + 0.03, battery.z + 0.1), mat(0x222222));
+    makeGlowMesh('battery', batt);
+    throttle.setY(bayY + 0.09);
+    battery.setY(bayY + 0.06);
+
+    /* Recorrido: target, ángulos, distancia, pieza a iluminar, hotspot */
+    const S = side(P.gas);
+    const STEPS = [
+      { t: new THREE.Vector3(0, H * 0.48, 0), az: 0.78, el: 0.16, dist: 11.5 },
+      { t: engineTop, az: -D * 0.35, el: 0.75, dist: 4.4, hood: 1, glow: 'engine', hot: engineTop, tag: 'Bujías · bobinas · inyectores' },
+      { t: throttle, az: 0.25, el: 0.8, dist: 4.2, hood: 1, glow: 'throttle', hot: throttle, tag: 'Cuerpo mariposa' },
+      { t: battery, az: D * 0.55, el: 0.85, dist: 4.0, hood: 1, glow: 'battery', hot: battery, tag: 'Batería · burro · alternador' },
+      { t: radiator, az: -0.3, el: 0.1, dist: 3.4, glow: 'grille', hot: radiator, tag: 'Radiador · electroventilador', alerta: true },
+      { t: cluster.position.clone(), az: Math.PI + D * 0.1, el: 0.3, dist: 0.58, hot: checkEngineSpot, tag: 'Alerta', alerta: true, blink: true },
+      { t: absSensor, az: 1.4, el: 0.1, dist: 3.0, glow: 'wheels', hot: absSensor, tag: 'Sensor de rueda ABS', alerta: true },
+      { t: cluster.position.clone(), az: Math.PI - D * 0.5, el: 0.22, dist: 0.95, door: 1, hot: odoSpot, tag: 'Tablero · odómetro', odo: true },
+      { t: fuelCap, az: S * 1.9, el: 0.14, dist: 3.0, glow: 'gas', hot: fuelCap, tag: 'Boca de carga · tanque' },
+      { t: new THREE.Vector3(0, H * 0.45, 0), az: S * 2.6, el: 0.14, dist: 11.5, spin: 1 },
+    ];
+    // Que el ángulo azimutal no dé vueltas largas entre pasos
+    for (let i = 1; i < STEPS.length; i++) {
+      while (STEPS[i].az - STEPS[i - 1].az > Math.PI) STEPS[i].az -= Math.PI * 2;
+      while (STEPS[i].az - STEPS[i - 1].az < -Math.PI) STEPS[i].az += Math.PI * 2;
     }
-    menuBtn.addEventListener('click', () => toggleMenu(mobileMenu.classList.contains('hidden')));
-    document.querySelectorAll('.m-link').forEach(l => l.addEventListener('click', () => toggleMenu(false)));
+    const stateOf = (s) => ({ tx: s.t.x, ty: s.t.y, tz: s.t.z, az: s.az, el: s.el, dist: s.dist, hood: s.hood || 0, door: s.door || 0, spin: s.spin || 0 });
+    Object.assign(cam, stateOf(STEPS[0]));
 
-    // Revelado al scroll
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    // Voltímetro animado del hero
-    (function () {
-      const el = document.getElementById('voltNum'); const target = 12.6; const start = performance.now() + 600; const dur = 2000;
-      function tick(t) {
-        const p = Math.min(Math.max((t - start) / dur, 0), 1);
-        el.textContent = (target * (1 - Math.pow(1 - p, 3))).toFixed(1) + ' V';
-        if (p < 1) requestAnimationFrame(tick);
+    // Cámara según el scroll: cada sección viaja mientras el panel entra y se DETIENE en el punto mientras leés.
+    // Se calcula directo desde la posición del scroll, así nunca queda trabada al volver rápido hacia arriba.
+    const KEYS = Object.keys(stateOf(STEPS[0]));
+    const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+    let stepTops = [];
+    const measure = () => { stepTops = steps.map((el) => el.getBoundingClientRect().top + scrollY); };
+    addEventListener('resize', measure);
+    addEventListener('load', measure);
+    measure();
+    const camTarget = () => {
+      if (reduceMotion) return stateOf(STEPS[activeStep]);
+      const y = scrollY, vh = innerHeight;
+      let st = stateOf(STEPS[0]);
+      for (let i = 1; i < STEPS.length; i++) {
+        const a = stepTops[i] - vh, b = stepTops[i] - vh * 0.25;
+        if (y <= a) break;
+        const e = easeInOut(Math.min(1, (y - a) / (b - a)));
+        const from = stateOf(STEPS[i - 1]), to = stateOf(STEPS[i]);
+        st = {};
+        KEYS.forEach((k) => { st[k] = from[k] + (to[k] - from[k]) * e; });
+        if (e < 1) break;
       }
-      requestAnimationFrame(tick);
-    })();
-
-    // Selector de síntomas
-    const WA = '5493875182523';
-    const symptoms = {
-      noarranca: {
-        title: 'Tu auto no arranca',
-        intro: 'No hay respuesta al girar la llave o presionar el botón.',
-        causes: ['Batería descargada o con bornes sulfatados', 'Motor de arranque o solenoide defectuoso', 'Caída de tensión por cables o masa en mal estado', 'Falta de señal del sensor CKP o inmovilizador'],
-        action: 'Medimos batería bajo carga, líneas y masa, probamos el motor de arranque y leemos las señales de inyección antes de proponer cualquier repuesto.',
-        msg: 'Hola AutoCheck, mi auto no arranca. Necesito un diagnóstico.'
-      },
-      clac: {
-        title: 'Hace “clac-clac” al girar la llave',
-        intro: 'Se escucha un chasquido rápido pero el motor no gira.',
-        causes: ['Batería con poca carga bajo demanda', 'Bornes flojos o sulfatados', 'Solenoide del burro con contactos gastados', 'Masa del motor deficiente'],
-        action: 'Hacemos prueba de carga real y de caída de tensión para distinguir si el problema es la batería, la conexión o el motor de arranque.',
-        msg: 'Hola AutoCheck, mi auto hace clac-clac al arrancar y no gira. ¿Pueden revisarlo?'
-      },
-      pesado: {
-        title: 'El motor gira pesado o lento',
-        intro: 'Arranca con esfuerzo, sobre todo en frío.',
-        causes: ['Batería que ya no entrega el amperaje de arranque', 'Motor de arranque con carbones o bendix gastados', 'Alternador que no carga correctamente', 'Consumos parásitos que descargan la batería'],
-        action: 'Verificamos salud de batería, sistema de carga del alternador y buscamos fugas de corriente con el vehículo apagado.',
-        msg: 'Hola AutoCheck, mi auto gira pesado al arrancar. Quiero revisar batería y alternador.'
-      },
-      luz: {
-        title: 'Se enciende la luz de check engine',
-        intro: 'Testigo del motor, ABS, airbag o EPC encendido.',
-        causes: ['Sensores de oxígeno, MAF/MAP o temperatura', 'Fallas de encendido: bujías, bobinas o cables', 'Problemas de inyección o mezcla', 'Fallas intermitentes en módulos'],
-        action: 'Escaneo multimarca: leemos y explicamos los códigos de falla y analizamos parámetros en tiempo real para confirmar la causa.',
-        msg: 'Hola AutoCheck, tengo una luz de check engine encendida. Quiero un escaneo computarizado.'
-      },
-      apaga: {
-        title: 'El motor se apaga solo',
-        intro: 'Se detiene en marcha, al frenar o al estar detenido.',
-        causes: ['Falta de pulso del sensor CKP', 'Alternador que deja de cargar', 'Cuerpo de aceleración sucio', 'Problemas de alimentación de combustible'],
-        action: 'Combinamos escaneo, prueba de carga y análisis de sensores en vivo para detectar fallas intermitentes.',
-        msg: 'Hola AutoCheck, mi auto se apaga solo. Necesito un diagnóstico.'
-      },
-      usado: {
-        title: 'Voy a comprar un auto usado',
-        intro: 'Querés asegurarte de no llevarte sorpresas.',
-        causes: ['Kilometraje adulterado', 'Fallas electrónicas ocultas', 'Fugas de aceite o refrigerante', 'Daños estructurales por choques previos'],
-        action: 'Peritaje completo: escaneo electrónico, verificación de km real, vano motor, fugas, batería/alternador, tren rodante y prueba general.',
-        msg: 'Hola AutoCheck, quiero un chequeo pre-compra para un auto usado.'
-      }
+      return st;
     };
 
-    const chips = document.querySelectorAll('.sym-chip');
-    function showSymptom(k) {
-      const s = symptoms[k];
-      document.getElementById('symTitle').textContent = s.title;
-      document.getElementById('symIntro').textContent = s.intro;
-      document.getElementById('symAction').textContent = s.action;
-      document.getElementById('symCta').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(s.msg);
-      document.getElementById('symCauses').innerHTML = s.causes.map(c =>
-        '<li class="flex items-start gap-3 text-slate-700"><i class="fa-solid fa-circle-check text-brand-green mt-1"></i><span>' + c + '</span></li>'
-      ).join('');
-      chips.forEach(c => c.classList.toggle('active', c.dataset.k === k));
-    }
-    chips.forEach(c => c.addEventListener('click', () => showSymptom(c.dataset.k)));
-    showSymptom('noarranca');
-  </script>
+    /* ---------- render ---------- */
+    const target = new THREE.Vector3();
+    const tmp = new THREE.Vector3();
+    const q = new THREE.Quaternion();
+    const green = new THREE.Color(0x7dff7d);
+    const amber = new THREE.Color(0xf2a93b);
+    const clock = new THREE.Clock();
+    let spinAngle = 0;
+
+    const resize = () => {
+      const w = innerWidth, h = innerHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      // Desplazar el encuadre: auto a la derecha en desktop, arriba en celular
+      if (isMobile()) camera.setViewOffset(w, h, 0, h * 0.2, w, h);
+      else camera.setViewOffset(w, h, -w * 0.22, 0, w, h);
+      camera.fov = isMobile() ? 42 : 32;
+      camera.updateProjectionMatrix();
+    };
+    addEventListener('resize', resize);
+    resize();
+
+    renderer.setAnimationLoop(() => {
+      const dt = Math.min(clock.getDelta(), 0.05);
+      const time = clock.elapsedTime;
+
+      const goal = camTarget();
+      const k = reduceMotion ? 1 : 1 - Math.exp(-dt * 6);
+      KEYS.forEach((key) => { cam[key] += (goal[key] - cam[key]) * k; });
+      if (!reduceMotion) spinAngle += dt * 0.12 * cam.spin;
+      const az = cam.az + spinAngle;
+      const distK = isMobile() ? 1.25 : 1;
+      target.set(cam.tx, cam.ty, cam.tz);
+      camera.position.set(
+        target.x + Math.sin(az) * Math.cos(cam.el) * cam.dist * distK,
+        Math.max(0.15, target.y + Math.sin(cam.el) * cam.dist * distK),
+        target.z + Math.cos(az) * Math.cos(cam.el) * cam.dist * distK,
+      );
+      camera.lookAt(target);
+
+      // Capot y puerta
+      if (parts.hood) parts.hood.quaternion.copy(hingeBase.hood).multiply(q.setFromAxisAngle(hoodAxis, cam.hood * HOOD_ANGLE));
+      const door = parts[driverDoor];
+      if (door) door.quaternion.copy(hingeBase[driverDoor]).multiply(q.setFromAxisAngle(doorAxis, cam.door * DOOR_ANGLE));
+
+      // Brillo de la pieza activa
+      const step = STEPS[activeStep];
+      const pulse = 0.55 + 0.45 * Math.sin(time * 3.2);
+      for (const [k, mats] of Object.entries(glowSets)) {
+        const on = step.glow === k;
+        mats.forEach((m) => {
+          m.emissive.copy(step.alerta ? amber : green);
+          m.emissiveIntensity += ((on ? 0.55 * pulse : 0) - m.emissiveIntensity) * 0.12;
+        });
+      }
+      ring.material.opacity = 0.2 + 0.15 * Math.sin(time * 1.5);
+
+      // Testigo de check engine: titila en la falla de motor y en la de testigos del tablero
+      const blink = !!step.blink && (time % 0.9) < 0.5;
+      const cs = `${blink}|${!!step.odo}`;
+      if (cs !== clusterState) { clusterState = cs; drawCluster(blink, !!step.odo); }
+
+      // Hotspot proyectado en pantalla
+      // El punto aparece solo cuando la cámara ya llegó (animación detenida)
+      const settled = step.hot && Math.hypot(cam.tx - step.t.x, cam.ty - step.t.y, cam.tz - step.t.z) < 0.05 && Math.abs(cam.dist - step.dist) < 0.1;
+      if (settled) {
+        tmp.copy(step.hot).project(camera);
+        const x = (tmp.x * 0.5 + 0.5) * innerWidth;
+        const y = (-tmp.y * 0.5 + 0.5) * innerHeight;
+        hotspotEl.style.transform = `translate(${x}px, ${y}px)`;
+        hotspotTag.textContent = step.tag;
+        hotspotEl.classList.toggle('alerta', !!step.alerta);
+        hotspotEl.style.opacity = tmp.z < 1 ? 1 : 0;
+      } else hotspotEl.style.opacity = 0;
+
+      renderer.render(scene, camera);
+    });
+
+    window.__ac = { scene, camera, cam, parts, P, STEPS, model, pivot };
+    loader.classList.add('done');
+    measure();
+  }, (e) => {
+    if (e.total) pct.style.width = `${(e.loaded / e.total) * 100}%`;
+  }, () => {
+    document.getElementById('loadtxt').textContent = 'No se pudo cargar el modelo 3D';
+    document.documentElement.classList.add('no-webgl');
+    setTimeout(() => loader.classList.add('done'), 1200);
+  });
+}
+const CAR_COLOR = '#008F00'; // verde del logo
+const RIM_COLOR = '#6B7278'; // llantas grises
+const HOOD_ANGLE = -1.0;
+
+/* ---------- terminación de la camioneta ---------- */
+const matCache = new Map();
+function upgradeMaterial(m) {
+  if (matCache.has(m)) return matCache.get(m);
+  const n = (m.name || '').toLowerCase();
+  let out = m;
+  const phys = (opts) => new THREE.MeshPhysicalMaterial({ name: m.name, map: m.map || null, ...opts });
+  if (n.includes('paint_metallic')) {
+    // Pintura verde del logo, metalizada con laca
+    out = phys({ color: CAR_COLOR, metalness: 0.45, roughness: 0.38, clearcoat: 1, clearcoatRoughness: 0.06, envMapIntensity: 1.15 });
+  } else if (n === 'black_paint') {
+    out = phys({ color: 0x15181b, metalness: 0.3, roughness: 0.4, clearcoat: 0.8, clearcoatRoughness: 0.1 });
+  } else if (n.includes('aluminium')) {
+    out = phys({ color: RIM_COLOR, metalness: 0.9, roughness: 0.28, clearcoat: 0.4, envMapIntensity: 1.2 });   // llantas grises
+  } else if (n === 'rubber') {
+    out = phys({ color: 0x1a1c1e, metalness: 0, roughness: 0.92 });
+  } else if (n.startsWith('chrom')) {
+    out = phys({ color: 0xd9dee2, metalness: 1, roughness: n.includes('matte') ? 0.35 : 0.08 });
+  } else if (n === 'glass' || n === 'windshield') {
+    out = phys({ color: 0x1d2a30, metalness: 0, roughness: 0.04, transparent: true, opacity: 0.55, clearcoat: 1, envMapIntensity: 1.4 });
+  } else if (n === 'headlight' || n === 'reflector') {
+    out = phys({ color: 0xeef3f6, metalness: 0.9, roughness: 0.12 });
+  } else if (n === 'tail_lights') {
+    out = phys({ color: 0xb3121a, metalness: 0.1, roughness: 0.15, clearcoat: 1, emissive: 0x3a0005 });
+  } else if (n === 'black_plastic' || n === 'underbody' || n === 'cutter') {
+    out = phys({ color: 0x202326, metalness: 0.05, roughness: 0.7 });
+  }
+  matCache.set(m, out);
+  return out;
+}
+
+const DOOR_ANGLE = -1.1; // hacia afuera
+</script>
 </body>
 </html>
