@@ -67,9 +67,14 @@
 
   /* ---------- header ---------- */
   header{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;
-    padding:14px clamp(16px,4vw,48px);background:linear-gradient(to bottom,rgba(255,255,255,.95),rgba(255,255,255,0))}
+    padding:14px clamp(16px,4vw,48px);background:linear-gradient(to bottom,rgba(255,255,255,.95),rgba(255,255,255,0));
+    transition:background .35s ease,box-shadow .35s ease,padding .35s ease}
+  /* al bajar: barra blanca compacta y prolija, sin superponerse con el auto */
+  header.scrolled{background:rgba(255,255,255,.86);-webkit-backdrop-filter:saturate(1.5) blur(14px);backdrop-filter:saturate(1.5) blur(14px);
+    box-shadow:0 1px 0 rgba(20,43,59,.07),0 10px 30px -18px rgba(20,43,59,.35);padding-top:9px;padding-bottom:9px}
   header .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-  header .brand img{height:40px;width:auto}
+  header .brand img{height:40px;width:auto;transition:height .35s ease}
+  header.scrolled .brand img{height:32px}
   header .brand span{font:700 15px 'Manrope';letter-spacing:.02em}
   header nav{display:flex;gap:10px}
   .btn{display:inline-flex;align-items:center;gap:8px;font:600 14px 'Inter';text-decoration:none;padding:10px 16px;border-radius:999px;border:1px solid var(--linea);background:#fff;transition:background .2s,transform .2s}
@@ -167,6 +172,8 @@
     #mbar{display:flex}
     header{padding-top:max(10px, env(safe-area-inset-top));padding-bottom:10px}
     header .brand img{height:34px}
+    header.scrolled{background:rgba(255,255,255,.96);-webkit-backdrop-filter:none;backdrop-filter:none;padding-top:max(7px, env(safe-area-inset-top));padding-bottom:7px}
+    header.scrolled .brand img{height:30px}
     header .btn{padding:9px 14px;font-size:13px}
     .step{min-height:125vh;min-height:125svh;align-items:flex-end;padding:0 10px calc(14px + env(safe-area-inset-bottom))}
     .panel{padding:18px 16px 16px;border-radius:20px;box-shadow:0 -10px 40px -18px rgba(20,43,59,.35)}
@@ -232,7 +239,14 @@
   }
   place();
   addEventListener('resize', place);
-  addEventListener('scroll', function () { p.classList.toggle('away', scrollY > innerHeight * 0.4); }, { passive: true });
+  var hd;
+  function onScroll() {
+    p.classList.toggle('away', scrollY > innerHeight * 0.4);
+    hd = hd || document.querySelector('header');
+    if (hd) hd.classList.toggle('scrolled', scrollY > 12);
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('DOMContentLoaded', onScroll);
 })();
 </script>
 <div id="hotspot" aria-hidden="true"><div class="dot"></div><div class="tag" id="hotspot-tag"></div></div>
@@ -240,7 +254,6 @@
 <header>
   <a class="brand" href="index.html"><img src="logo.png" alt="Autocheck Salta" width="200" height="87"><span>Diagnóstico automotriz · Salta</span></a>
   <nav>
-    <a class="btn" href="sitio-anterior.html">Sitio principal</a>
     <a class="btn primary" href="https://wa.me/5493875182523?text=Hola%20Autocheck!%20Quiero%20consultar%20por%20mi%20veh%C3%ADculo.%20Marca%2C%20modelo%2C%20a%C3%B1o%20y%20s%C3%ADntoma%3A%20" target="_blank" rel="noopener">Consultar</a>
   </nav>
 </header>
