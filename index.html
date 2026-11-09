@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" crossorigin>
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/loaders/GLTFLoader.js" crossorigin>
+<link rel="preload" href="golf-poster.webp" as="image" fetchpriority="high">
 <link rel="preload" href="golf-gti.glb" as="fetch" type="model/gltf-binary" crossorigin>
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#ffffff">
@@ -44,6 +45,9 @@
 
   /* ---------- escena ---------- */
   #scene{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-index:0}
+  /* foto del auto que se ve al instante mientras carga el 3D */
+  #poster{position:fixed;z-index:0;pointer-events:none;max-width:none;transition:opacity .7s ease}
+  #poster.hide,#poster.away{opacity:0}
   .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;
     background-image:linear-gradient(rgba(20,43,59,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(20,43,59,.05) 1px,transparent 1px);
     background-size:48px 48px; mask-image:radial-gradient(70% 60% at 65% 55%,#000 30%,transparent 80%)}
@@ -209,6 +213,28 @@
 <div class="grid-bg" aria-hidden="true"></div>
 <div id="fallback" aria-hidden="true"></div>
 <canvas id="scene" aria-hidden="true"></canvas>
+<img id="poster" src="golf-poster.webp" alt="" aria-hidden="true" fetchpriority="high" width="717" height="383">
+<script>
+/* Ubica la foto exactamente donde va a aparecer el auto 3D (mismo encuadre que la toma de inicio) */
+(function () {
+  var p = document.getElementById('poster');
+  var F = { x: 0.256875, y: 0.339, w: 0.448125, h: 0.383 };   // recorte dentro del cuadro 16:10 original
+  var rad = Math.PI / 180;
+  function place() {
+    var w = innerWidth, h = innerHeight, mob = w <= 820, a = w / h, dk = 1;
+    if (a < 1) dk = Math.min(1.9, 0.72 / a);
+    var fh = h * Math.tan(16 * rad) / (dk * Math.tan((mob ? 21 : 16) * rad)), fw = fh * 1.6;
+    var cx = mob ? w * 0.5 : w * 0.72, cy = mob ? h * 0.33 : h * 0.5;
+    p.style.left = (cx - fw / 2 + F.x * fw) + 'px';
+    p.style.top = (cy - fh / 2 + F.y * fh) + 'px';
+    p.style.width = (F.w * fw) + 'px';
+    p.style.height = (F.h * fh) + 'px';
+  }
+  place();
+  addEventListener('resize', place);
+  addEventListener('scroll', function () { p.classList.toggle('away', scrollY > innerHeight * 0.4); }, { passive: true });
+})();
+</script>
 <div id="hotspot" aria-hidden="true"><div class="dot"></div><div class="tag" id="hotspot-tag"></div></div>
 
 <header>
@@ -566,6 +592,9 @@ if (renderer) {
       }
     });
 
+    // Ninguna pieza arranca iluminada
+    Object.values(glowSets).flat().forEach((m) => { m.emissiveIntensity = 0; });
+
     /* Puntos reales de cada falla (el modelo no trae motor: se ubican dentro del vano motor) */
     const D = side(P.steering);                 // lado del conductor
     const front = bodyBox.max.z;                // paragolpes delantero
@@ -853,6 +882,8 @@ if (renderer) {
     renderer.compile(scene, camera);
     window.__ac = { scene, camera, cam, parts, P, STEPS, model, pivot };
     loader.classList.add('done');
+    // el 3D ya está listo: la foto se desvanece en el primer cuadro dibujado
+    requestAnimationFrame(() => requestAnimationFrame(() => document.getElementById('poster').classList.add('hide')));
     measure();
   }, (e) => {
     if (e.total) pct.style.width = `${(e.loaded / e.total) * 100}%`;
